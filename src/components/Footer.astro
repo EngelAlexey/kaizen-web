@@ -1,0 +1,58 @@
+---
+import Brand from "./Brand.jsx";
+---
+
+<footer class="bg-background border-t border-border pt-16 pb-8 px-6 text-sm">
+    <div class="max-w-7xl mx-auto grid md:grid-cols-4 gap-12 mb-12">
+        <div class="col-span-1 md:col-span-2">
+            <div class="mb-6">
+                <Brand client:visible showMark={true} />
+            </div>
+            <p class="text-muted max-w-sm mb-6">
+                Gestión inteligente para tu empresa y proyectos de construcción.
+                Centraliza, automatiza y crece con Kaizen.
+            </p>
+        </div>
+
+        <div>
+            <h4 class="font-bold text-foreground mb-4">Soluciones</h4>
+            <ul class="space-y-3 text-muted">
+                <li>
+                    <a href="#" class="hover:text-primary transition-colors"
+                        >Control de asistencia</a>
+                </li>
+                <li>
+                    <a href="#" class="hover:text-primary transition-colors"
+                        >Recursos Humanos</a>
+                </li>
+                <li>
+                    <a href="#" class="hover:text-primary transition-colors"
+                        >Control de actividades</a>
+                </li>
+                <li>
+                    <a href="#" class="hover:text-primary transition-colors"
+                        >Salud y Seguridad</a>
+                </li>
+            </ul>
+        </div>
+
+        <div id="contacto">
+            <h4 class="font-bold text-foreground mb-4">Nuestros contactos</h4>
+            <ul class="space-y-3 text-muted">
+                <li>+506 8767 2300</li>
+                <li>
+                    <a
+                        href="mailto:contacto@kaizenapps.net"
+                        class="hover:text-primary">contacto@kaizenapps.net</a>
+                </li>
+                <li class="pt-2">Costa Rica</li>
+            </ul>
+        </div>
+    </div>
+
+    <div
+        class="max-w-7xl mx-auto border-t border-border pt-8 text-center text-muted text-xs"
+    >
+        &copy; {new Date().getFullYear()} Kaizen Apps – All Rights Reserved.
+    </div>
+</footer>

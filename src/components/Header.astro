@@ -1,0 +1,240 @@
+---
+import Brand from "./Brand.jsx";
+import ThemeButton from "./ThemeButton.jsx";
+import LanguageDropdown from "./LanguageDropdown.jsx";
+import MobileMenu from "./MobileMenu.jsx";
+import { useTranslations } from "../utils/i18n";
+import type { ui } from "../i18n/ui";
+
+interface Props {
+    lang?: keyof typeof ui;
+    transparent?: boolean;
+}
+
+const { lang = "es", transparent = false } = Astro.props;
+const t = useTranslations(lang);
+---
+
+<header
+    id="main-header"
+    class={`fixed w-full top-0 z-50 transition-all duration-300 ${
+        transparent
+            ? "bg-transparent"
+            : "bg-white/95 dark:bg-gray-900/95 backdrop-blur-md shadow-sm dark:shadow-gray-950/30 border-b border-border"
+    }`}
+    data-transparent={transparent}
+>
+    <div class="max-w-7xl mx-auto px-6">
+        <div class="flex items-center justify-between h-20">
+            <!-- Logo -->
+            <a
+                href={lang === "es" ? "/" : "/en"}
+                class="hover:opacity-80 transition-opacity"
+            >
+                <Brand client:load transparent={transparent} />
+            </a>
+
+            <!-- Desktop Nav Links -->
+            <nav class="hidden lg:flex items-center gap-8 text-sm font-medium">
+                <a
+                    href="#servicios"
+                    class={`nav-link pb-3 ${
+                        transparent
+                            ? "text-white hover:text-white"
+                            : "text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-primary"
+                    }`}
+                >
+                    {t("nav.services")}
+                </a>
+                <a
+                    href="#soluciones"
+                    class={`nav-link pb-3 ${
+                        transparent
+                            ? "text-white hover:text-white"
+                            : "text-gray-700 hover:text-primary"
+                    }`}
+                >
+                    {t("nav.solutions")}
+                </a>
+                <a
+                    href="#nosotros"
+                    class={`nav-link pb-3 ${
+                        transparent
+                            ? "text-white hover:text-white"
+                            : "text-gray-700 hover:text-primary"
+                    }`}
+                >
+                    {t("nav.about")}
+                </a>
+            </nav>
+
+            <!-- Right Side -->
+            <div class="flex items-center gap-4">
+                <!-- Language Dropdown (Desktop) -->
+                <div class="hidden md:block">
+                    <LanguageDropdown
+                        client:load
+                        currentLocale={lang}
+                        transparent={transparent}
+                    />
+                </div>
+
+                <!-- Theme Toggle -->
+                <div class="hidden md:block">
+                    <ThemeButton client:visible />
+                </div>
+
+                <!-- CTA Button (Desktop) -->
+                <a
+                    href="#contacto"
+                    class={`hidden lg:block px-5 py-2.5 text-sm font-bold rounded-full transition-colors shadow-md ${
+                        transparent
+                            ? "bg-white text-gray-900 hover:bg-gray-100"
+                            : "bg-primary text-white hover:bg-primary-hover dark:bg-primary dark:text-white"
+                    }`}
+                >
+                    {t("nav.demo")}
+                </a>
+
+                <!-- Mobile Menu -->
+                <MobileMenu client:load currentLocale={lang} />
+            </div>
+        </div>
+    </div>
+</header>
+
+<script>
+    // Smooth scroll behavior
+    document.documentElement.style.scrollBehavior = "smooth";
+
+    // Scroll detection for transparent header
+    const header = document.getElementById("main-header");
+    const isTransparent = header?.dataset.transparent === "true";
+
+    if (isTransparent && header) {
+        const handleScroll = () => {
+            const scrollY = window.scrollY;
+            const isScrolled = scrollY > 50;
+
+            if (isScrolled && !header.classList.contains("scrolled")) {
+                // Change to white/dark background based on theme
+                header.classList.remove("bg-transparent");
+                header.classList.add(
+                    "bg-white/95",
+                    "dark:bg-gray-900/95",
+                    "backdrop-blur-md",
+                    "shadow-sm",
+                    "dark:shadow-gray-950/30",
+                    "border-b",
+                    "border-border",
+                    "scrolled",
+                );
+
+                // Update nav links color to dark/light based on theme
+                const navLinks = header.querySelectorAll(".nav-link");
+                navLinks.forEach((link) => {
+                    link.classList.remove("text-white", "hover:text-white");
+                    link.classList.add(
+                        "text-gray-700",
+                        "dark:text-gray-300",
+                        "hover:text-primary",
+                        "dark:hover:text-primary",
+                    );
+                });
+
+                // Update CTA button
+                const ctaButton = header.querySelector('a[href="#contacto"]');
+                if (ctaButton) {
+                    ctaButton.classList.remove(
+                        "bg-white",
+                        "text-gray-900",
+                        "hover:bg-gray-100",
+                    );
+                    ctaButton.classList.add(
+                        "bg-primary",
+                        "text-white",
+                        "hover:bg-primary-hover",
+                    );
+                }
+
+                // Update Brand logo (trigger re-render by dispatching event)
+                window.dispatchEvent(
+                    new CustomEvent("header-scrolled", {
+                        detail: { transparent: false },
+                    }),
+                );
+            } else if (!isScrolled && header.classList.contains("scrolled")) {
+                // Restore transparent background
+                header.classList.add("bg-transparent");
+                header.classList.remove(
+                    "bg-white/95",
+                    "dark:bg-gray-900/95",
+                    "backdrop-blur-md",
+                    "shadow-sm",
+                    "dark:shadow-gray-950/30",
+                    "border-b",
+                    "border-border",
+                    "scrolled",
+                );
+
+                // Restore nav links color to white
+                const navLinks = header.querySelectorAll(".nav-link");
+                navLinks.forEach((link) => {
+                    link.classList.add("text-white", "hover:text-white");
+                    link.classList.remove(
+                        "text-gray-700",
+                        "dark:text-gray-300",
+                        "hover:text-primary",
+                        "dark:hover:text-primary",
+                    );
+                });
+
+                // Restore CTA button
+                const ctaButton = header.querySelector('a[href="#contacto"]');
+                if (ctaButton) {
+                    ctaButton.classList.add(
+                        "bg-white",
+                        "text-gray-900",
+                        "hover:bg-gray-100",
+                    );
+                    ctaButton.classList.remove(
+                        "bg-primary",
+                        "text-white",
+                        "hover:bg-primary-hover",
+                    );
+                }
+
+                // Update Brand logo
+                window.dispatchEvent(
+                    new CustomEvent("header-scrolled", {
+                        detail: { transparent: true },
+                    }),
+                );
+            }
+        };
+
+        window.addEventListener("scroll", handleScroll, { passive: true });
+    }
+</script>
+
+<style>
+    .nav-link {
+        position: relative;
+        transition: color 0.3s ease;
+    }
+
+    .nav-link::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background-color: currentColor;
+        transition: width 0.3s ease;
+    }
+
+    .nav-link:hover::after {
+        width: 100%;
+    }
+</style>

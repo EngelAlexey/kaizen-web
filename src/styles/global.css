@@ -1,0 +1,175 @@
+@import "tailwindcss";
+
+@plugin "tailwindcss-animated";
+
+/* Import modular component styles */
+@import "./components/login.css";
+@import "./components/app.css";
+
+/* =====================  Tokens ===================== */
+:root {
+    --color-primary: #E53935;
+    --color-primary-rgb: 229 57 53;
+    --color-primary-hover: #C62828;
+    --color-primary-hover-rgb: 198 40 40;
+
+    --color-blue: #3b82f6;
+    --color-blue-rgb: 59 130 246;
+    --color-purple: #a855f7;
+    --color-purple-rgb: 168 85 247;
+    --color-emerald: #10b981;
+    --color-emerald-rgb: 16 185 129;
+    --color-orange: #f97316;
+    --color-orange-rgb: 249 115 22;
+
+    --color-background: #f7f7f8;
+    --color-background-rgb: 247 247 248;
+    --color-foreground: #0B0B0D;
+    --color-foreground-rgb: 15 23 42;
+    --color-panel: #ffffff;
+    --color-panel-rgb: 255 255 255;
+    --color-muted: #6b7280;
+    --color-muted-rgb: 71 85 105;
+    --color-border: #e5e7eb;
+    --color-border-rgb: 229 231 235;
+
+    --shadow-soft: 0 10px 24px rgba(0, 0, 0, .18);
+    --shadow-strong: 0 24px 44px rgba(0, 0, 0, .28);
+}
+
+.dark {
+    --color-background: #0f1115;
+    --color-background-rgb: 15 17 21;
+    --color-foreground: #E5E7EB;
+    --color-foreground-rgb: 229 231 235;
+    --color-panel: #121216;
+    --color-panel-rgb: 18 18 22;
+    --color-muted: #9CA3AF;
+    --color-muted-rgb: 156 163 175;
+    --color-border: #1F2937;
+    --color-border-rgb: 31 41 55;
+
+    --color-blue: #60a5fa;
+    --color-blue-rgb: 96 165 250;
+    --color-purple: #c084fc;
+    --color-purple-rgb: 192 132 252;
+    --color-emerald: #34d399;
+    --color-emerald-rgb: 52 211 153;
+    --color-orange: #fb923c;
+    --color-orange-rgb: 251 146 60;
+}
+
+/* =====================  Base ===================== */
+@layer base {
+
+    html,
+    body,
+    #root {
+        height: 100%;
+    }
+
+    body {
+        background: var(--color-background);
+        color: var(--color-foreground);
+        font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji";
+    }
+}
+
+/* ===================== Utilities (comunes) ===================== */
+@layer utilities {
+    .text-foreground {
+        color: var(--color-foreground);
+    }
+
+    .text-muted {
+        color: var(--color-muted);
+    }
+
+    .anim-page {
+        animation: pageIn .45s cubic-bezier(.16, 1, .3, 1) both;
+    }
+
+    @keyframes pageIn {
+        from {
+            opacity: 0;
+            transform: translateY(10px) scale(.995)
+        }
+
+        to {
+            opacity: 1;
+            transform: none
+        }
+    }
+
+    .has-sheen {
+        position: relative;
+        overflow: hidden;
+    }
+
+    .has-sheen::after {
+        content: "";
+        position: absolute;
+        inset: -200% -50% auto -50%;
+        transform: rotate(12deg);
+        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, .18), transparent);
+        opacity: 0;
+        transition: opacity .25s ease, transform .8s ease;
+        pointer-events: none;
+    }
+
+    .has-sheen:hover::after {
+        opacity: .85;
+        transform: rotate(12deg) translateX(60%);
+    }
+
+    .pressable {
+        transition: transform .08s ease;
+    }
+
+    .pressable:active {
+        transform: scale(.98);
+    }
+
+    .theme-anim,
+    .theme-anim * {
+        transition: background-color .25s ease, color .25s ease,
+            border-color .25s ease, fill .25s ease, stroke .25s ease !important;
+    }
+}
+
+@layer components {
+    .btn-primary {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 300ms;
+        background: linear-gradient(180deg, var(--color-primary) 0%, var(--color-primary-hover) 100%);
+        color: white;
+        text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+        box-shadow: 0 4px 15px rgba(229, 57, 53, 0.4);
+    }
+
+    .btn-primary:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 25px rgba(229, 57, 53, 0.5);
+        filter: brightness(1.05);
+    }
+
+    .btn-secondary {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 300ms;
+        border: 1px solid var(--color-border);
+        background-color: var(--color-panel);
+        color: var(--color-foreground);
+        box-shadow: var(--shadow-soft);
+    }
+
+    .btn-secondary:hover {
+        background-color: color-mix(in srgb, var(--color-background), transparent 50%);
+        border-color: color-mix(in srgb, var(--color-primary), transparent 70%);
+        transform: translateY(-2px);
+        box-shadow: var(--shadow-strong);
+    }
+}

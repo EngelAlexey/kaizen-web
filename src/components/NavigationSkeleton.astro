@@ -1,0 +1,74 @@
+---
+// Skeleton loader for page transitions
+---
+
+<div
+    class="skeleton-navbar fixed top-0 w-full z-40 bg-white/95 backdrop-blur-md shadow-sm"
+>
+    <div class="max-w-7xl mx-auto px-6">
+        <div class="flex items-center justify-between h-20">
+            <!-- Logo Skeleton -->
+            <div
+                class="skeleton-rect w-32 h-8 bg-gray-200 rounded animate-pulse"
+            >
+            </div>
+
+            <!-- Nav Links Skeleton -->
+            <div class="hidden lg:flex items-center gap-8">
+                <div
+                    class="skeleton-rect w-20 h-4 bg-gray-200 rounded animate-pulse"
+                >
+                </div>
+                <div
+                    class="skeleton-rect w-24 h-4 bg-gray-200 rounded animate-pulse"
+                >
+                </div>
+                <div
+                    class="skeleton-rect w-20 h-4 bg-gray-200 rounded animate-pulse"
+                >
+                </div>
+            </div>
+
+            <!-- Right Side Skeleton -->
+            <div class="flex items-center gap-4">
+                <div
+                    class="hidden md:block skeleton-rect w-24 h-10 bg-gray-200 rounded animate-pulse"
+                >
+                </div>
+                <div
+                    class="hidden lg:block skeleton-rect w-32 h-10 bg-gray-200 rounded-full animate-pulse"
+                >
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    @keyframes pulse {
+        0%,
+        100% {
+            opacity: 1;
+        }
+        50% {
+            opacity: 0.5;
+        }
+    }
+
+    .animate-pulse {
+        animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+    }
+
+    .skeleton-navbar {
+        animation: fadeIn 0.3s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+        }
+        to {
+            opacity: 1;
+        }
+    }
+</style>

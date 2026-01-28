@@ -1,0 +1,80 @@
+---
+import { Phone, Clock, Facebook, Instagram, Linkedin } from "lucide-react";
+
+interface Props {
+    lang?: "es" | "en";
+}
+
+const { lang = "es" } = Astro.props;
+---
+
+<div class="bg-primary text-white text-xs py-2 px-6 hidden md:block">
+    <div class="max-w-7xl mx-auto flex justify-between items-center">
+        <div class="flex items-center gap-6">
+            <div class="flex items-center gap-2 opacity-90">
+                <Clock size={14} />
+                <span
+                    >{lang === "es" ? "Lun - Vie" : "Mon - Fri"} 08:00 - 17:00</span
+                >
+                <span
+                    class="bg-red-500/20 text-red-200 border border-red-500/50 px-2 py-0.5 rounded text-[10px] font-bold tracking-wider uppercase ml-2"
+                    >v2.0 Colorful</span
+                >
+            </div>
+            <a
+                href="tel:+50687672300"
+                class="flex items-center gap-2 hover:text-blue-200 transition-colors"
+            >
+                <Phone size={14} />
+                <span>+506 8767-2300</span>
+            </a>
+        </div>
+
+        <div class="flex items-center gap-4">
+            <!-- Language Switcher -->
+            <div
+                class="flex items-center gap-2 mr-4 border-r border-white/20 pr-4 font-bold"
+            >
+                <a
+                    href="/"
+                    class={`hover:text-white transition-colors ${lang === "es" ? "text-white" : "text-white/60"}`}
+                    >ES</a
+                >
+                <span class="text-white/40">|</span>
+                <a
+                    href="/en"
+                    class={`hover:text-white transition-colors ${lang === "en" ? "text-white" : "text-white/60"}`}
+                    >EN</a
+                >
+            </div>
+
+            <a
+                href="#"
+                target="_blank"
+                aria-label="Facebook"
+                class="hover:text-blue-200 transition-colors"
+                ><Facebook size={14} /></a
+            >
+            <a
+                href="#"
+                target="_blank"
+                aria-label="Instagram"
+                class="hover:text-blue-200 transition-colors"
+                ><Instagram size={14} /></a
+            >
+            <a
+                href="#"
+                target="_blank"
+                aria-label="LinkedIn"
+                class="hover:text-blue-200 transition-colors"
+                ><Linkedin size={14} /></a
+            >
+            <a
+                href="#"
+                target="_blank"
+                aria-label="Threads"
+                class="hover:text-blue-200 transition-colors font-bold">@</a
+            >
+        </div>
+    </div>
+</div>

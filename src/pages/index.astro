@@ -1,11 +1,435 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+import Layout from "../layouts/Layout.astro";
+import {
+	Briefcase,
+	Layers,
+	Maximize,
+	Clock,
+	CalendarRange,
+	Users,
+	HardHat,
+	ArrowRight,
+	CheckCircle2,
+} from "lucide-react";
 ---
 
-<Layout>
-	<Welcome />
+<Layout title="Resource Management" transparent={true}>
+	<!-- HERO SECTION -->
+	<section
+		class="relative pt-32 pb-20 lg:pt-48 lg:pb-32 px-6 overflow-hidden"
+	>
+		<!-- Background Elements -->
+		<div class="absolute inset-0 -z-10">
+			<div
+				class="absolute top-0 right-0 w-[500px] h-[500px] bg-primary/5 rounded-full blur-3xl opacity-50"
+			>
+			</div>
+			<div
+				class="absolute bottom-0 left-0 w-[500px] h-[500px] bg-blue/5 rounded-full blur-3xl opacity-50"
+			>
+			</div>
+		</div>
+
+		<div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 items-center">
+			<!-- Text Content -->
+			<div class="relative z-10 animate-fade-up animate-duration-700">
+				<span
+					class="inline-block py-1 px-3 rounded-full bg-primary/10 text-primary font-bold tracking-widest uppercase text-xs mb-6 border border-primary/20"
+				>
+					Software de Gestión
+				</span>
+
+				<h1
+					class="text-5xl lg:text-7xl font-bold leading-tight mb-6 text-foreground tracking-tight"
+				>
+					Kaizen <span class="text-primary">Resource Management</span>
+				</h1>
+
+				<p class="text-xl text-muted leading-relaxed mb-8 max-w-lg">
+					Centraliza, automatiza y optimiza cada aspecto de tu
+					operación con la plataforma líder en Business Intelligence.
+				</p>
+
+				<div class="flex flex-col sm:flex-row gap-4">
+					<a
+						href="#contacto"
+						class="btn-primary px-8 py-4 rounded-xl font-bold text-lg shadow-lg hover:shadow-primary/25"
+					>
+						Cotizar Ahora
+					</a>
+					<a
+						href="#soluciones"
+						class="btn-secondary px-8 py-4 rounded-xl font-bold text-lg"
+					>
+						Ver Soluciones
+					</a>
+				</div>
+			</div>
+
+			<!-- Image Composition (Cluster) -->
+			<div
+				class="relative lg:h-[600px] flex items-center justify-center animate-fade-left animate-delay-300"
+			>
+				<!-- Decorative Back Shape -->
+				<div
+					class="absolute top-10 right-10 w-[80%] h-[80%] border-2 border-primary/20 rounded-3xl transform rotate-6 z-0 hidden lg:block"
+				>
+				</div>
+
+				<!-- Main Image -->
+				<div
+					class="relative z-10 w-full max-w-[550px] aspect-[4/3] rounded-2xl overflow-hidden shadow-strong border border-border bg-panel group"
+				>
+					<img
+						src="/src/assets/img/imagen1.jpeg"
+						alt="Dashboard Kaizen"
+						class="object-cover w-full h-full transform transition-transform duration-700 group-hover:scale-105"
+					/>
+
+					<!-- Floating UI Badge -->
+					<div
+						class="absolute bottom-6 left-6 right-6 bg-panel/90 backdrop-blur-md p-4 rounded-xl border border-border shadow-lg flex items-center gap-4"
+					>
+						<div
+							class="w-10 h-10 rounded-full bg-emerald-100 dark:bg-emerald-900/30 text-emerald-600 flex items-center justify-center"
+						>
+							<svg
+								xmlns="http://www.w3.org/2000/svg"
+								class="w-6 h-6"
+								viewBox="0 0 24 24"
+								fill="none"
+								stroke="currentColor"
+								stroke-width="2"
+								stroke-linecap="round"
+								stroke-linejoin="round"
+								><polyline points="20 6 9 17 4 12"
+								></polyline></svg
+							>
+						</div>
+						<div>
+							<p class="text-sm font-bold text-foreground">
+								Sistema Operativo
+							</p>
+							<p class="text-xs text-emerald-600 font-medium">
+								100% Optimizado
+							</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- ABOUT / IMPACT SECTION (New - Alternating Background) -->
+	<section class="py-24 bg-muted/5 relative border-y border-border/50">
+		<div
+			class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-20 items-center px-6"
+		>
+			<!-- Visual Composition -->
+			<div class="relative order-2 lg:order-1">
+				<div
+					class="relative z-10 rounded-2xl overflow-hidden shadow-2xl border border-border"
+				>
+					<img
+						src="/src/assets/img/imagen2.jpg"
+						alt="Equipo Kaizen"
+						class="w-full h-auto object-cover opacity-90 hover:opacity-100 transition-opacity"
+					/>
+				</div>
+				<!-- Overlapping Element -->
+				<div
+					class="absolute -bottom-10 -right-10 w-2/3 rounded-xl overflow-hidden shadow-strong border-4 border-panel z-20 hidden lg:block"
+				>
+					<img
+						src="/src/assets/img/imagen3.jpg"
+						alt="Detalle Operativo"
+						class="w-full h-auto object-cover"
+					/>
+				</div>
+				<!-- Back Shape -->
+				<div
+					class="absolute -top-6 -left-6 w-full h-full bg-blue/5 rounded-3xl -z-10 transform -rotate-3"
+				>
+				</div>
+			</div>
+
+			<!-- Text Content -->
+			<div class="order-1 lg:order-2">
+				<h3
+					class="text-blue font-bold tracking-widest uppercase text-sm mb-4"
+				>
+					Sobre Nosotros
+				</h3>
+				<h2
+					class="text-4xl font-bold mb-6 text-foreground leading-tight"
+				>
+					Impulsando el crecimiento <br />
+					<span class="text-primary">empresarial</span>
+				</h2>
+				<p class="text-muted text-lg mb-6 leading-relaxed">
+					Somos una empresa dedicada a brindar soluciones tecnológicas
+					que transforman la manera en que gestionas tus recursos.
+				</p>
+				<p class="text-muted mb-8 leading-relaxed">
+					Con Kaizen, no solo obtienes un software, sino un aliado
+					estratégico comprometido con la eficiencia, la seguridad y
+					la escalabilidad de tu negocio.
+				</p>
+
+				<div class="grid grid-cols-2 gap-6">
+					<div class="border-l-4 border-primary pl-4">
+						<h4 class="font-bold text-xl mb-1">+500</h4>
+						<p class="text-sm text-muted">Empresas Activas</p>
+					</div>
+					<div class="border-l-4 border-blue pl-4">
+						<h4 class="font-bold text-xl mb-1">99.9%</h4>
+						<p class="text-sm text-muted">Uptime Garantizado</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section class="py-20 px-6">
+		<div class="max-w-7xl mx-auto grid md:grid-cols-3 gap-8">
+			<!-- Gestión: BLUE Theme -->
+			<div
+				class="group p-8 rounded-2xl bg-panel border border-border hover:border-blue transition-all duration-300 hover:shadow-lg hover:shadow-blue/10"
+			>
+				<div
+					class="w-12 h-12 bg-blue/10 text-blue rounded-lg flex items-center justify-center mb-6 group-hover:scale-110 transition-transform"
+				>
+					<Briefcase />
+				</div>
+				<h3
+					class="text-xl font-bold mb-3 group-hover:text-blue transition-colors"
+				>
+					Gestión inteligente
+				</h3>
+				<p class="text-muted">
+					Optimizá la gestión de recursos, mejorá tus procesos y
+					controles. Llevá tu negocio al siguiente nivel.
+				</p>
+			</div>
+
+			<!-- Simplifica: PURPLE Theme -->
+			<div
+				class="group p-8 rounded-2xl bg-panel border border-border hover:border-purple transition-all duration-300 hover:shadow-lg hover:shadow-purple/10"
+			>
+				<div
+					class="w-12 h-12 bg-purple/10 text-purple rounded-lg flex items-center justify-center mb-6 group-hover:scale-110 transition-transform"
+				>
+					<Layers />
+				</div>
+				<h3
+					class="text-xl font-bold mb-3 group-hover:text-purple transition-colors"
+				>
+					Simplifica
+				</h3>
+				<p class="text-muted">
+					Todo en una sola plataforma, con interfaz intuitiva y flujos
+					creados para responder a las exigencias del negocio.
+				</p>
+			</div>
+
+			<!-- Flexible: EMERALD Theme -->
+			<div
+				class="group p-8 rounded-2xl bg-panel border border-border hover:border-emerald transition-all duration-300 hover:shadow-lg hover:shadow-emerald/10"
+			>
+				<div
+					class="w-12 h-12 bg-emerald/10 text-emerald rounded-lg flex items-center justify-center mb-6 group-hover:scale-110 transition-transform"
+				>
+					<Maximize />
+				</div>
+				<h3
+					class="text-xl font-bold mb-3 group-hover:text-emerald transition-colors"
+				>
+					Flexible
+				</h3>
+				<p class="text-muted">
+					Diseñada para cumplir con los requerimientos de las empresas
+					del sector y brindar opciones para gestionar sus procesos.
+				</p>
+			</div>
+		</div>
+	</section>
+
+	<section id="nosotros" class="py-24 bg-panel/30 border-y border-border">
+		<div
+			class="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-16 items-center"
+		>
+			<div>
+				<h2 class="text-3xl md:text-5xl font-bold mb-6">
+					¿Qué es Kaizen?
+				</h2>
+				<div class="space-y-4 text-lg text-muted">
+					<p>
+						Kaizen es un ecosistema digital que ayuda a las empresas
+						a gestionar y controlar recursos como <strong
+							class="text-foreground"
+							>personal, materiales y equipos</strong
+						> de forma eficiente y segura.
+					</p>
+					<p>
+						Con funciones impulsadas por tecnología de última
+						generación. Diseñada para responder a las necesidades
+						del sector construcción, sin embargo, puede
+						implementarse en cualquier otro nicho donde se deban
+						gestionar recursos de forma eficiente.
+					</p>
+				</div>
+			</div>
+			<div class="grid grid-cols-2 gap-4">
+				<div
+					class="bg-background p-6 rounded-2xl shadow-sm border border-border flex flex-col items-center text-center"
+				>
+					<span class="text-4xl font-bold text-primary mb-2">+50</span
+					>
+					<span class="text-sm text-muted">Proyectos Activos</span>
+				</div>
+				<div
+					class="bg-background p-6 rounded-2xl shadow-sm border border-border flex flex-col items-center text-center"
+				>
+					<span class="text-4xl font-bold text-primary mb-2"
+						>100%</span
+					>
+					<span class="text-sm text-muted">Nube Segura</span>
+				</div>
+				<div
+					class="col-span-2 h-48 bg-gray-200 dark:bg-gray-800 rounded-2xl overflow-hidden"
+				>
+					<img
+						src="/src/assets/img/imagen2.jpg"
+						class="w-full h-full object-cover opacity-80 hover:scale-105 transition-transform"
+					/>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section id="soluciones" class="py-24 px-6">
+		<div class="max-w-7xl mx-auto">
+			<div class="text-center mb-16">
+				<h2 class="text-3xl md:text-4xl font-bold mb-4">
+					¿Qué ofrecemos?
+				</h2>
+				<p class="text-muted text-lg">
+					Módulos integrados para el control total.
+				</p>
+			</div>
+
+			<div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+				<div
+					class="group relative p-6 bg-background rounded-2xl border border-border hover:border-primary hover:shadow-xl hover:-translate-y-1 transition-all"
+				>
+					<div
+						class="mb-4 text-primary bg-primary/10 w-12 h-12 rounded-lg flex items-center justify-center"
+					>
+						<Clock />
+					</div>
+					<h3 class="text-xl font-bold mb-2">
+						Control de Asistencia
+					</h3>
+					<p class="text-sm text-muted">
+						Funcionalidad central que permite registrar y gestionar
+						de forma precisa las horas de entrada y salida de los
+						colaboradores.
+					</p>
+				</div>
+
+				<div
+					class="group relative p-6 bg-background rounded-2xl border border-border hover:border-primary hover:shadow-xl hover:-translate-y-1 transition-all"
+				>
+					<div
+						class="mb-4 text-orange-500 bg-orange-500/10 w-12 h-12 rounded-lg flex items-center justify-center"
+					>
+						<CalendarRange />
+					</div>
+					<h3 class="text-xl font-bold mb-2">
+						Control de Actividades
+					</h3>
+					<p class="text-sm text-muted">
+						Controla y gestiona las horas dedicadas por el personal
+						a las actividades de los proyectos. Incluyendo control
+						de presupuesto y costos.
+					</p>
+				</div>
+
+				<div
+					class="group relative p-6 bg-background rounded-2xl border border-border hover:border-primary hover:shadow-xl hover:-translate-y-1 transition-all"
+				>
+					<div
+						class="mb-4 text-blue-500 bg-blue-500/10 w-12 h-12 rounded-lg flex items-center justify-center"
+					>
+						<Users />
+					</div>
+					<h3 class="text-xl font-bold mb-2">Recursos Humanos</h3>
+					<p class="text-sm text-muted">
+						Gestiona asistencias y planillas o nóminas de forma
+						automatizada, mediante un sistema totalmente integrado
+						en la nube.
+					</p>
+				</div>
+
+				<div
+					class="group relative p-6 bg-background rounded-2xl border border-border hover:border-primary hover:shadow-xl hover:-translate-y-1 transition-all"
+				>
+					<div
+						class="mb-4 text-red-500 bg-red-500/10 w-12 h-12 rounded-lg flex items-center justify-center"
+					>
+						<HardHat />
+					</div>
+					<h3 class="text-xl font-bold mb-2">SSOMA</h3>
+					<p class="text-sm text-muted">
+						Módulo que facilita la detección y seguimiento de
+						situaciones relacionadas con salud y seguridad
+						ocupacional con IA.
+					</p>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section class="py-20 bg-panel border-y border-border">
+		<div class="max-w-7xl mx-auto px-6 text-center">
+			<h3 class="text-2xl font-bold mb-10 opacity-80">
+				Nuestros Clientes
+			</h3>
+
+			<div
+				class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-8 items-center opacity-60 grayscale hover:grayscale-0 transition-all duration-500"
+			>
+				<div
+					class="h-16 bg-background rounded-lg border border-border flex items-center justify-center font-bold text-muted-foreground"
+				>
+					CLIENTE 1
+				</div>
+				<div
+					class="h-16 bg-background rounded-lg border border-border flex items-center justify-center font-bold text-muted-foreground"
+				>
+					CLIENTE 2
+				</div>
+				<div
+					class="h-16 bg-background rounded-lg border border-border flex items-center justify-center font-bold text-muted-foreground"
+				>
+					CLIENTE 3
+				</div>
+				<div
+					class="h-16 bg-background rounded-lg border border-border flex items-center justify-center font-bold text-muted-foreground"
+				>
+					CLIENTE 4
+				</div>
+				<div
+					class="h-16 bg-background rounded-lg border border-border flex items-center justify-center font-bold text-muted-foreground"
+				>
+					CLIENTE 5
+				</div>
+				<div
+					class="h-16 bg-background rounded-lg border border-border flex items-center justify-center font-bold text-muted-foreground"
+				>
+					CLIENTE 6
+				</div>
+			</div>
+		</div>
+	</section>
 </Layout>
