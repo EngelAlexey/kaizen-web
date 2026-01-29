@@ -6,7 +6,7 @@ import Brand from "./Brand.jsx";
     <div class="max-w-7xl mx-auto grid md:grid-cols-4 gap-12 mb-12">
         <div class="col-span-1 md:col-span-2">
             <div class="mb-6">
-                <Brand client:visible showMark={true} />
+                <Brand client:visible />
             </div>
             <p class="text-muted max-w-sm mb-6">
                 Gestión inteligente para tu empresa y proyectos de construcción.
@@ -18,20 +18,32 @@ import Brand from "./Brand.jsx";
             <h4 class="font-bold text-foreground mb-4">Soluciones</h4>
             <ul class="space-y-3 text-muted">
                 <li>
-                    <a href="#" class="hover:text-primary transition-colors"
-                        >Control de asistencia</a>
+                    <a
+                        href="/solutions#asistencias"
+                        class="hover:text-primary transition-colors"
+                        >Control de asistencia</a
+                    >
                 </li>
                 <li>
-                    <a href="#" class="hover:text-primary transition-colors"
-                        >Recursos Humanos</a>
+                    <a
+                        href="/solutions#rrhh"
+                        class="hover:text-primary transition-colors"
+                        >Recursos Humanos</a
+                    >
                 </li>
                 <li>
-                    <a href="#" class="hover:text-primary transition-colors"
-                        >Control de actividades</a>
+                    <a
+                        href="/solutions#actividades"
+                        class="hover:text-primary transition-colors"
+                        >Control de actividades</a
+                    >
                 </li>
                 <li>
-                    <a href="#" class="hover:text-primary transition-colors"
-                        >Salud y Seguridad</a>
+                    <a
+                        href="/solutions#ssoma"
+                        class="hover:text-primary transition-colors"
+                        >Salud y Seguridad</a
+                    >
                 </li>
             </ul>
         </div>
@@ -43,7 +55,8 @@ import Brand from "./Brand.jsx";
                 <li>
                     <a
                         href="mailto:contacto@kaizenapps.net"
-                        class="hover:text-primary">contacto@kaizenapps.net</a>
+                        class="hover:text-primary">contacto@kaizenapps.net</a
+                    >
                 </li>
                 <li class="pt-2">Costa Rica</li>
             </ul>

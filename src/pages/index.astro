@@ -10,22 +10,35 @@ import {
 	HardHat,
 	ArrowRight,
 	CheckCircle2,
+	ShoppingBag,
+	Brain,
 } from "lucide-react";
+import { useTranslations } from "../utils/i18n";
+
+const t = useTranslations("es");
 ---
 
 <Layout title="Resource Management" transparent={true}>
 	<!-- HERO SECTION -->
 	<section
-		class="relative pt-32 pb-20 lg:pt-48 lg:pb-32 px-6 overflow-hidden"
+		class="relative pt-24 pb-20 lg:pt-36 lg:pb-32 px-6 overflow-hidden"
 	>
 		<!-- Background Elements -->
 		<div class="absolute inset-0 -z-10">
+			<!-- Grid Pattern -->
 			<div
-				class="absolute top-0 right-0 w-[500px] h-[500px] bg-primary/5 rounded-full blur-3xl opacity-50"
+				class="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)]"
+			>
+			</div>
+
+			<div
+				class="absolute top-[-10%] right-[-5%] w-[600px] h-[600px] bg-gradient-to-br from-primary/20 to-purple/20 rounded-full blur-[100px] opacity-40 animate-pulse"
+				style="animation-duration: 4s;"
 			>
 			</div>
 			<div
-				class="absolute bottom-0 left-0 w-[500px] h-[500px] bg-blue/5 rounded-full blur-3xl opacity-50"
+				class="absolute bottom-[-10%] left-[-5%] w-[600px] h-[600px] bg-gradient-to-tr from-blue/20 to-emerald/20 rounded-full blur-[100px] opacity-40 animate-pulse"
+				style="animation-duration: 5s;"
 			>
 			</div>
 		</div>
@@ -58,7 +71,7 @@ import {
 						Cotizar Ahora
 					</a>
 					<a
-						href="#soluciones"
+						href="/solutions"
 						class="btn-secondary px-8 py-4 rounded-xl font-bold text-lg"
 					>
 						Ver Soluciones
@@ -88,10 +101,10 @@ import {
 
 					<!-- Floating UI Badge -->
 					<div
-						class="absolute bottom-6 left-6 right-6 bg-panel/90 backdrop-blur-md p-4 rounded-xl border border-border shadow-lg flex items-center gap-4"
+						class="absolute bottom-6 left-6 right-6 glass p-4 rounded-xl shadow-lg flex items-center gap-4 animate-fade-up animate-delay-700"
 					>
 						<div
-							class="w-10 h-10 rounded-full bg-emerald-100 dark:bg-emerald-900/30 text-emerald-600 flex items-center justify-center"
+							class="w-10 h-10 rounded-full bg-emerald-100 dark:bg-emerald-900/50 text-emerald-600 dark:text-emerald-400 flex items-center justify-center"
 						>
 							<svg
 								xmlns="http://www.w3.org/2000/svg"
@@ -110,7 +123,9 @@ import {
 							<p class="text-sm font-bold text-foreground">
 								Sistema Operativo
 							</p>
-							<p class="text-xs text-emerald-600 font-medium">
+							<p
+								class="text-xs text-emerald-600 dark:text-emerald-400 font-medium"
+							>
 								100% Optimizado
 							</p>
 						</div>
@@ -194,8 +209,12 @@ import {
 		<div class="max-w-7xl mx-auto grid md:grid-cols-3 gap-8">
 			<!-- Gestión: BLUE Theme -->
 			<div
-				class="group p-8 rounded-2xl bg-panel border border-border hover:border-blue transition-all duration-300 hover:shadow-lg hover:shadow-blue/10"
+				class="group p-8 rounded-2xl glass hover:bg-panel/50 border-border/50 hover:border-blue transition-all duration-300 hover:shadow-2xl hover:shadow-blue/10 hover:-translate-y-2 relative overflow-hidden"
 			>
+				<div
+					class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-blue to-transparent opacity-0 group-hover:opacity-100 transition-opacity"
+				>
+				</div>
 				<div
 					class="w-12 h-12 bg-blue/10 text-blue rounded-lg flex items-center justify-center mb-6 group-hover:scale-110 transition-transform"
 				>
@@ -214,8 +233,12 @@ import {
 
 			<!-- Simplifica: PURPLE Theme -->
 			<div
-				class="group p-8 rounded-2xl bg-panel border border-border hover:border-purple transition-all duration-300 hover:shadow-lg hover:shadow-purple/10"
+				class="group p-8 rounded-2xl glass hover:bg-panel/50 border-border/50 hover:border-purple transition-all duration-300 hover:shadow-2xl hover:shadow-purple/10 hover:-translate-y-2 relative overflow-hidden"
 			>
+				<div
+					class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-purple to-transparent opacity-0 group-hover:opacity-100 transition-opacity"
+				>
+				</div>
 				<div
 					class="w-12 h-12 bg-purple/10 text-purple rounded-lg flex items-center justify-center mb-6 group-hover:scale-110 transition-transform"
 				>
@@ -234,8 +257,12 @@ import {
 
 			<!-- Flexible: EMERALD Theme -->
 			<div
-				class="group p-8 rounded-2xl bg-panel border border-border hover:border-emerald transition-all duration-300 hover:shadow-lg hover:shadow-emerald/10"
+				class="group p-8 rounded-2xl glass hover:bg-panel/50 border-border/50 hover:border-emerald transition-all duration-300 hover:shadow-2xl hover:shadow-emerald/10 hover:-translate-y-2 relative overflow-hidden"
 			>
+				<div
+					class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-emerald to-transparent opacity-0 group-hover:opacity-100 transition-opacity"
+				>
+				</div>
 				<div
 					class="w-12 h-12 bg-emerald/10 text-emerald rounded-lg flex items-center justify-center mb-6 group-hover:scale-110 transition-transform"
 				>
@@ -307,128 +334,316 @@ import {
 		</div>
 	</section>
 
-	<section id="soluciones" class="py-24 px-6">
+	<section id="what-we-offer" class="py-24 px-6 relative overflow-hidden">
+		<!-- Background Elements -->
+		<div class="absolute inset-0 -z-10 bg-muted/5">
+			<div
+				class="absolute top-0 right-0 w-[500px] h-[500px] bg-primary/5 rounded-full blur-[100px] transform translate-x-1/2 -translate-y-1/2"
+			>
+			</div>
+			<div
+				class="absolute bottom-0 left-0 w-[500px] h-[500px] bg-blue/5 rounded-full blur-[100px] transform -translate-x-1/2 translate-y-1/2"
+			>
+			</div>
+		</div>
+
 		<div class="max-w-7xl mx-auto">
-			<div class="text-center mb-16">
-				<h2 class="text-3xl md:text-4xl font-bold mb-4">
-					¿Qué ofrecemos?
+			<div class="text-center mb-16 animate-fade-up">
+				<h2 class="text-3xl md:text-5xl font-bold mb-6 text-foreground">
+					{t("apps.title")}
 				</h2>
-				<p class="text-muted text-lg">
-					Módulos integrados para el control total.
+				<p class="text-muted text-lg max-w-2xl mx-auto">
+					{t("apps.subtitle")}
 				</p>
 			</div>
 
 			<div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-				<div
-					class="group relative p-6 bg-background rounded-2xl border border-border hover:border-primary hover:shadow-xl hover:-translate-y-1 transition-all"
+				<!-- App 1: HR -->
+				<a
+					href="https://kaizenapps.net/app"
+					target="_blank"
+					rel="noopener noreferrer"
+					class="group relative p-8 bg-panel rounded-3xl border border-border hover:border-primary/50 hover:shadow-2xl hover:shadow-primary/5 hover:-translate-y-2 transition-all duration-300 flex flex-col"
 				>
 					<div
-						class="mb-4 text-primary bg-primary/10 w-12 h-12 rounded-lg flex items-center justify-center"
+						class="mb-6 text-primary bg-primary/10 w-16 h-16 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300"
 					>
-						<Clock />
+						<Users size={32} />
 					</div>
-					<h3 class="text-xl font-bold mb-2">
-						Control de Asistencia
+					<h3
+						class="text-xl font-bold mb-3 group-hover:text-primary transition-colors"
+					>
+						{t("apps.hr")}
 					</h3>
-					<p class="text-sm text-muted">
-						Funcionalidad central que permite registrar y gestionar
-						de forma precisa las horas de entrada y salida de los
-						colaboradores.
+					<p
+						class="text-sm text-muted leading-relaxed mb-6 flex-grow"
+					>
+						{t("apps.hr.desc")}
 					</p>
-				</div>
+					<div
+						class="flex items-center text-primary font-bold text-sm opacity-0 transform translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300"
+					>
+						{t("apps.cta")}
+						<ArrowRight
+							size={16}
+							className="ml-2 group-hover:translate-x-1 transition-transform"
+						/>
+					</div>
+				</a>
 
-				<div
-					class="group relative p-6 bg-background rounded-2xl border border-border hover:border-primary hover:shadow-xl hover:-translate-y-1 transition-all"
+				<!-- App 2: Bayco -->
+				<a
+					href="https://kaizenapps.net/bayco"
+					target="_blank"
+					rel="noopener noreferrer"
+					class="group relative p-8 bg-panel rounded-3xl border border-border hover:border-orange-500/50 hover:shadow-2xl hover:shadow-orange-500/5 hover:-translate-y-2 transition-all duration-300 flex flex-col"
 				>
 					<div
-						class="mb-4 text-orange-500 bg-orange-500/10 w-12 h-12 rounded-lg flex items-center justify-center"
+						class="mb-6 text-orange-500 bg-orange-500/10 w-16 h-16 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300"
 					>
-						<CalendarRange />
+						<ShoppingBag size={32} />
 					</div>
-					<h3 class="text-xl font-bold mb-2">
-						Control de Actividades
+					<h3
+						class="text-xl font-bold mb-3 group-hover:text-orange-500 transition-colors"
+					>
+						{t("apps.bayco")}
 					</h3>
-					<p class="text-sm text-muted">
-						Controla y gestiona las horas dedicadas por el personal
-						a las actividades de los proyectos. Incluyendo control
-						de presupuesto y costos.
+					<p
+						class="text-sm text-muted leading-relaxed mb-6 flex-grow"
+					>
+						{t("apps.bayco.desc")}
 					</p>
-				</div>
+					<div
+						class="flex items-center text-orange-500 font-bold text-sm opacity-0 transform translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300"
+					>
+						{t("apps.cta")}
+						<ArrowRight
+							size={16}
+							className="ml-2 group-hover:translate-x-1 transition-transform"
+						/>
+					</div>
+				</a>
 
-				<div
-					class="group relative p-6 bg-background rounded-2xl border border-border hover:border-primary hover:shadow-xl hover:-translate-y-1 transition-all"
+				<!-- App 3: GPT -->
+				<a
+					href="https://kaizenapps.net/gpt"
+					target="_blank"
+					rel="noopener noreferrer"
+					class="group relative p-8 bg-panel rounded-3xl border border-border hover:border-purple/50 hover:shadow-2xl hover:shadow-purple/5 hover:-translate-y-2 transition-all duration-300 flex flex-col"
 				>
 					<div
-						class="mb-4 text-blue-500 bg-blue-500/10 w-12 h-12 rounded-lg flex items-center justify-center"
+						class="mb-6 text-purple bg-purple/10 w-16 h-16 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300"
 					>
-						<Users />
+						<Brain size={32} />
 					</div>
-					<h3 class="text-xl font-bold mb-2">Recursos Humanos</h3>
-					<p class="text-sm text-muted">
-						Gestiona asistencias y planillas o nóminas de forma
-						automatizada, mediante un sistema totalmente integrado
-						en la nube.
+					<h3
+						class="text-xl font-bold mb-3 group-hover:text-purple transition-colors"
+					>
+						{t("apps.gpt")}
+					</h3>
+					<p
+						class="text-sm text-muted leading-relaxed mb-6 flex-grow"
+					>
+						{t("apps.gpt.desc")}
 					</p>
-				</div>
+					<div
+						class="flex items-center text-purple font-bold text-sm opacity-0 transform translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300"
+					>
+						{t("apps.cta")}
+						<ArrowRight
+							size={16}
+							className="ml-2 group-hover:translate-x-1 transition-transform"
+						/>
+					</div>
+				</a>
 
-				<div
-					class="group relative p-6 bg-background rounded-2xl border border-border hover:border-primary hover:shadow-xl hover:-translate-y-1 transition-all"
+				<!-- App 4: Seiri -->
+				<a
+					href="https://kaizenapps.net/seiri"
+					target="_blank"
+					rel="noopener noreferrer"
+					class="group relative p-8 bg-panel rounded-3xl border border-border hover:border-emerald/50 hover:shadow-2xl hover:shadow-emerald/5 hover:-translate-y-2 transition-all duration-300 flex flex-col"
 				>
 					<div
-						class="mb-4 text-red-500 bg-red-500/10 w-12 h-12 rounded-lg flex items-center justify-center"
+						class="mb-6 text-emerald bg-emerald/10 w-16 h-16 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300"
 					>
-						<HardHat />
+						<Clock size={32} />
 					</div>
-					<h3 class="text-xl font-bold mb-2">SSOMA</h3>
-					<p class="text-sm text-muted">
-						Módulo que facilita la detección y seguimiento de
-						situaciones relacionadas con salud y seguridad
-						ocupacional con IA.
+					<h3
+						class="text-xl font-bold mb-3 group-hover:text-emerald transition-colors"
+					>
+						{t("apps.seiri")}
+					</h3>
+					<p
+						class="text-sm text-muted leading-relaxed mb-6 flex-grow"
+					>
+						{t("apps.seiri.desc")}
 					</p>
-				</div>
+					<div
+						class="flex items-center text-emerald font-bold text-sm opacity-0 transform translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300"
+					>
+						{t("apps.cta")}
+						<ArrowRight
+							size={16}
+							className="ml-2 group-hover:translate-x-1 transition-transform"
+						/>
+					</div>
+				</a>
 			</div>
 		</div>
 	</section>
 
-	<section class="py-20 bg-panel border-y border-border">
-		<div class="max-w-7xl mx-auto px-6 text-center">
-			<h3 class="text-2xl font-bold mb-10 opacity-80">
-				Nuestros Clientes
+	<section
+		id="nuestros-clientes"
+		class="py-16 bg-panel border-y border-border overflow-hidden"
+	>
+		<div class="max-w-7xl mx-auto px-6 text-center mb-10">
+			<h3 class="text-2xl font-bold opacity-80">
+				{t("stats.companies")}
 			</h3>
+		</div>
 
+		<!-- Infinite Scroll Container -->
+		<div class="relative w-full">
 			<div
-				class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-8 items-center opacity-60 grayscale hover:grayscale-0 transition-all duration-500"
+				class="flex w-max gap-12 animate-scroll-x hover:pause items-center"
 			>
-				<div
-					class="h-16 bg-background rounded-lg border border-border flex items-center justify-center font-bold text-muted-foreground"
-				>
-					CLIENTE 1
-				</div>
-				<div
-					class="h-16 bg-background rounded-lg border border-border flex items-center justify-center font-bold text-muted-foreground"
-				>
-					CLIENTE 2
-				</div>
-				<div
-					class="h-16 bg-background rounded-lg border border-border flex items-center justify-center font-bold text-muted-foreground"
-				>
-					CLIENTE 3
-				</div>
-				<div
-					class="h-16 bg-background rounded-lg border border-border flex items-center justify-center font-bold text-muted-foreground"
-				>
-					CLIENTE 4
-				</div>
-				<div
-					class="h-16 bg-background rounded-lg border border-border flex items-center justify-center font-bold text-muted-foreground"
-				>
-					CLIENTE 5
-				</div>
-				<div
-					class="h-16 bg-background rounded-lg border border-border flex items-center justify-center font-bold text-muted-foreground"
-				>
-					CLIENTE 6
-				</div>
+				{
+					/* 
+                  Define Logos - We repeat them to ensure seamless scroll 
+                  Logos: Creative Engineering, Grupo Creativo, Sauma, MAZ, Volta
+                */
+				}
+				{
+					[...Array(4)].map(() => (
+						<>
+							{/* Creative Engineering */}
+							<div class="flex-shrink-0 w-40 h-24 bg-background/50 border border-border rounded-xl flex items-center justify-center transition-all duration-300 group p-4 hover:bg-panel hover:shadow-lg hover:-translate-y-1">
+								<img
+									src="/src/assets/icons/create-logo.png"
+									alt="Creative Engineering"
+									class="w-full h-full object-contain opacity-80 group-hover:opacity-100 transition-opacity"
+									style={{ filter: "var(--logo-filter)" }}
+								/>
+							</div>
+
+							{/* Grupo Creativo */}
+							<div class="flex-shrink-0 w-40 h-24 bg-background/50 border border-border rounded-xl flex items-center justify-center transition-all duration-300 group p-4 hover:bg-panel hover:shadow-lg hover:-translate-y-1">
+								<img
+									src="/src/assets/icons/grupo-logo.png"
+									alt="Grupo Creativo"
+									class="w-full h-full object-contain opacity-80 group-hover:opacity-100 transition-opacity"
+									style={{ filter: "var(--logo-filter)" }}
+								/>
+							</div>
+
+							{/* Sauma Arquitectos */}
+							<div class="flex-shrink-0 w-40 h-24 bg-background/50 border border-border rounded-xl flex items-center justify-center transition-all duration-300 group p-4 hover:bg-panel hover:shadow-lg hover:-translate-y-1">
+								<img
+									src="/src/assets/icons/sauma-logo-black.png"
+									alt="Sauma Arquitectos"
+									class="w-full h-full object-contain opacity-80 group-hover:opacity-100 transition-opacity"
+									style={{ filter: "var(--logo-filter)" }}
+								/>
+							</div>
+
+							{/* MAZ */}
+							<div class="flex-shrink-0 w-40 h-24 bg-background/50 border border-border rounded-xl flex items-center justify-center transition-all duration-300 group p-4 hover:bg-panel hover:shadow-lg hover:-translate-y-1">
+								<img
+									src="/src/assets/icons/maz-logo-white.svg"
+									alt="MAZ"
+									class="w-full h-full object-contain opacity-80 group-hover:opacity-100 transition-opacity"
+									style={{ filter: "var(--logo-filter)" }}
+								/>
+							</div>
+
+							{/* Volta */}
+							<div class="flex-shrink-0 w-40 h-24 bg-background/50 border border-border rounded-xl flex items-center justify-center transition-all duration-300 group p-4 hover:bg-panel hover:shadow-lg hover:-translate-y-1">
+								<img
+									src="/src/assets/icons/volta-logo-white.png"
+									alt="Volta"
+									class="w-full h-full object-contain opacity-80 group-hover:opacity-100 transition-opacity"
+									style={{ filter: "var(--logo-filter)" }}
+								/>
+							</div>
+
+							{/* Constrial */}
+							<div class="flex-shrink-0 w-40 h-24 bg-background/50 border border-border rounded-xl flex items-center justify-center transition-all duration-300 group p-4 hover:bg-panel hover:shadow-lg hover:-translate-y-1">
+								<img
+									src="/src/assets/icons/constrial-logo.png"
+									alt="Constrial"
+									class="w-full h-full object-contain opacity-80 group-hover:opacity-100 transition-opacity"
+									style={{ filter: "var(--logo-filter)" }}
+								/>
+							</div>
+						</>
+					))
+				}
+				{/* Clone Set to ensure smooth infinite scroll */}
+				{
+					[...Array(4)].map(() => (
+						<>
+							<div class="flex-shrink-0 w-40 h-24 bg-background/50 border border-border rounded-xl flex items-center justify-center transition-all duration-300 group p-4 hover:bg-panel hover:shadow-lg hover:-translate-y-1">
+								<img
+									src="/src/assets/icons/create-logo.png"
+									alt="Creative Engineering"
+									class="w-full h-full object-contain opacity-80 group-hover:opacity-100 transition-opacity"
+									style={{ filter: "var(--logo-filter)" }}
+								/>
+							</div>
+							<div class="flex-shrink-0 w-40 h-24 bg-background/50 border border-border rounded-xl flex items-center justify-center transition-all duration-300 group p-4 hover:bg-panel hover:shadow-lg hover:-translate-y-1">
+								<img
+									src="/src/assets/icons/grupo-logo.png"
+									alt="Grupo Creativo"
+									class="w-full h-full object-contain opacity-80 group-hover:opacity-100 transition-opacity"
+									style={{ filter: "var(--logo-filter)" }}
+								/>
+							</div>
+							<div class="flex-shrink-0 w-40 h-24 bg-background/50 border border-border rounded-xl flex items-center justify-center transition-all duration-300 group p-4 hover:bg-panel hover:shadow-lg hover:-translate-y-1">
+								<img
+									src="/src/assets/icons/sauma-logo-black.png"
+									alt="Sauma Arquitectos"
+									class="w-full h-full object-contain opacity-80 group-hover:opacity-100 transition-opacity"
+									style={{ filter: "var(--logo-filter)" }}
+								/>
+							</div>
+							<div class="flex-shrink-0 w-40 h-24 bg-background/50 border border-border rounded-xl flex items-center justify-center transition-all duration-300 group p-4 hover:bg-panel hover:shadow-lg hover:-translate-y-1">
+								<img
+									src="/src/assets/icons/maz-logo-white.svg"
+									alt="MAZ"
+									class="w-full h-full object-contain opacity-80 group-hover:opacity-100 transition-opacity"
+									style={{ filter: "var(--logo-filter)" }}
+								/>
+							</div>
+							<div class="flex-shrink-0 w-40 h-24 bg-background/50 border border-border rounded-xl flex items-center justify-center transition-all duration-300 group p-4 hover:bg-panel hover:shadow-lg hover:-translate-y-1">
+								<img
+									src="/src/assets/icons/volta-logo-white.png"
+									alt="Volta"
+									class="w-full h-full object-contain opacity-80 group-hover:opacity-100 transition-opacity"
+									style={{ filter: "var(--logo-filter)" }}
+								/>
+							</div>
+							<div class="flex-shrink-0 w-40 h-24 bg-background/50 border border-border rounded-xl flex items-center justify-center transition-all duration-300 group p-4 hover:bg-panel hover:shadow-lg hover:-translate-y-1">
+								<img
+									src="/src/assets/icons/constrial-logo.png"
+									alt="Constrial"
+									class="w-full h-full object-contain opacity-80 group-hover:opacity-100 transition-opacity"
+									style={{ filter: "var(--logo-filter)" }}
+								/>
+							</div>
+						</>
+					))
+				}
+			</div>
+
+			<!-- Gradient Masks for Fade Effect -->
+			<div
+				class="absolute top-0 left-0 w-24 h-full bg-gradient-to-r from-panel to-transparent z-10 pointer-events-none"
+			>
+			</div>
+			<div
+				class="absolute top-0 right-0 w-24 h-full bg-gradient-to-l from-panel to-transparent z-10 pointer-events-none"
+			>
 			</div>
 		</div>
 	</section>

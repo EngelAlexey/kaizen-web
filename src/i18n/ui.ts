@@ -31,6 +31,123 @@ export const ui = {
         'features.s.desc': 'Todo en una sola plataforma, con interfaz intuitiva y flujos creados para responder a las exigencias del negocio.',
         'features.f.title': 'Flexible',
         'features.f.desc': 'Diseñada para cumplir con los requerimientos de las empresas del sector y brindar opciones para gestionar sus procesos.',
+
+
+        'services.hero.title': 'Nuestras Soluciones',
+        'services.hero.subtitle': 'Módulos integrados para el control total.',
+
+
+        'module.assistance.title': 'Control de Asistencia',
+        'module.assistance.subtitle': 'Herramienta fundamental para el control y seguimiento de la jornada laboral de tus colaboradores.',
+        'module.assistance.what.title': '¿Qué es el Módulo de Asistencias?',
+        'module.assistance.what.desc': 'Es la sección de la plataforma donde se registra de manera precisa la <span class="text-primary font-bold">presencia diaria</span> del personal en sus puestos de trabajo o proyectos. Captura el momento exacto de entrada y salida, permitiendo así llevar un control detallado de las horas trabajadas.',
+        'module.assistance.use.title': '¿Para qué sirve?',
+        'module.assistance.use.1.title': 'Control de Horas Trabajadas',
+        'module.assistance.use.1.desc': 'Registra las horas de entrada y salida, calculando automáticamente las horas ordinarias, extras, dobles y triples según el horario asignado.',
+        'module.assistance.use.2.title': 'Cálculo de Nómina',
+        'module.assistance.use.2.desc': 'Es la fuente principal de datos para el cálculo preciso de los salarios. Un registro incorrecto puede generar errores en el pago.',
+        'module.assistance.use.3.title': 'Gestión de Proyectos',
+        'module.assistance.use.3.desc': 'Permite asignar las horas trabajadas a proyectos específicos o centros de costo, facilitando el seguimiento de la productividad.',
+        'module.assistance.use.4.title': 'Cumplimiento Legal',
+        'module.assistance.use.4.desc': 'Proporciona un registro auditable de la jornada laboral, esencial para cumplir con las regulaciones laborales y de seguridad.',
+        'module.assistance.use.5.title': 'Análisis de Productividad',
+        'module.assistance.use.5.desc': 'Analiza patrones de puntualidad, ausentismo y horas extras para optimizar la planificación de recursos.',
+
+
+        'module.rrhh.title': 'Gestión de Personal (RRHH)',
+        'module.rrhh.desc': 'Gestiona de manera integral la información de cada colaborador, desde su ingreso hasta su egreso, centralizando expedientes.',
+        'module.rrhh.subtitle': 'El corazón de tu equipo. Gestiona de manera integral la información de cada colaborador.',
+        'module.rrhh.what.title': '¿Qué es el Módulo de RRHH?',
+        'module.rrhh.what.desc': 'Es el centro de control para tu capital humano. Permite gestionar de manera integral la información de cada colaborador, desde su ingreso hasta su egreso, centralizando expedientes y simplificando procesos administrativos.',
+        'module.rrhh.use.title': 'Funcionalidades Clave',
+        'module.rrhh.use.1.title': 'Expedientes Digitales',
+        'module.rrhh.use.1.desc': 'Centraliza datos personales, laborales, académicos y contactos de emergencia en un solo lugar seguro.',
+        'module.rrhh.use.2.title': 'Movimientos de Personal',
+        'module.rrhh.use.2.desc': 'Registra y administra acciones como vacaciones, incapacidades, permisos y licencias con facilidad.',
+        'module.rrhh.use.3.title': 'Altas y Bajas',
+        'module.rrhh.use.3.desc': 'Simplifica los procesos de contratación e ingreso, y facilita la gestión administrativa de la salida de personal.',
+        'module.rrhh.use.4.title': 'Liquidaciones',
+        'module.rrhh.use.4.desc': 'Permite generar y administrar las liquidaciones laborales de forma precisa.',
+
+
+        'module.projects.title': 'Gestión de Proyectos',
+        'module.projects.desc': 'Planifica, ejecuta y supervisa tus obras. Define proyectos, controla su estado y asigna personal de forma eficiente.',
+        'module.projects.subtitle': 'Herramienta para planificar, ejecutar y supervisar tus obras y centros operativos.',
+        'module.projects.what.title': '¿Qué es Gestión de Proyectos?',
+        'module.projects.what.desc': 'Es el módulo diseñado para darte control total sobre tus obras. Define proyectos, monitorea su estado en tiempo real y asegura que los recursos estén donde deben estar.',
+        'module.projects.use.title': 'Funcionalidades Clave',
+        'module.projects.use.1.title': 'Creación y Configuración',
+        'module.projects.use.1.desc': 'Define cada proyecto con su código, nombre, cliente, ubicación y permisos de marcación específicos.',
+        'module.projects.use.2.title': 'Control Operativo',
+        'module.projects.use.2.desc': 'Gestiona el estado de los proyectos (activo, finalizado, suspendido) y monitorea los eventos relevantes.',
+        'module.projects.use.3.title': 'Asignación de Personal',
+        'module.projects.use.3.desc': 'Permite asociar colaboradores específicos a cada proyecto, optimizando la distribución de la fuerza laboral.',
+
+
+        'module.ssoma.title': 'SSOMA',
+        'module.ssoma.desc': 'Módulo especializado en la prevención de riesgos. Registra incidentes, gestiona EPP y programa capacitaciones.',
+        'module.ssoma.subtitle': 'Seguridad, Salud Ocupacional y Medio Ambiente.',
+        'module.ssoma.what.title': '¿Qué es SSOMA?',
+        'module.ssoma.what.desc': 'Módulo especializado en la prevención de riesgos y el cumplimiento normativo. Mantiene a tu equipo seguro y a tu empresa protegida legalmente mediante documentación y seguimiento riguroso.',
+        'module.ssoma.use.title': 'Funcionalidades Clave',
+        'module.ssoma.use.1.title': 'Reporte de Incidentes',
+        'module.ssoma.use.1.desc': 'Registra accidentes, hallazgos, actos y condiciones inseguras con evidencia fotográfica para análisis inmediato.',
+        'module.ssoma.use.2.title': 'Gestión de EPP',
+        'module.ssoma.use.2.desc': 'Administra la entrega, recambio y constancias de Equipo de Protección Personal digitalmente.',
+        'module.ssoma.use.3.title': 'Capacitaciones',
+        'module.ssoma.use.3.desc': 'Programa y registra charlas de seguridad y formaciones, controlando la asistencia de personal interno y externo.',
+        'module.ssoma.use.4.title': 'Sanciones',
+        'module.ssoma.use.4.desc': 'Documenta amonestaciones y multas por incumplimiento de normativas de seguridad.',
+
+
+        'module.payroll.title': 'Nómina y Finanzas',
+        'module.payroll.desc': 'Administración financiera de los salarios. Calcula planillas, gestiona puestos, aplica ajustes y genera comprobantes.',
+        'module.payroll.subtitle': 'Herramientas para la administración financiera de los salarios y costos.',
+        'module.payroll.what.title': '¿Qué es Nómina y Finanzas?',
+        'module.payroll.what.desc': 'El motor financiero de tu gestión de personal. Automatiza el cálculo de planillas basándose en datos reales de asistencia, asegurando pagos exactos y a tiempo.',
+        'module.payroll.use.title': 'Funcionalidades Clave',
+        'module.payroll.use.1.title': 'Cálculo de Planillas',
+        'module.payroll.use.1.desc': 'Genera planillas de pago basadas en marcas de asistencia precisas, puestos y ajustes salariales.',
+        'module.payroll.use.2.title': 'Gestión de Puestos',
+        'module.payroll.use.2.desc': 'Define puestos de trabajo con salarios base, factores para horas extras y atributos específicos.',
+        'module.payroll.use.3.title': 'Comprobantes de Pago',
+        'module.payroll.use.3.desc': 'Almacena y detalla los recibos de salario con un desglose completo para el colaborador.',
+        'module.payroll.use.4.title': 'Centros de Costo',
+        'module.payroll.use.4.desc': 'Imputa costos de personal a diferentes áreas o proyectos para un control financiero detallado.',
+
+
+        'module.assets.title': 'Gestión de Activos',
+        'module.assets.desc': 'Inventario y control de los bienes de tu empresa. Registra equipos, vehículos y herramientas.',
+        'module.assets.subtitle': 'Inventario y control de los bienes de tu empresa.',
+        'module.assets.what.title': '¿Qué es Gestión de Activos?',
+        'module.assets.what.desc': 'Tu inventario digital inteligente. Mantén el control sobre cada herramienta, vehículo o equipo de la empresa, sabiendo siempre dónde está y quién es responsable.',
+        'module.assets.use.title': 'Funcionalidades Clave',
+        'module.assets.use.1.title': 'Registro Detallado',
+        'module.assets.use.1.desc': 'Detalla equipos, vehículos y herramientas con su marca, modelo, número de serie y valor.',
+        'module.assets.use.2.title': 'Control de Asignación',
+        'module.assets.use.2.desc': 'Controla quién tiene asignado cada activo y desde qué fecha, generando responsabilidad.',
+
+
+        'module.catalog.title': 'Catálogos Maestros',
+        'module.catalog.desc': 'Repositorio centralizado de clientes, proveedores y contactos clave con toda su información comercial.',
+        'module.flows.title': 'Flujos de Aprobación',
+        'module.flows.desc': 'Define y automatiza procesos de aprobación para asegurar que cada solicitud (permisos, vacaciones) pase por la supervisión correcta.',
+
+        'apps.title': 'Nuestras Aplicaciones',
+        'apps.subtitle': 'Accede a nuestras plataformas especializadas.',
+        'apps.cta': 'Acceder',
+
+        'apps.hr': 'Kaizen Principal',
+        'apps.hr.desc': 'Plataforma integral de gestión de recursos humanos y operaciones.',
+
+        'apps.bayco': 'Bayco',
+        'apps.bayco.desc': 'Sistema especializado en gestión de compras e inventario.',
+
+        'apps.gpt': 'Kaizen AI',
+        'apps.gpt.desc': 'Inteligencia Artificial entrenada en el entorno Kaizen.',
+
+        'apps.seiri': 'Seiri',
+        'apps.seiri.desc': 'Control de asistencias y reloj marcador (Versión Lite).',
     },
     en: {
         'nav.services': 'Services',
@@ -57,5 +174,64 @@ export const ui = {
         'features.s.desc': 'Everything in one platform, with an intuitive interface and flows designed to meet business demands.',
         'features.f.title': 'Flexible',
         'features.f.desc': 'Designed to meet the requirements of companies in the sector and provide options to manage their processes.',
+
+
+        'services.hero.title': 'Our Solutions',
+        'services.hero.subtitle': 'Modules designed for total control.',
+
+
+        'module.assistance.title': 'Assistance Control',
+        'module.assistance.subtitle': 'Fundamental tool for tracking your collaborators\' workdays.',
+        'module.assistance.what.title': 'What is the Assistance Module?',
+        'module.assistance.what.desc': 'It is the section of the platform where the daily presence of personnel is precisely registered. It captures the exact moment of entry and exit, allowing detailed control of hours worked.',
+        'module.assistance.use.title': 'What is it for?',
+        'module.assistance.use.1.title': 'Control of Hours Worked',
+        'module.assistance.use.1.desc': 'Registers entry and exit times, automatically calculating ordinary, overtime, double, and triple hours according to the assigned schedule.',
+        'module.assistance.use.2.title': 'Payroll Calculation',
+        'module.assistance.use.2.desc': 'Main data source for precise salary calculation. Ensures fair payment for hours worked and overtime.',
+        'module.assistance.use.3.title': 'Project Management',
+        'module.assistance.use.3.desc': 'Allows assigning hours worked to specific projects or cost centers.',
+        'module.assistance.use.4.title': 'Legal Compliance',
+        'module.assistance.use.4.desc': 'Provides an auditable record of the workday, essential for complying with labor regulations.',
+        'module.assistance.use.5.title': 'Productivity Analysis',
+        'module.assistance.use.5.desc': 'Analyze punctuality patterns, absenteeism, and overtime to optimize planning.',
+
+
+        'module.rrhh.title': 'Personnel Management (HR)',
+        'module.rrhh.desc': 'The heart of your team. Manage comprehensive information for each collaborator, from hiring to exit. Includes digital files, personnel movements, and settlements.',
+
+        'module.projects.title': 'Project Management',
+        'module.projects.desc': 'Plan, execute, and supervise your works. Define projects, control their status, and assign personnel efficiently.',
+
+        'module.ssoma.title': 'SSOMA (Security & Health)',
+        'module.ssoma.desc': 'Specialized module for risk prevention. Register incidents, manage PPE, schedule training, and document sanctions.',
+
+        'module.payroll.title': 'Payroll & Finance',
+        'module.payroll.desc': 'Financial administration of salaries. Calculate payrolls, manage positions, apply adjustments, and generate payment receipts.',
+
+        'module.assets.title': 'Asset Management',
+        'module.assets.desc': 'Inventory and control of company goods. Register equipment, vehicles, and tools, and track their assignments.',
+
+        'module.catalog.title': 'Master Catalogs',
+        'module.catalog.desc': 'Centralized repository of clients, suppliers, and key contacts.',
+
+        'module.flows.title': 'Approval Flows',
+        'module.flows.desc': 'Define and automate approval processes for requests like permits, vacations, or expenses.',
+
+        'apps.title': 'Our Applications',
+        'apps.subtitle': 'Access our specialized platforms.',
+        'apps.cta': 'Access',
+
+        'apps.hr': 'Kaizen Core',
+        'apps.hr.desc': 'Comprehensive platform for human resources and operations management.',
+
+        'apps.bayco': 'Bayco',
+        'apps.bayco.desc': 'Specialized system for purchasing and inventory management.',
+
+        'apps.gpt': 'Kaizen AI',
+        'apps.gpt.desc': 'Artificial Intelligence trained in the Kaizen environment.',
+
+        'apps.seiri': 'Seiri',
+        'apps.seiri.desc': 'Attendance control and time clock (Lite Version).',
     },
 } as const;

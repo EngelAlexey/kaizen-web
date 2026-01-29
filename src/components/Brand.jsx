@@ -24,9 +24,8 @@ export default function Brand({
     return () => window.removeEventListener('header-scrolled', handleScroll);
   }, []);
 
-  // For transparent mode, use dark logo (white text on transparent)
-  // For solid mode, use light logo (dark mark)
-  const logoSrc = transparent ? brand.logoDark : brand.logoLight;
+  // Always use the K mark logo
+  const logoSrc = brand.logoLight;
 
   return (
     <div className={"flex items-center gap-2 select-none transition-opacity duration-300 " + className}>

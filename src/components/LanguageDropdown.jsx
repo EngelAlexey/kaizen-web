@@ -51,14 +51,30 @@ export default function LanguageDropdown({ currentLocale = 'es', transparent = f
     };
 
     // Helper to get inactive color based on transparent and dark mode
+    // Rule: "El idioma que no esta seleccionado se debe coloreear del opuesto. Si es negro, el texto debe ser blanco, y si es blanco debe ser negro."
     const getInactiveColor = () => {
-        if (transparent) return 'rgba(255,255,255,0.7)'; // Always white/transparent when navbar is transparent
-        return isDark ? '#d1d5db' : '#6b7280'; // Light gray in dark mode, darker gray in light mode
+        // If transparent:
+        //   - Light Mode (html:not(.dark)): Background is White/70 -> Text should be Black
+        //   - Dark Mode (.dark): Background is Gray/80 -> Text should be White
+
+        // However, this component runs in React and might not react to class changes instantly without the hook.
+        // We use the 'isDark' state which is updated by the observer.
+
+        if (transparent) {
+            return isDark ? 'white' : 'black';
+        }
+
+        // If solid (scrolled):
+        //   - Light Mode: Background White -> Text Black
+        //   - Dark Mode: Background Dark -> Text White
+        return isDark ? 'white' : 'black';
     };
 
     const getSeparatorColor = () => {
-        if (transparent) return 'rgba(255,255,255,0.4)';
-        return isDark ? '#4b5563' : '#d1d5db';
+        if (transparent) {
+            return isDark ? 'rgba(255,255,255,0.5)' : 'rgba(0,0,0,0.5)';
+        }
+        return isDark ? 'rgba(255,255,255,0.5)' : 'rgba(0,0,0,0.5)';
     };
 
     return (

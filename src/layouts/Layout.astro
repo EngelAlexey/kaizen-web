@@ -2,6 +2,7 @@
 import "../styles/global.css";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
+import { ViewTransitions } from "astro:transitions";
 
 interface Props {
 	title: string;
@@ -19,7 +20,7 @@ const {
 ---
 
 <!doctype html>
-<html lang={lang}>
+<html lang={lang} class="scroll-smooth">
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="description" content={description} />
@@ -28,29 +29,55 @@ const {
 		<meta name="generator" content={Astro.generator} />
 		<title>{title} | Kaizen Apps</title>
 
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap"
+			rel="stylesheet"
+		/>
+
+		<ViewTransitions />
+
 		<script is:inline>
-			const theme = (() => {
-				if (
-					typeof localStorage !== "undefined" &&
-					localStorage.getItem("kaizen.dark")
-				) {
-					return localStorage.getItem("kaizen.dark") === "1"
-						? "dark"
-						: "light";
+			// Theme initialization logic
+			function initTheme() {
+				const theme = (() => {
+					if (
+						typeof localStorage !== "undefined" &&
+						localStorage.getItem("kaizen.dark")
+					) {
+						return localStorage.getItem("kaizen.dark") === "1"
+							? "dark"
+							: "light";
+					}
+					if (
+						window.matchMedia("(prefers-color-scheme: dark)")
+							.matches
+					)
+						return "dark";
+					return "light";
+				})();
+
+				if (theme === "dark") {
+					document.documentElement.classList.add("dark");
+				} else {
+					document.documentElement.classList.remove("dark");
 				}
-				if (window.matchMedia("(prefers-color-scheme: dark)").matches)
-					return "dark";
-				return "light";
-			})();
-			if (theme === "dark")
-				document.documentElement.classList.add("dark");
+			}
+
+			initTheme();
+
+			// Re-run on View Transitions navigation
+			document.addEventListener("astro:after-swap", initTheme);
 		</script>
 	</head>
 	<body
 		class="bg-background text-foreground transition-colors duration-300 overflow-x-hidden font-sans"
 	>
-		<Header lang={lang} transparent={transparent} />
-		<slot />
-		<Footer />
+		<Header lang={lang} transparent={transparent} transition:persist />
+		<main transition:animate="fade">
+			<slot />
+		</main>
+		<Footer transition:persist />
 	</body>
 </html>
