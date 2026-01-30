@@ -3,6 +3,7 @@ import "../styles/global.css";
 import Header from "../components/common/Header.astro";
 import Footer from "../components/common/Footer.astro";
 import { ViewTransitions } from "astro:transitions";
+import { TASKS } from "../lib/routes";
 
 interface Props {
 	title: string;
@@ -17,10 +18,42 @@ const {
 	lang = "es",
 	transparent = false,
 } = Astro.props;
+
+const currentLang = lang as "es" | "en";
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+
+let alternateLangUrl = "";
+const alternateLang: "es" | "en" = currentLang === "es" ? "en" : "es";
+
+for (const task of TASKS) {
+	const slugCurrent = task.slug[currentLang];
+
+	if (slugCurrent && Astro.url.pathname.includes(slugCurrent)) {
+		const altSlug = task.slug[alternateLang];
+		if (altSlug) {
+			alternateLangUrl = new URL(
+				alternateLang === "es" ? `/es/${altSlug}` : `/en/${altSlug}`,
+				Astro.site,
+			).toString();
+		}
+		break;
+	}
+}
+
+if (
+	!alternateLangUrl &&
+	(Astro.url.pathname === "/" || Astro.url.pathname === "/en")
+) {
+	alternateLangUrl = new URL(
+		alternateLang === "es" ? "/" : "/en",
+		Astro.site,
+	).toString();
+}
 ---
 
 <!doctype html>
-<html lang={lang} class="scroll-smooth">
+<html lang={currentLang} class="scroll-smooth">
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="description" content={description} />
@@ -28,6 +61,17 @@ const {
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
 		<title>{title} | Kaizen Apps</title>
+
+		<link rel="canonical" href={canonicalURL} />
+		{
+			alternateLangUrl && (
+				<link
+					rel="alternate"
+					hreflang={alternateLang}
+					href={alternateLangUrl}
+				/>
+			)
+		}
 
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -39,7 +83,6 @@ const {
 		<ViewTransitions />
 
 		<script is:inline>
-			// Theme initialization logic
 			function initTheme() {
 				const theme = (() => {
 					if (
@@ -57,24 +100,24 @@ const {
 						return "dark";
 					return "light";
 				})();
-
 				if (theme === "dark") {
 					document.documentElement.classList.add("dark");
 				} else {
 					document.documentElement.classList.remove("dark");
 				}
 			}
-
 			initTheme();
-
-			// Re-run on View Transitions navigation
 			document.addEventListener("astro:after-swap", initTheme);
 		</script>
 	</head>
 	<body
 		class="bg-background text-foreground transition-colors duration-300 overflow-x-hidden font-sans"
 	>
-		<Header lang={lang} transparent={transparent} transition:persist />
+		<Header
+			lang={currentLang}
+			transparent={transparent}
+			transition:persist
+		/>
 		<main transition:animate="fade">
 			<slot />
 		</main>

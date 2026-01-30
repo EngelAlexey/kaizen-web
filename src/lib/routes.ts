@@ -2,8 +2,8 @@ export const TASKS = [
     {
         id: 'home',
         slug: {
-            es: undefined, // Root
-            en: undefined  // Root
+            es: undefined,
+            en: undefined
         },
         seo: {
             es: {
@@ -25,11 +25,11 @@ export const TASKS = [
         seo: {
             es: {
                 title: 'Nuestras Soluciones | Kaizen Apps',
-                description: 'Descubre nuestras soluciones: Kaizen (RRHH), Seiri (Asistencia) y BayCo (Inventarios).'
+                description: 'Descubre nuestras soluciones integrales: Kaizen (RRHH), Seiri (Asistencia) y BayCo (Inventarios).'
             },
             en: {
                 title: 'Our Solutions | Kaizen Apps',
-                description: 'Discover our solutions: Kaizen (HR), Seiri (Attendance), and BayCo (Inventory).'
+                description: 'Discover our comprehensive solutions: Kaizen (HR), Seiri (Attendance), and BayCo (Inventory).'
             }
         }
     },
@@ -49,6 +49,73 @@ export const TASKS = [
                 description: 'Schedule a meeting with us to learn how Kaizen can help your business.'
             }
         }
+    },
+
+    {
+        id: 'sol-assistance',
+        slug: {
+            es: 'Control-Asistencias',
+            en: 'Attendance-Management'
+        },
+        seo: {
+            es: { title: 'Control de Asistencias', description: 'Gestión moderna de asistencia y puntualidad.' },
+            en: { title: 'Attendance Management', description: 'Modern attendance and punctuality management.' }
+        }
+    },
+    {
+        id: 'sol-rrhh',
+        slug: {
+            es: 'Recursos-Humanos',
+            en: 'Human-Resources'
+        },
+        seo: {
+            es: { title: 'Recursos Humanos', description: 'Centraliza la información de tus colaboradores.' },
+            en: { title: 'Human Management', description: 'Centralize your employees information.' }
+        }
+    },
+    {
+        id: 'sol-projects',
+        slug: {
+            es: 'Gestion-Proyectos',
+            en: 'Project-Management'
+        },
+        seo: {
+            es: { title: 'Gestión de Proyectos', description: 'Planificación y seguimiento de actividades.' },
+            en: { title: 'Project Management', description: 'Planning and tracking of activities.' }
+        }
+    },
+    {
+        id: 'sol-ssoma',
+        slug: {
+            es: 'Salud-Ocupacional',
+            en: 'Occupational-Health'
+        },
+        seo: {
+            es: { title: 'Salud y Seguridad Ocupacional', description: 'Seguridad, Salud Ocupacional y Medio Ambiente.' },
+            en: { title: 'Occupational Health and Safety', description: 'Environment, Health, and Safety management.' }
+        }
+    },
+    {
+        id: 'sol-payroll',
+        slug: {
+            es: 'Gestion-Nominas',
+            en: 'Payroll-Management'
+        },
+        seo: {
+            es: { title: 'Gestión de Planilla', description: 'Automatización y cálculo de planillas.' },
+            en: { title: 'Payroll Management', description: 'Payroll automation and calculation.' }
+        }
+    },
+    {
+        id: 'sol-assets',
+        slug: {
+            es: 'Control-Activos',
+            en: 'Assets-Control'
+        },
+        seo: {
+            es: { title: 'Control de Activos', description: 'Gestión inteligente de inventarios y activos.' },
+            en: { title: 'Assets Control', description: 'Intelligent inventory and asset management.' }
+        }
     }
 ] as const;
 
@@ -58,11 +125,33 @@ export function getRoute(id: RouteId, lang: 'es' | 'en') {
     const task = TASKS.find(t => t.id === id);
     if (!task) return '/';
     const slug = task.slug[lang];
-    const prefix = lang === 'es' ? '/es' : '/en';
-    return slug ? `${prefix}/${slug}` : `${prefix}/`;
+    const prefix = lang === 'es' ? '' : '/en';
+    const urlPrefix = lang === 'es' ? '/es' : '/en';
+    return slug ? `${urlPrefix}/${slug}` : `${urlPrefix}/`;
 }
 
 export function getSeo(id: RouteId, lang: 'es' | 'en') {
     const task = TASKS.find(t => t.id === id);
     return task?.seo[lang] || { title: 'Kaizen', description: '' };
+}
+
+export function getSlugById(id: RouteId, lang: 'es' | 'en') {
+    const task = TASKS.find(t => t.id === id);
+    return task?.slug[lang];
+}
+
+export function getHtmlIdFromRouteId(routeId: RouteId): string | undefined {
+    const map: Partial<Record<RouteId, string>> = {
+        'sol-assistance': 'asistencias',
+        'sol-rrhh': 'rrhh',
+        'sol-projects': 'actividades',
+        'sol-ssoma': 'ssoma',
+        'sol-payroll': 'finanzas',
+        'sol-assets': 'activos'
+    };
+    return map[routeId];
+}
+
+export function isSolutionsChild(id: string) {
+    return id.startsWith('sol-');
 }

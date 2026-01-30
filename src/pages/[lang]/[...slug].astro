@@ -3,16 +3,24 @@ import Layout from "../../layouts/Layout.astro";
 import Home from "../../components/views/Home.astro";
 import Solutions from "../../components/views/Solutions.astro";
 import Booking from "../../components/views/Booking.astro";
-import { TASKS, getSeo, type RouteId } from "../../lib/routes";
+import {
+    TASKS,
+    getSeo,
+    getHtmlIdFromRouteId,
+    isSolutionsChild,
+    type RouteId,
+} from "../../lib/routes";
 
 export async function getStaticPaths() {
     const paths: {
         params: { lang: string; slug: string };
         props: { id: RouteId };
     }[] = [];
+
     (["es", "en"] as const).forEach((lang) => {
         TASKS.forEach((task) => {
-            if (task.id === "home") return; // Handled by index.astro
+            if (task.id === "home") return;
+
             const slug = task.slug[lang];
             if (slug) {
                 paths.push({
@@ -29,6 +37,10 @@ const { lang } = Astro.params;
 const { id } = Astro.props;
 const currentLang = (lang as "es" | "en") || "es";
 const seo = getSeo(id as RouteId, currentLang);
+const isSolutionView = id === "solutions" || isSolutionsChild(id);
+const initialSection = isSolutionsChild(id)
+    ? getHtmlIdFromRouteId(id as RouteId)
+    : undefined;
 ---
 
 <Layout
@@ -37,6 +49,10 @@ const seo = getSeo(id as RouteId, currentLang);
     lang={currentLang}
     transparent={false}
 >
-    {id === "solutions" && <Solutions lang={currentLang} />}
+    {
+        isSolutionView && (
+            <Solutions lang={currentLang} initialSection={initialSection} />
+        )
+    }
     {id === "booking" && <Booking lang={currentLang} />}
 </Layout>

@@ -1,7 +1,6 @@
 import React from "react"
 import { LogOut, User } from "lucide-react"
 
-// Simple mock Auth hook since we don't have the full context
 const useAuth = () => {
     return {
         logout: async () => { console.log("Logging out..."); }

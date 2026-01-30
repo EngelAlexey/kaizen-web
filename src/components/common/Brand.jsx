@@ -24,7 +24,6 @@ export default function Brand({
     return () => window.removeEventListener('header-scrolled', handleScroll);
   }, []);
 
-  // Always use the K mark logo
   const logoSrc = brand.logoLight;
 
   return (

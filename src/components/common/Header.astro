@@ -4,6 +4,7 @@ import ThemeButton from "../ui/ThemeButton.jsx";
 import LanguageDropdown from "../ui/LanguageDropdown.jsx";
 import MobileMenu from "./MobileMenu.jsx";
 import { useTranslations } from "../../utils/i18n";
+import { getRoute, TASKS } from "../../lib/routes";
 import type { ui } from "../../i18n/ui";
 
 interface Props {
@@ -13,6 +14,37 @@ interface Props {
 
 const { lang = "es", transparent = false } = Astro.props;
 const t = useTranslations(lang);
+
+const routeMap: Record<string, string> = {};
+
+TASKS.forEach((task) => {
+    const slugEs = task.slug.es;
+    const slugEn = task.slug.en;
+
+    if (!slugEs && !slugEn) {
+        routeMap["/"] = "/en";
+        routeMap["/en"] = "/";
+        return;
+    }
+
+    if (slugEs && slugEn) {
+        const pathEs = `/es/${slugEs}`;
+        const pathEn = `/en/${slugEn}`;
+
+        routeMap[pathEs] = pathEn;
+        routeMap[pathEn] = pathEs;
+    }
+});
+
+const homeUrl = lang === "es" ? "/" : "/en";
+const bookingUrl = getRoute("booking", lang);
+const assistanceUrl = getRoute("sol-assistance", lang);
+const rrhhUrl = getRoute("sol-rrhh", lang);
+const projectsUrl = getRoute("sol-projects", lang);
+const ssomaUrl = getRoute("sol-ssoma", lang);
+const payrollUrl = getRoute("sol-payroll", lang);
+const assetsUrl = getRoute("sol-assets", lang);
+const flowsUrl = `${getRoute("solutions", lang)}#flujos`;
 ---
 
 <header
@@ -25,40 +57,35 @@ const t = useTranslations(lang);
 >
     <div class="max-w-7xl mx-auto px-6">
         <div class="flex items-center justify-between h-20">
-            <!-- Logo -->
             <a
-                href={lang === "es" ? "/" : "/en"}
+                href={homeUrl}
                 class="hover:opacity-80 transition-opacity"
+                aria-label="Kaizen Apps Inicio"
             >
                 <Brand client:load transparent={transparent} />
             </a>
 
-            <!-- Desktop Nav Links -->
             <nav class="hidden lg:flex items-center gap-8 text-sm font-medium">
                 <a
-                    href="/"
+                    href={homeUrl}
                     class="nav-link pb-3 text-foreground hover:text-primary transition-colors"
                 >
                     Inicio
                 </a>
-
-                <!-- Servicios (Feature Cards on Home) -->
                 <a
                     href="/#what-we-offer"
                     class="nav-link pb-3 text-foreground hover:text-primary transition-colors"
-                    data-clean-url
                 >
                     {t("nav.services")}
                 </a>
 
-                <!-- Soluciones Dropdown -->
                 <div class="relative group" id="soluciones-container">
-                    <a
-                        href={lang === "es"
-                            ? "/es/soluciones"
-                            : "/en/solutions"}
+                    <button
                         id="soluciones-btn"
-                        class="nav-link pb-3 text-foreground hover:text-primary transition-colors flex items-center gap-1 focus:outline-none"
+                        class="nav-link pb-3 text-foreground hover:text-primary transition-colors flex items-center gap-1 focus:outline-none cursor-pointer"
+                        aria-expanded="false"
+                        aria-haspopup="true"
+                        aria-controls="soluciones-dropdown"
                     >
                         {t("nav.solutions")}
                         <svg
@@ -72,11 +99,11 @@ const t = useTranslations(lang);
                             stroke-linejoin="round"
                             ><path d="m6 9 6 6 6-6"></path></svg
                         >
-                    </a>
-                    <!-- Dropdown Menu -->
+                    </button>
+
                     <div
                         id="soluciones-dropdown"
-                        class="absolute left-0 mt-0 w-64 pt-4 z-50 opacity-0 invisible translate-y-2 transition-all duration-300 ease-out group-hover:opacity-100 group-hover:visible group-hover:translate-y-0 cursor-default"
+                        class="absolute left-0 mt-0 w-64 pt-4 z-50 opacity-0 invisible translate-y-2 transition-all duration-300 ease-out group-hover:opacity-100 group-hover:visible group-hover:translate-y-0"
                     >
                         <div
                             class="bg-panel border border-border rounded-xl shadow-[0_20px_50px_rgba(0,0,0,0.15)] overflow-hidden"
@@ -84,45 +111,40 @@ const t = useTranslations(lang);
                         >
                             <div class="py-2">
                                 <a
-                                    href={lang === "es"
-                                        ? "/es/soluciones#asistencias"
-                                        : "/en/solutions#asistencias"}
+                                    href={assistanceUrl}
                                     class="block px-4 py-3 hover:bg-primary/5 hover:text-primary transition-colors text-sm"
+                                    >{t("module.assistance.title")}</a
                                 >
-                                    {t("module.assistance.title")}
-                                </a>
                                 <a
-                                    href={lang === "es"
-                                        ? "/es/soluciones#rrhh"
-                                        : "/en/solutions#rrhh"}
+                                    href={rrhhUrl}
                                     class="block px-4 py-3 hover:bg-primary/5 hover:text-primary transition-colors text-sm"
+                                    >{t("module.rrhh.title")}</a
                                 >
-                                    {t("module.rrhh.title")}
-                                </a>
                                 <a
-                                    href={lang === "es"
-                                        ? "/es/soluciones#actividades"
-                                        : "/en/solutions#actividades"}
+                                    href={projectsUrl}
                                     class="block px-4 py-3 hover:bg-primary/5 hover:text-primary transition-colors text-sm"
+                                    >{t("module.projects.title")}</a
                                 >
-                                    {t("module.projects.title")}
-                                </a>
                                 <a
-                                    href={lang === "es"
-                                        ? "/es/soluciones#ssoma"
-                                        : "/en/solutions#ssoma"}
+                                    href={ssomaUrl}
                                     class="block px-4 py-3 hover:bg-primary/5 hover:text-primary transition-colors text-sm"
+                                    >{t("module.ssoma.title")}</a
                                 >
-                                    {t("module.ssoma.title")}
-                                </a>
                                 <a
-                                    href={lang === "es"
-                                        ? "/es/soluciones#flujos"
-                                        : "/en/solutions#flujos"}
+                                    href={payrollUrl}
                                     class="block px-4 py-3 hover:bg-primary/5 hover:text-primary transition-colors text-sm"
+                                    >{t("module.payroll.title")}</a
                                 >
-                                    {t("module.flows.title")}
-                                </a>
+                                <a
+                                    href={assetsUrl}
+                                    class="block px-4 py-3 hover:bg-primary/5 hover:text-primary transition-colors text-sm"
+                                    >{t("module.assets.title")}</a
+                                >
+                                <a
+                                    href={flowsUrl}
+                                    class="block px-4 py-3 hover:bg-primary/5 hover:text-primary transition-colors text-sm"
+                                    >{t("module.flows.title")}</a
+                                >
                             </div>
                         </div>
                     </div>
@@ -131,40 +153,31 @@ const t = useTranslations(lang);
                 <a
                     href="/#nosotros"
                     class="nav-link pb-3 text-foreground hover:text-primary transition-colors"
-                    data-clean-url
                 >
                     {t("nav.about")}
                 </a>
             </nav>
 
-            <!-- Right Side -->
             <div class="flex items-center gap-4">
-                <!-- Language Dropdown (Desktop) -->
                 <div class="hidden md:block">
                     <LanguageDropdown
                         client:load
                         currentLocale={lang}
                         transparent={transparent}
+                        routeMap={routeMap}
                     />
                 </div>
-
-                <!-- Theme Toggle -->
                 <div class="hidden md:block">
                     <ThemeButton client:visible />
                 </div>
-
-                <!-- CTA Button (Desktop) -->
                 <a
-                    href={lang === "es" ? "/es/agendar" : "/en/booking"}
+                    href={bookingUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    class="hidden lg:block px-5 py-2.5 text-sm font-bold rounded-full transition-colors shadow-md hover:opacity-90 active:scale-95"
-                    style="background-color: #E53935; color: white;"
+                    class="hidden lg:block px-5 py-2.5 text-sm font-bold rounded-full transition-colors shadow-md hover:opacity-90 active:scale-95 bg-red-600 text-white"
                 >
                     {t("nav.demo")}
                 </a>
-
-                <!-- Mobile Menu -->
                 <MobileMenu client:load currentLocale={lang} />
             </div>
         </div>
@@ -172,70 +185,26 @@ const t = useTranslations(lang);
 
     <script>
         document.documentElement.style.scrollBehavior = "smooth";
-
         const header = document.getElementById("main-header");
         const isTransparent = header?.dataset.transparent === "true";
 
-        // Clean URL Script
-        document.addEventListener("click", (e) => {
-            const target = e.target as HTMLElement;
-            const link = target.closest("a");
-
-            if (!link) return;
-
-            const href = link.getAttribute("href");
-            if (!href) return;
-
-            // Check if it's a hash link on the current page or specific clean-url link
-            if (
-                href.startsWith("#") ||
-                (href.startsWith("/") && href.includes("#"))
-            ) {
-                const [path, hash] = href.split("#");
-
-                // If we are on the same page (or navigating to it) use clean scroll
-                if (
-                    (path === "/" && window.location.pathname === "/") ||
-                    path === window.location.pathname ||
-                    href.startsWith("#")
-                ) {
-                    const element = document.getElementById(hash);
-                    if (element) {
-                        e.preventDefault();
-
-                        // Scroll smoothly
-                        element.scrollIntoView({ behavior: "smooth" });
-
-                        // Manually push history state without the hash
-                        // Check if we want to change URL to just the path
-                        // example: /#nosotros -> /nosotros (visual only, refresh might break if no route)
-                        // The user requested: "kaizenapps.net/nosotros"
-                        // If we do history.pushState(null, '', '/nosotros'), valid.
-
-                        // MAPPING for cleaner visual URLs if desired:
-                        const cleanPath = path === "/" ? "/" + hash : path;
-                        // But user specifically asked for "kaizenapps.net/nosotros" which implies modifying the path.
-                        // CAUTION: This might affect reload if SSR doesn't handle /nosotros mapping to index#nosotros.
-                        // For safety, safely scroll but maybe don't break the refresh unless we have a route.
-                        // Given the request, I will attempt to set the URL to /{slug} purely visually.
-
-                        // Simple Clean: Remove hash from address bar
-                        history.pushState(null, "", window.location.pathname);
-                    }
-                }
-            }
-        });
+        const menuBtn = document.getElementById("soluciones-btn");
+        const menuDropdown = document.getElementById("soluciones-dropdown");
+        if (menuBtn && menuDropdown) {
+            menuBtn.addEventListener("click", () => {
+                const isExpanded =
+                    menuBtn.getAttribute("aria-expanded") === "true";
+                menuBtn.setAttribute("aria-expanded", String(!isExpanded));
+            });
+        }
 
         if (isTransparent && header) {
             const handleScroll = () => {
                 const scrollY = window.scrollY;
                 const isScrolled = scrollY > 50;
-
                 if (isScrolled && !header.classList.contains("scrolled")) {
                     header.classList.remove("glass-nav-transparent");
                     header.classList.add("glass-nav-solid", "scrolled");
-
-                    // Notify Brand component (optional, if responsive logo sizing needed)
                     window.dispatchEvent(
                         new CustomEvent("header-scrolled", {
                             detail: { transparent: false },
@@ -247,8 +216,6 @@ const t = useTranslations(lang);
                 ) {
                     header.classList.remove("glass-nav-solid", "scrolled");
                     header.classList.add("glass-nav-transparent");
-
-                    // Notify Brand component
                     window.dispatchEvent(
                         new CustomEvent("header-scrolled", {
                             detail: { transparent: true },
@@ -256,47 +223,34 @@ const t = useTranslations(lang);
                     );
                 }
             };
-
             window.addEventListener("scroll", handleScroll, { passive: true });
         }
     </script>
 
     <style>
-        /* 
-      NEW: Simplified Glass Styles using CSS Custom Properties 
-      This ensures theme switching works instantly because variables update
-    */
         .glass-nav-transparent {
             background-color: rgba(255, 255, 255, 0.7);
             backdrop-filter: blur(12px);
             border-bottom: 1px solid rgba(255, 255, 255, 0.5);
         }
-
         .glass-nav-solid {
             background-color: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(12px);
             box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
             border-bottom: 1px solid var(--color-border);
         }
-
-        /* Dark Mode Overrides */
         :global(.dark) .glass-nav-transparent {
-            background-color: rgba(17, 24, 39, 0.8); /* Gray-900/80 */
+            background-color: rgba(17, 24, 39, 0.8);
             border-bottom: 1px solid rgba(31, 41, 55, 0.5);
         }
-
         :global(.dark) .glass-nav-solid {
-            background-color: rgba(17, 24, 39, 0.95); /* Gray-900/95 */
-            box-shadow:
-                0 4px 6px -1px rgba(0, 0, 0, 0.1),
-                0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            background-color: rgba(17, 24, 39, 0.95);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
             border-bottom: 1px solid var(--color-border);
         }
-
         .nav-link {
             position: relative;
         }
-
         .nav-link::after {
             content: "";
             position: absolute;
@@ -307,28 +261,21 @@ const t = useTranslations(lang);
             background-color: var(--color-primary);
             transition: width 0.3s ease;
         }
-
         .nav-link:hover::after {
             width: 100%;
         }
-
-        /* Fix Logo visibility */
         :global(html:not(.dark))
             header[data-transparent="true"]
             img[alt="Kaizen"] {
             filter: brightness(0);
         }
-
         :global(.dark) #main-header img[alt="Kaizen"] {
             filter: brightness(0) invert(1);
         }
-
-        /* FORCE DROPDOWN VISIBILITY ON HOVER with Animation Support */
         #soluciones-container:hover #soluciones-dropdown {
-            visibility: visible !important;
-            opacity: 1 !important;
-            transform: translateY(0) !important;
-            pointer-events: auto !important;
+            visibility: visible;
+            opacity: 1;
+            transform: translateY(0);
         }
     </style>
 </header>
