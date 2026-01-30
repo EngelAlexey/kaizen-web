@@ -13,6 +13,8 @@ interface Props {
     ctaText: string;
     color: "red" | "orange";
     isGpt?: boolean;
+    badgeText?: string;
+    disabled?: boolean;
 }
 
 const {
@@ -25,6 +27,8 @@ const {
     ctaText,
     color,
     isGpt = false,
+    badgeText,
+    disabled = false,
 } = Astro.props;
 
 const colorStyles = {
@@ -48,13 +52,20 @@ const styles = colorStyles[color];
 ---
 
 <a
-    href={href}
-    target="_blank"
-    rel="noopener noreferrer"
-    class={`group relative p-8 bg-panel rounded-3xl border border-border ${styles.border} hover:shadow-2xl ${styles.shadow} hover:-translate-y-2 transition-all duration-300 flex flex-col`}
+    href={disabled ? undefined : href}
+    target={disabled ? undefined : "_blank"}
+    rel={disabled ? undefined : "noopener noreferrer"}
+    class={`group relative p-8 bg-panel rounded-3xl border border-border ${!disabled ? styles.border : ""} ${!disabled ? "hover:shadow-2xl hover:-translate-y-2" : "opacity-75 cursor-not-allowed"} ${!disabled ? styles.shadow : ""} transition-all duration-300 flex flex-col`}
 >
+    {
+        badgeText && (
+            <div class="absolute top-4 right-4 px-3 py-1 bg-primary/10 text-primary text-xs font-semibold rounded-full border border-primary/20">
+                {badgeText}
+            </div>
+        )
+    }
     <div
-        class={`mb-6 w-16 h-16 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300 p-2 ${styles.bg} ${isGpt ? styles.textBase : ""}`}
+        class={`mb-6 w-16 h-16 rounded-2xl flex items-center justify-center ${!disabled ? "group-hover:scale-110" : ""} transition-transform duration-300 p-2 ${styles.bg} ${isGpt ? styles.textBase : ""}`}
     >
         {
             isGpt ? (
@@ -80,20 +91,24 @@ const styles = colorStyles[color];
         }
     </div>
     <h3
-        class={`text-xl font-bold mb-3 text-foreground ${styles.text} transition-colors duration-300`}
+        class={`text-xl font-bold mb-3 text-foreground ${!disabled ? styles.text : ""} transition-colors duration-300`}
     >
         {title}
     </h3>
     <p class="text-sm text-muted leading-relaxed mb-6 flex-grow">
         {description}
     </p>
-    <div
-        class={`flex items-center ${styles.textBase} font-bold text-sm opacity-0 transform translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300`}
-    >
-        {ctaText}
-        <ArrowRight
-            size={16}
-            className="ml-2 group-hover:translate-x-1 transition-transform"
-        />
-    </div>
+    {
+        !disabled && (
+            <div
+                class={`flex items-center ${styles.textBase} font-bold text-sm opacity-0 transform translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300`}
+            >
+                {ctaText}
+                <ArrowRight
+                    size={16}
+                    className="ml-2 group-hover:translate-x-1 transition-transform"
+                />
+            </div>
+        )
+    }
 </a>

@@ -10,7 +10,7 @@ export const ui = {
         'nav.services': 'Servicios',
         'nav.solutions': 'Soluciones',
         'nav.about': 'Nosotros',
-        'nav.demo': 'Contactános',
+        'nav.demo': 'Contáctanos',
         'hero.badge': 'Software de Gestión',
         'hero.title': 'Resource Management',
         'hero.desc': 'Centraliza, automatiza y optimiza cada aspecto de tu operación con la plataforma líder en Business Intelligence.',
@@ -148,6 +148,10 @@ export const ui = {
 
         'apps.seiri': 'Seiri',
         'apps.seiri.desc': 'Control de asistencias y reloj marcador (Versión Lite).',
+
+        'apps.anzen': 'Anzen',
+        'apps.anzen.desc': 'Gestión integral de Seguridad, Salud Ocupacional y Medio Ambiente (SSOMA).',
+        'apps.dev': 'En desarrollo',
 
         // New 'About Kaizen' Section Keys
         'about.kaizen.title': '¿Qué es Kaizen?',
@@ -316,6 +320,10 @@ export const ui = {
 
         'apps.seiri': 'Seiri',
         'apps.seiri.desc': 'Attendance control and time clock (Lite Version).',
+
+        'apps.anzen': 'Anzen',
+        'apps.anzen.desc': 'Comprehensive management of Safety, Occupational Health and Environment (SSOMA).',
+        'apps.dev': 'In development',
 
         // New 'About Kaizen' Section Keys
         'about.kaizen.title': 'What is Kaizen?',

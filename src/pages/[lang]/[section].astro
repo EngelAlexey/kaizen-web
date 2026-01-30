@@ -1,0 +1,60 @@
+---
+import { languages } from "../../i18n/ui";
+import Home from "../../components/views/Home.astro";
+import Layout from "../../layouts/Layout.astro";
+
+export function getStaticPaths() {
+    const validSections = [
+        "servicios",
+        "services",
+        "nosotros",
+        "about",
+        "contacto",
+        "contact",
+    ];
+
+    // Generate paths for each language and section
+    const paths = [];
+
+    Object.keys(languages).forEach((lang) => {
+        validSections.forEach((section) => {
+            // Filter: don't generate english sections for spanish lang and vice versa if strict,
+            // but for simplicity we can allow all or filter by naming convention if desired.
+            // Let's assume loosely: 'servicios', 'nosotros' -> es; 'services', 'about' -> en
+
+            const isEs = lang === "es";
+            if (
+                isEs &&
+                (section === "services" ||
+                    section === "about" ||
+                    section === "contact")
+            )
+                return;
+            if (
+                !isEs &&
+                (section === "servicios" ||
+                    section === "nosotros" ||
+                    section === "contacto")
+            )
+                return;
+
+            paths.push({
+                params: { lang, section: section },
+            });
+        });
+    });
+    return paths;
+}
+
+const { lang, section } = Astro.params;
+
+// Map section to the actual ID expected by Home components
+// es IDs: servicios, nosotros, contacto
+// en IDs: services, about, contact (if Home supports them? Home usually has hardcoded IDs like 'servicios' or 'services')
+// Let's check Home.astro logic: <ServicesHome id={lang==='es'?'servicios':'services'} />
+// So the section param passed here matches the ID perfectly.
+---
+
+<Layout title="Kaizen" description="Resource Management" lang={lang}>
+    <Home lang={lang} initialSection={section} />
+</Layout>

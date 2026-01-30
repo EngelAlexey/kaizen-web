@@ -15,13 +15,13 @@ export default function MobileMenu({ currentLocale = 'es', currentPath = '/' }) 
                 'nav.services': 'Servicios',
                 'nav.solutions': 'Soluciones',
                 'nav.about': 'Nosotros',
-                'nav.demo': 'Agendar Demo'
+                'nav.demo': 'Contáctanos'
             },
             en: {
                 'nav.services': 'Services',
                 'nav.solutions': 'Solutions',
                 'nav.about': 'About Us',
-                'nav.demo': 'Book a Demo'
+                'nav.demo': 'Contact us'
             }
         };
         return translations[currentLocale]?.[key] || key;
@@ -41,14 +41,12 @@ export default function MobileMenu({ currentLocale = 'es', currentPath = '/' }) 
     const navItems = [
         {
             text: 'nav.services',
-            path: isHome
-                ? (currentLocale === 'es' ? '#servicios' : '#services')
-                : (currentLocale === 'es' ? '/#servicios' : '/en/#services')
+            path: currentLocale === 'es' ? '/es/servicios' : '/en/services'
         },
         { text: 'nav.solutions', path: '#soluciones' },
         {
             text: 'nav.about',
-            path: isHome ? '#nosotros' : (currentLocale === 'es' ? '/#nosotros' : '/en/#nosotros')
+            path: currentLocale === 'es' ? '/es/nosotros' : '/en/about'
         }
     ];
 
@@ -57,7 +55,7 @@ export default function MobileMenu({ currentLocale = 'es', currentPath = '/' }) 
             {/* Hamburger Button */}
             <button
                 onClick={() => setIsOpen(!isOpen)}
-                className="md:hidden p-2 text-gray-700 hover:text-primary transition-colors"
+                className="md:hidden p-2 text-foreground hover:text-primary transition-colors"
                 aria-label="Toggle menu"
             >
                 <svg
@@ -75,18 +73,18 @@ export default function MobileMenu({ currentLocale = 'es', currentPath = '/' }) 
 
             {/* Mobile Menu Overlay */}
             <div
-                className={`fixed inset-0 bg-white z-50 transition-transform duration-300 md:hidden ${isOpen ? 'translate-x-0' : 'translate-x-full'
+                className={`fixed inset-0 bg-white dark:bg-gray-900 z-50 transition-transform duration-300 md:hidden border-l border-border ${isOpen ? 'translate-x-0' : 'translate-x-full'
                     }`}
             >
                 <div className="flex flex-col h-full">
                     {/* Header */}
-                    <div className="flex justify-between items-center px-6 py-4 border-b border-gray-200">
+                    <div className="flex justify-between items-center px-6 py-4 border-b border-border">
                         <a href={currentLocale === 'es' ? '/' : '/en'} className="flex items-center">
                             <Brand />
                         </a>
                         <button
                             onClick={() => setIsOpen(false)}
-                            className="p-2 text-gray-700 hover:text-primary transition-colors"
+                            className="p-2 text-foreground hover:text-primary transition-colors"
                             aria-label="Close menu"
                         >
                             <svg
@@ -108,7 +106,7 @@ export default function MobileMenu({ currentLocale = 'es', currentPath = '/' }) 
                                     key={i}
                                     href={item.path}
                                     onClick={() => setIsOpen(false)}
-                                    className="block text-lg font-semibold text-gray-700 hover:text-primary py-3 border-l-4 border-transparent hover:border-primary pl-4 transition-all"
+                                    className="block text-lg font-semibold text-foreground hover:text-primary py-3 border-l-4 border-transparent hover:border-primary pl-4 transition-all"
                                 >
                                     {t(item.text)}
                                 </a>
@@ -116,13 +114,13 @@ export default function MobileMenu({ currentLocale = 'es', currentPath = '/' }) 
                         </nav>
 
                         {/* Language Selector */}
-                        <div className="mt-8 pt-8 border-t border-gray-200">
+                        <div className="mt-8 pt-8 border-t border-border">
                             <div className="flex gap-4">
                                 <a
                                     href="/"
                                     className={`flex-1 text-center px-4 py-3 rounded-md font-bold transition-colors ${currentLocale === 'es'
                                         ? 'bg-primary text-white'
-                                        : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                                        : 'bg-muted/10 text-foreground hover:bg-muted/20'
                                         }`}
                                 >
                                     ES
@@ -131,7 +129,7 @@ export default function MobileMenu({ currentLocale = 'es', currentPath = '/' }) 
                                     href="/en"
                                     className={`flex-1 text-center px-4 py-3 rounded-md font-bold transition-colors ${currentLocale === 'en'
                                         ? 'bg-primary text-white'
-                                        : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                                        : 'bg-muted/10 text-foreground hover:bg-muted/20'
                                         }`}
                                 >
                                     EN
@@ -141,9 +139,9 @@ export default function MobileMenu({ currentLocale = 'es', currentPath = '/' }) 
                     </div>
 
                     {/* CTA Button */}
-                    <div className="p-6 border-t border-gray-200">
+                    <div className="p-6 border-t border-border">
                         <a
-                            href="#contacto"
+                            href={currentLocale === 'es' ? '/es/agendar' : '/en/booking'}
                             onClick={() => setIsOpen(false)}
                             className="block w-full text-center px-6 py-3 bg-primary text-white font-bold rounded-full hover:bg-primary-hover transition-colors"
                         >

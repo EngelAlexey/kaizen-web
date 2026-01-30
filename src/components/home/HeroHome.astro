@@ -14,19 +14,19 @@ const t = useTranslations(lang);
     id="inicio"
     class="relative pt-24 pb-20 lg:pt-36 lg:pb-32 px-6 overflow-hidden"
 >
-    <div class="absolute inset-0 -z-10">
+    <div class="absolute inset-0 z-0 pointer-events-none">
         <div
-            class="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)]"
+            class="absolute inset-0 bg-[linear-gradient(to_right,#00000005_1px,transparent_1px),linear-gradient(to_bottom,#00000005_1px,transparent_1px)] dark:bg-[linear-gradient(to_right,#ffffff05_1px,transparent_1px),linear-gradient(to_bottom,#ffffff05_1px,transparent_1px)] bg-[size:24px_24px] [mask-image:radial-gradient(ellipse_80%_80%_at_50%_0%,#000_70%,transparent_100%)]"
         >
         </div>
 
         <div
-            class="absolute top-[-10%] right-[-5%] w-[600px] h-[600px] bg-gradient-to-br from-primary/20 to-purple/20 rounded-full blur-[100px] opacity-40 animate-pulse"
+            class="absolute top-[-10%] right-[-5%] w-[600px] h-[600px] bg-gradient-to-br from-primary/30 to-purple/30 rounded-full blur-[100px] opacity-40 dark:opacity-70 animate-pulse"
             style="animation-duration: 4s;"
         >
         </div>
         <div
-            class="absolute bottom-[-10%] left-[-5%] w-[600px] h-[600px] bg-gradient-to-tr from-blue/20 to-emerald/20 rounded-full blur-[100px] opacity-40 animate-pulse"
+            class="absolute bottom-[-10%] left-[-5%] w-[600px] h-[600px] bg-gradient-to-tr from-blue/30 to-emerald/30 rounded-full blur-[100px] opacity-40 dark:opacity-70 animate-pulse"
             style="animation-duration: 5s;"
         >
         </div>
@@ -52,7 +52,7 @@ const t = useTranslations(lang);
 
             <div class="flex flex-col sm:flex-row gap-4">
                 <a
-                    href="#contacto"
+                    href={lang === "es" ? "/es/agendar" : "/en/booking"}
                     class="btn-primary px-8 py-4 rounded-xl font-bold text-lg shadow-lg hover:shadow-primary/25"
                 >
                     {t("hero.quote")}
@@ -70,7 +70,7 @@ const t = useTranslations(lang);
             class="relative lg:h-[600px] flex items-center justify-center animate-fade-left animate-delay-300"
         >
             <div
-                class="absolute top-10 right-10 w-[80%] h-[80%] border-2 border-primary/20 rounded-3xl transform rotate-6 z-0 hidden lg:block"
+                class="absolute top-10 right-10 w-[80%] h-[80%] border-2 border-primary/60 rounded-3xl transform rotate-6 z-0 hidden lg:block"
             >
             </div>
 

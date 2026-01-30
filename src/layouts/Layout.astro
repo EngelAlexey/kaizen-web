@@ -53,12 +53,12 @@ if (
 ---
 
 <!doctype html>
-<html lang={currentLang} class="scroll-smooth">
+<html lang={currentLang}>
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="description" content={description} />
 		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<link rel="icon" type="image/png" href="/favicon.png" />
 		<meta name="generator" content={Astro.generator} />
 		<title>{title} | Kaizen Apps</title>
 
@@ -110,15 +110,13 @@ if (
 			document.addEventListener("astro:after-swap", initTheme);
 		</script>
 	</head>
-	<body
-		class="bg-background text-foreground transition-colors duration-300 overflow-x-hidden font-sans"
-	>
+	<body class="bg-background text-foreground overflow-x-hidden font-sans">
 		<Header
 			lang={currentLang}
 			transparent={transparent}
 			transition:persist
 		/>
-		<main transition:animate="fade">
+		<main>
 			<slot />
 		</main>
 		<Footer transition:persist />

@@ -19,7 +19,12 @@ const t = useTranslations(lang);
     id={lang === "es" ? "servicios" : "services"}
     class="py-24 px-6 relative overflow-hidden"
 >
-    <div class="absolute inset-0 -z-10 bg-muted/5">
+    <div class="absolute inset-0 z-0 pointer-events-none">
+        <div
+            class="absolute inset-0 bg-[linear-gradient(to_right,#00000005_1px,transparent_1px),linear-gradient(to_bottom,#00000005_1px,transparent_1px)] dark:bg-[linear-gradient(to_right,#ffffff05_1px,transparent_1px),linear-gradient(to_bottom,#ffffff05_1px,transparent_1px)] bg-[size:24px_24px] [mask-image:radial-gradient(ellipse_80%_80%_at_50%_0%,#000_70%,transparent_100%)]"
+        >
+        </div>
+
         <div
             class="absolute top-0 right-0 w-[500px] h-[500px] bg-primary/5 rounded-full blur-[100px] transform translate-x-1/2 -translate-y-1/2"
         >
@@ -30,7 +35,7 @@ const t = useTranslations(lang);
         </div>
     </div>
 
-    <div class="max-w-7xl mx-auto">
+    <div class="max-w-7xl mx-auto relative z-10">
         <div class="text-center mb-16 animate-fade-up">
             <h2 class="text-3xl md:text-5xl font-bold mb-6 text-foreground">
                 {t("apps.title")}
@@ -80,6 +85,18 @@ const t = useTranslations(lang);
                 description={t("apps.seiri.desc")}
                 ctaText={t("apps.cta")}
                 color="red"
+            />
+
+            <AppCard
+                href="#"
+                logo={KaizenLogo}
+                logoAlt="Anzen"
+                title={t("apps.anzen")}
+                description={t("apps.anzen.desc")}
+                ctaText={t("apps.cta")}
+                color="red"
+                badgeText={t("apps.dev")}
+                disabled={true}
             />
         </div>
     </div>
