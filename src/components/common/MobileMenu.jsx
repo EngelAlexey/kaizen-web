@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
-import { useTranslations } from '../utils/i18n';
+import { useTranslations } from '../../utils/i18n';
+import Brand from './Brand';
 
 export default function MobileMenu({ currentLocale = 'es' }) {
     const [isOpen, setIsOpen] = useState(false);
@@ -68,18 +69,7 @@ export default function MobileMenu({ currentLocale = 'es' }) {
                     {/* Header */}
                     <div className="flex justify-between items-center px-6 py-4 border-b border-gray-200">
                         <a href={currentLocale === 'es' ? '/' : '/en'} className="flex items-center">
-                            <img
-                                src="/images/logo_horizontal.svg"
-                                alt="Kaizen"
-                                className="h-6"
-                                onError={(e) => {
-                                    e.target.style.display = 'none';
-                                    e.target.nextSibling.style.display = 'block';
-                                }}
-                            />
-                            <span className="text-xl font-bold text-primary ml-2" style={{ display: 'none' }}>
-                                KAIZEN
-                            </span>
+                            <Brand />
                         </a>
                         <button
                             onClick={() => setIsOpen(false)}
@@ -118,8 +108,8 @@ export default function MobileMenu({ currentLocale = 'es' }) {
                                 <a
                                     href="/"
                                     className={`flex-1 text-center px-4 py-3 rounded-md font-bold transition-colors ${currentLocale === 'es'
-                                            ? 'bg-primary text-white'
-                                            : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                                        ? 'bg-primary text-white'
+                                        : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
                                         }`}
                                 >
                                     ES
@@ -127,8 +117,8 @@ export default function MobileMenu({ currentLocale = 'es' }) {
                                 <a
                                     href="/en"
                                     className={`flex-1 text-center px-4 py-3 rounded-md font-bold transition-colors ${currentLocale === 'en'
-                                            ? 'bg-primary text-white'
-                                            : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                                        ? 'bg-primary text-white'
+                                        : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
                                         }`}
                                 >
                                     EN

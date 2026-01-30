@@ -10,7 +10,7 @@ export const ui = {
         'nav.services': 'Servicios',
         'nav.solutions': 'Soluciones',
         'nav.about': 'Nosotros',
-        'nav.demo': 'Agendar Demo',
+        'nav.demo': 'Agendar cita',
         'hero.badge': 'Software de Gestión',
         'hero.title': 'Resource Management',
         'hero.desc': 'Centraliza, automatiza y optimiza cada aspecto de tu operación con la plataforma líder en Business Intelligence.',
@@ -23,7 +23,7 @@ export const ui = {
         'about.title2': 'empresarial',
         'about.desc1': 'Somos una empresa dedicada a brindar soluciones tecnológicas que transforman la manera en que gestionas tus recursos.',
         'about.desc2': 'Con Kaizen, no solo obtienes un software, sino un aliado estratégico comprometido con la eficiencia, la seguridad y la escalabilidad de tu negocio.',
-        'stats.companies': 'Empresas Activas',
+        'stats.companies': 'Nuestros clientes',
         'stats.uptime': 'Uptime Garantizado',
         'features.g.title': 'Gestión inteligente',
         'features.g.desc': 'Optimizá la gestión de recursos, mejorá tus procesos y controles. Llevá tu negocio al siguiente nivel.',
@@ -148,6 +148,31 @@ export const ui = {
 
         'apps.seiri': 'Seiri',
         'apps.seiri.desc': 'Control de asistencias y reloj marcador (Versión Lite).',
+
+        // New 'About Kaizen' Section Keys
+        'about.kaizen.title': '¿Qué es Kaizen?',
+        'about.kaizen.desc1': 'Kaizen es un ecosistema digital que ayuda a las empresas a gestionar y controlar recursos como <strong class="text-foreground">personal, materiales y equipos</strong> de forma eficiente y segura.',
+        'about.kaizen.desc2': 'Con funciones impulsadas por tecnología de última generación. Diseñada para responder a las necesidades del sector construcción, sin embargo, puede implementarse en cualquier otro nicho donde se deban gestionar recursos de forma eficiente.',
+        'about.kaizen.projects': 'Proyectos Activos',
+        'about.kaizen.cloud': 'Nube Segura',
+
+        // Booking / Contact
+        'booking.title': 'Agendar Cita',
+        'booking.subtitle': 'Déjanos tus datos y te contactaremos para una demostración personalizada.',
+        'booking.form.name': 'Nombre Completo',
+        'booking.form.email': 'Correo Corporativo',
+        'booking.form.phone': 'Teléfono',
+        'booking.form.company': 'Empresa',
+        'booking.form.role': 'Cargo',
+        'booking.form.product': 'Producto de Interés',
+        'booking.form.submit': 'Solicitar Agenda',
+        'booking.product.kaizen': 'Kaizen Core',
+        'booking.product.kaizen.desc': 'Gestión Integral de Recursos Humanos y Operaciones.',
+        'booking.product.seiri': 'Seiri',
+        'booking.product.seiri.desc': 'Control de Asistencia y Reloj Marcador.',
+        'booking.product.bayco': 'BayCo',
+        'booking.product.bayco.desc': 'Gestión Inteligente de Inventarios y Compras.',
+        'booking.ai.note': 'Todos los productos incluyen Chatbox con IA entrenada.',
     },
     en: {
         'nav.services': 'Services',
@@ -233,5 +258,30 @@ export const ui = {
 
         'apps.seiri': 'Seiri',
         'apps.seiri.desc': 'Attendance control and time clock (Lite Version).',
+
+        // New 'About Kaizen' Section Keys
+        'about.kaizen.title': 'What is Kaizen?',
+        'about.kaizen.desc1': 'Kaizen is a digital ecosystem that helps companies manage and control resources such as <strong class="text-foreground">personnel, materials, and equipment</strong> efficiently and securely.',
+        'about.kaizen.desc2': 'With features powered by the latest technology. Designed to meet the needs of the construction sector, however, it can be implemented in any other niche where resources must be managed efficiently.',
+        'about.kaizen.projects': 'Active Projects',
+        'about.kaizen.cloud': 'Secure Cloud',
+
+        // Booking / Contact
+        'booking.title': 'Book a Demo',
+        'booking.subtitle': 'Leave your details and we will contact you for a personalized demonstration.',
+        'booking.form.name': 'Full Name',
+        'booking.form.email': 'Business Email',
+        'booking.form.phone': 'Phone',
+        'booking.form.company': 'Company',
+        'booking.form.role': 'Job Title',
+        'booking.form.product': 'Product of Interest',
+        'booking.form.submit': 'Request Schedule',
+        'booking.product.kaizen': 'Kaizen Core',
+        'booking.product.kaizen.desc': 'Comprehensive Human Resources and Operations Management.',
+        'booking.product.seiri': 'Seiri',
+        'booking.product.seiri.desc': 'Attendance Control and Time Clock.',
+        'booking.product.bayco': 'BayCo',
+        'booking.product.bayco.desc': 'Smart Inventory and Purchasing Management.',
+        'booking.ai.note': 'All products include AI-powered Chatbox.',
     },
 } as const;

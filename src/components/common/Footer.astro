@@ -1,5 +1,11 @@
 ---
 import Brand from "./Brand.jsx";
+
+interface Props {
+    lang?: "es" | "en";
+}
+
+const { lang = "es" } = Astro.props;
 ---
 
 <footer class="bg-background border-t border-border pt-16 pb-8 px-6 text-sm">
@@ -19,30 +25,54 @@ import Brand from "./Brand.jsx";
             <ul class="space-y-3 text-muted">
                 <li>
                     <a
-                        href="/solutions#asistencias"
+                        href={lang === "es"
+                            ? "/es/soluciones#asistencias"
+                            : "/en/solutions#asistencias"}
                         class="hover:text-primary transition-colors"
-                        >Control de asistencia</a
+                        >{
+                            lang === "es"
+                                ? "Control de asistencia"
+                                : "Attendance Control"
+                        }</a
                     >
                 </li>
                 <li>
                     <a
-                        href="/solutions#rrhh"
+                        href={lang === "es"
+                            ? "/es/soluciones#rrhh"
+                            : "/en/solutions#rrhh"}
                         class="hover:text-primary transition-colors"
-                        >Recursos Humanos</a
+                        >{
+                            lang === "es"
+                                ? "Recursos Humanos"
+                                : "Human Resources"
+                        }</a
                     >
                 </li>
                 <li>
                     <a
-                        href="/solutions#actividades"
+                        href={lang === "es"
+                            ? "/es/soluciones#actividades"
+                            : "/en/solutions#actividades"}
                         class="hover:text-primary transition-colors"
-                        >Control de actividades</a
+                        >{
+                            lang === "es"
+                                ? "Control de actividades"
+                                : "Activity Control"
+                        }</a
                     >
                 </li>
                 <li>
                     <a
-                        href="/solutions#ssoma"
+                        href={lang === "es"
+                            ? "/es/soluciones#ssoma"
+                            : "/en/solutions#ssoma"}
                         class="hover:text-primary transition-colors"
-                        >Salud y Seguridad</a
+                        >{
+                            lang === "es"
+                                ? "Salud y Seguridad"
+                                : "Health & Safety"
+                        }</a
                     >
                 </li>
             </ul>

@@ -1,0 +1,61 @@
+---
+import type { AstroComponentFactory } from "astro/runtime/server/index.js";
+
+interface Props {
+    Icon: any;
+    color: "blue" | "purple" | "emerald";
+    title: string;
+    description: string;
+}
+
+const { Icon, color, title, description } = Astro.props;
+
+const colorStyles = {
+    blue: {
+        border: "hover:border-blue",
+        shadow: "hover:shadow-blue/10",
+        bg: "bg-blue/10",
+        text: "text-blue",
+        groupText: "group-hover:text-blue",
+        gradient: "via-blue",
+    },
+    purple: {
+        border: "hover:border-purple",
+        shadow: "hover:shadow-purple/10",
+        bg: "bg-purple/10",
+        text: "text-purple",
+        groupText: "group-hover:text-purple",
+        gradient: "via-purple",
+    },
+    emerald: {
+        border: "hover:border-emerald",
+        shadow: "hover:shadow-emerald/10",
+        bg: "bg-emerald/10",
+        text: "text-emerald",
+        groupText: "group-hover:text-emerald",
+        gradient: "via-emerald",
+    },
+};
+
+const styles = colorStyles[color];
+---
+
+<div
+    class={`group p-8 rounded-2xl glass hover:bg-panel/50 border-border/50 ${styles.border} transition-all duration-300 hover:shadow-2xl ${styles.shadow} hover:-translate-y-2 relative overflow-hidden`}
+>
+    <div
+        class={`absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent ${styles.gradient} to-transparent opacity-0 group-hover:opacity-100 transition-opacity`}
+    >
+    </div>
+    <div
+        class={`w-12 h-12 ${styles.bg} ${styles.text} rounded-lg flex items-center justify-center mb-6 group-hover:scale-110 transition-transform`}
+    >
+        <Icon />
+    </div>
+    <h3 class={`text-xl font-bold mb-3 ${styles.groupText} transition-colors`}>
+        {title}
+    </h3>
+    <p class="text-muted">
+        {description}
+    </p>
+</div>

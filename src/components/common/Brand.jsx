@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
-import kaizenLogoDark from "../assets/img/kaizen_logo.png";
-import kMark from "../assets/img/K.png";
+import kaizenLogoDark from "../../assets/img/kaizen_logo.png";
+import kMark from "../../assets/img/K.png";
 
 const brand = {
   logoDark: kaizenLogoDark.src,

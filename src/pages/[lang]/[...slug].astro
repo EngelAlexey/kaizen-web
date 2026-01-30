@@ -1,0 +1,42 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Home from "../../components/views/Home.astro";
+import Solutions from "../../components/views/Solutions.astro";
+import Booking from "../../components/views/Booking.astro";
+import { TASKS, getSeo, type RouteId } from "../../lib/routes";
+
+export async function getStaticPaths() {
+    const paths: {
+        params: { lang: string; slug: string };
+        props: { id: RouteId };
+    }[] = [];
+    (["es", "en"] as const).forEach((lang) => {
+        TASKS.forEach((task) => {
+            if (task.id === "home") return; // Handled by index.astro
+            const slug = task.slug[lang];
+            if (slug) {
+                paths.push({
+                    params: { lang, slug },
+                    props: { id: task.id },
+                });
+            }
+        });
+    });
+    return paths;
+}
+
+const { lang } = Astro.params;
+const { id } = Astro.props;
+const currentLang = (lang as "es" | "en") || "es";
+const seo = getSeo(id as RouteId, currentLang);
+---
+
+<Layout
+    title={seo.title}
+    description={seo.description}
+    lang={currentLang}
+    transparent={false}
+>
+    {id === "solutions" && <Solutions lang={currentLang} />}
+    {id === "booking" && <Booking lang={currentLang} />}
+</Layout>

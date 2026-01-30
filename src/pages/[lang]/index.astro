@@ -1,15 +1,22 @@
 ---
 import Layout from "../../layouts/Layout.astro";
-import Landing from "../../components/views/Landing.astro";
-import { languages } from "../../i18n/ui";
+import Home from "../../components/views/Home.astro";
+import { getSeo } from "../../lib/routes";
 
 export function getStaticPaths() {
     return [{ params: { lang: "es" } }, { params: { lang: "en" } }];
 }
 
 const { lang } = Astro.params;
+const currentLang = (lang as "es" | "en") || "es";
+const seo = getSeo("home", currentLang);
 ---
 
-<Layout title="Resource Management" transparent={true} lang={lang as any}>
-    <Landing lang={lang as any} />
+<Layout
+    title={seo.title}
+    description={seo.description}
+    transparent={true}
+    lang={currentLang}
+>
+    <Home lang={currentLang} />
 </Layout>
