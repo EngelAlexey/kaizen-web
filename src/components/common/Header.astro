@@ -77,6 +77,7 @@ const isHome =
                     Inicio
                 </a>
                 <a
+<<<<<<< HEAD
                     href={isHome
                         ? lang === "es"
                             ? "#servicios"
@@ -84,6 +85,11 @@ const isHome =
                         : lang === "es"
                           ? "/#servicios"
                           : "/en/#services"}
+=======
+                    href={lang === "es"
+                        ? "/#aplicaciones"
+                        : "/en/#applications"}
+>>>>>>> 3bb38022aec5fc4111b18ab3fd5b4d7d35858aa4
                     class="nav-link pb-3 text-foreground hover:text-primary transition-colors"
                 >
                     {t("nav.services")}
