@@ -228,7 +228,10 @@ const clientLogos = [
     </div>
 </section>
 
-<section id="what-we-offer" class="py-24 px-6 relative overflow-hidden">
+<section
+    id={lang === "es" ? "servicios" : "services"}
+    class="py-24 px-6 relative overflow-hidden"
+>
     <div class="absolute inset-0 -z-10 bg-muted/5">
         <div
             class="absolute top-0 right-0 w-[500px] h-[500px] bg-primary/5 rounded-full blur-[100px] transform translate-x-1/2 -translate-y-1/2"

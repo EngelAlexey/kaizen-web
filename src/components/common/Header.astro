@@ -73,7 +73,9 @@ const flowsUrl = `${getRoute("solutions", lang)}#flujos`;
                     Inicio
                 </a>
                 <a
-                    href="/#what-we-offer"
+                    href={lang === "es"
+                        ? "/#aplicaciones"
+                        : "/en/#applications"}
                     class="nav-link pb-3 text-foreground hover:text-primary transition-colors"
                 >
                     {t("nav.services")}

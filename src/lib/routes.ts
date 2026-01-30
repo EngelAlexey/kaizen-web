@@ -7,11 +7,11 @@ export const TASKS = [
         },
         seo: {
             es: {
-                title: 'Kaizen | Gestión de Recursos y Operaciones',
+                title: 'Gestión de Recursos y Operaciones',
                 description: 'Optimiza tu empresa con Kaizen. Gestión de personal, inventarios y control de asistencia en una sola plataforma.'
             },
             en: {
-                title: 'Kaizen | Resource and Operations Management',
+                title: 'Resource and Operations Management',
                 description: 'Optimize your business with Kaizen. Personnel management, inventory, and attendance control in a single platform.'
             }
         }
@@ -54,8 +54,8 @@ export const TASKS = [
     {
         id: 'sol-assistance',
         slug: {
-            es: 'Control-Asistencias',
-            en: 'Attendance-Management'
+            es: 'soluciones/control-asistencias',
+            en: 'solutions/attendance-management'
         },
         seo: {
             es: { title: 'Control de Asistencias', description: 'Gestión moderna de asistencia y puntualidad.' },
@@ -65,8 +65,8 @@ export const TASKS = [
     {
         id: 'sol-rrhh',
         slug: {
-            es: 'Recursos-Humanos',
-            en: 'Human-Resources'
+            es: 'soluciones/recursos-humanos',
+            en: 'solutions/human-resources'
         },
         seo: {
             es: { title: 'Recursos Humanos', description: 'Centraliza la información de tus colaboradores.' },
@@ -76,8 +76,8 @@ export const TASKS = [
     {
         id: 'sol-projects',
         slug: {
-            es: 'Gestion-Proyectos',
-            en: 'Project-Management'
+            es: 'soluciones/gestion-proyectos',
+            en: 'solutions/project-management'
         },
         seo: {
             es: { title: 'Gestión de Proyectos', description: 'Planificación y seguimiento de actividades.' },
@@ -87,8 +87,8 @@ export const TASKS = [
     {
         id: 'sol-ssoma',
         slug: {
-            es: 'Salud-Ocupacional',
-            en: 'Occupational-Health'
+            es: 'soluciones/salud-ocupacional',
+            en: 'solutions/occupational-health'
         },
         seo: {
             es: { title: 'Salud y Seguridad Ocupacional', description: 'Seguridad, Salud Ocupacional y Medio Ambiente.' },
@@ -98,8 +98,8 @@ export const TASKS = [
     {
         id: 'sol-payroll',
         slug: {
-            es: 'Gestion-Nominas',
-            en: 'Payroll-Management'
+            es: 'soluciones/gestion-nominas',
+            en: 'solutions/payroll-management'
         },
         seo: {
             es: { title: 'Gestión de Planilla', description: 'Automatización y cálculo de planillas.' },
@@ -109,14 +109,14 @@ export const TASKS = [
     {
         id: 'sol-assets',
         slug: {
-            es: 'Control-Activos',
-            en: 'Assets-Control'
+            es: 'soluciones/control-activos',
+            en: 'solutions/assets-control'
         },
         seo: {
             es: { title: 'Control de Activos', description: 'Gestión inteligente de inventarios y activos.' },
             en: { title: 'Assets Control', description: 'Intelligent inventory and asset management.' }
         }
-    }
+    },
 ] as const;
 
 export type RouteId = typeof TASKS[number]['id'];
