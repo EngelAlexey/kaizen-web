@@ -57,7 +57,7 @@ const services = [
     </div>
 </section>
 
-<div class="flex flex-col">
+<div class="flex flex-col" transition:persist="solutions-container">
     {
         services.map(({ id, routeId, Component }, index) => {
             const urlSlug = getSlugById(routeId, lang);
@@ -186,22 +186,44 @@ const services = [
 </section>
 
 <script define:vars={{ initialSection, lang }}>
-    document.addEventListener("DOMContentLoaded", () => {
-        if (initialSection) {
+    const handleNavigation = () => {
+        // Find current slug from URL to determine where to scroll
+        const path = window.location.pathname;
+        const parts = path.split("/").filter(Boolean);
+        // Assuming /es/soluciones/slug
+        // The last part is the slug.
+        // We match it against data-slug attributes.
+        const currentSlug = parts[parts.length - 1];
+
+        // Find valid section
+        const section = document.querySelector(
+            `.service-section[data-slug="${currentSlug}"]`,
+        );
+
+        if (section) {
+            // Check if we are already seeing it?
+            // Naive scroll is safest.
+            section.scrollIntoView({
+                behavior: "smooth",
+                block: "start",
+            });
+        } else if (initialSection) {
+            // Fallback to prop if URL matching fails (e.g. root solutions page?)
             const target = document.getElementById(initialSection);
             if (target) {
-                setTimeout(() => {
-                    target.scrollIntoView({
-                        behavior: "smooth",
-                        block: "start",
-                    });
-                }, 100);
+                target.scrollIntoView({ behavior: "auto", block: "start" });
             }
         }
+    };
+
+    document.addEventListener("astro:page-load", () => {
+        // Delay slightly to allow transition to settle or just run?
+        // astro:page-load runs after swap.
+        handleNavigation();
 
         const observerOptions = {
             root: null,
-            rootMargin: "-50% 0px -50% 0px",
+            rootMargin: "-20% 0px -80% 0px",
             threshold: 0,
         };
 
@@ -209,22 +231,11 @@ const services = [
             entries.forEach((entry) => {
                 if (entry.isIntersecting) {
                     const cleanSlug = entry.target.dataset.slug;
-
                     if (cleanSlug) {
-                        const prefix = lang === "es" ? "/es" : "/en";
-                        const newPath = `${prefix}/${cleanSlug}`;
-
+                        const newPath =
+                            (lang === "es" ? "/es/" : "/en/") + cleanSlug;
                         if (location.pathname !== newPath) {
                             history.replaceState(null, "", newPath);
-                        }
-                    } else {
-                        const rootPath =
-                            lang === "es" ? "/es/soluciones" : "/en/solutions";
-                        if (
-                            location.pathname !== rootPath &&
-                            entry.target.id === "services-hero"
-                        ) {
-                            history.replaceState(null, "", rootPath);
                         }
                     }
                 }

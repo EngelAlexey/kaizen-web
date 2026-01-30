@@ -1,0 +1,86 @@
+---
+import { useTranslations } from "../../utils/i18n";
+import type { ui } from "../../i18n/ui";
+import AppCard from "../cards/AppCard.astro";
+import KaizenLogo from "../../assets/img/K.png";
+import SeiriLogo from "../../assets/img/seiri-logo.png";
+import BaycoBlack from "../../assets/img/bayco-logo-black.png";
+import BaycoWhite from "../../assets/img/bayco-logo-white.png";
+
+interface Props {
+    lang: keyof typeof ui;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+---
+
+<section
+    id={lang === "es" ? "servicios" : "services"}
+    class="py-24 px-6 relative overflow-hidden"
+>
+    <div class="absolute inset-0 -z-10 bg-muted/5">
+        <div
+            class="absolute top-0 right-0 w-[500px] h-[500px] bg-primary/5 rounded-full blur-[100px] transform translate-x-1/2 -translate-y-1/2"
+        >
+        </div>
+        <div
+            class="absolute bottom-0 left-0 w-[500px] h-[500px] bg-blue/5 rounded-full blur-[100px] transform -translate-x-1/2 translate-y-1/2"
+        >
+        </div>
+    </div>
+
+    <div class="max-w-7xl mx-auto">
+        <div class="text-center mb-16 animate-fade-up">
+            <h2 class="text-3xl md:text-5xl font-bold mb-6 text-foreground">
+                {t("apps.title")}
+            </h2>
+            <p class="text-muted text-lg max-w-2xl mx-auto">
+                {t("apps.subtitle")}
+            </p>
+        </div>
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <AppCard
+                href="https://kaizenapps.net/app"
+                logo={KaizenLogo}
+                logoAlt="Kaizen"
+                title={t("apps.hr")}
+                description={t("apps.hr.desc")}
+                ctaText={t("apps.cta")}
+                color="red"
+            />
+
+            <AppCard
+                href="https://kaizenapps.net/bayco"
+                logo={BaycoBlack}
+                logoDark={BaycoWhite}
+                logoAlt="BayCo"
+                title={t("apps.bayco")}
+                description={t("apps.bayco.desc")}
+                ctaText={t("apps.cta")}
+                color="orange"
+            />
+
+            <AppCard
+                href="https://kaizenapps.net/gpt"
+                isGpt={true}
+                logoAlt="GPT"
+                title={t("apps.gpt")}
+                description={t("apps.gpt.desc")}
+                ctaText={t("apps.cta")}
+                color="red"
+            />
+
+            <AppCard
+                href="https://kaizenapps.net/seiri"
+                logo={SeiriLogo}
+                logoAlt="Seiri"
+                title={t("apps.seiri")}
+                description={t("apps.seiri.desc")}
+                ctaText={t("apps.cta")}
+                color="red"
+            />
+        </div>
+    </div>
+</section>

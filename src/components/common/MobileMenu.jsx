@@ -2,8 +2,13 @@ import { useState, useEffect } from 'react';
 import { useTranslations } from '../../utils/i18n';
 import Brand from './Brand';
 
-export default function MobileMenu({ currentLocale = 'es' }) {
+export default function MobileMenu({ currentLocale = 'es', currentPath = '/' }) {
     const [isOpen, setIsOpen] = useState(false);
+
+    // Determine if we are on the home page
+    const homePath = currentLocale === 'es' ? '/' : '/en';
+    const isHome = currentPath === homePath || (homePath !== '/' && currentPath === homePath + '/');
+
     const t = (key) => {
         const translations = {
             es: {
@@ -34,9 +39,17 @@ export default function MobileMenu({ currentLocale = 'es' }) {
     }, [isOpen]);
 
     const navItems = [
-        { text: 'nav.services', path: '#servicios' },
+        {
+            text: 'nav.services',
+            path: isHome
+                ? (currentLocale === 'es' ? '#servicios' : '#services')
+                : (currentLocale === 'es' ? '/#servicios' : '/en/#services')
+        },
         { text: 'nav.solutions', path: '#soluciones' },
-        { text: 'nav.about', path: '#nosotros' }
+        {
+            text: 'nav.about',
+            path: isHome ? '#nosotros' : (currentLocale === 'es' ? '/#nosotros' : '/en/#nosotros')
+        }
     ];
 
     return (

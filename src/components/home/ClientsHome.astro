@@ -1,0 +1,50 @@
+---
+import { useTranslations } from "../../utils/i18n";
+import type { ui } from "../../i18n/ui";
+import ClientLogos from "../sections/ClientLogos.astro";
+
+interface Props {
+    lang: keyof typeof ui;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+
+const clientLogos = [
+    { src: "/src/assets/icons/create-logo.png", alt: "Creative Engineering" },
+    { src: "/src/assets/icons/grupo-logo.png", alt: "Grupo Creativo" },
+    { src: "/src/assets/icons/sauma-logo-black.png", alt: "Sauma Arquitectos" },
+    { src: "/src/assets/icons/maz-logo-white.svg", alt: "MAZ" },
+    { src: "/src/assets/icons/volta-logo-white.png", alt: "Volta" },
+    { src: "/src/assets/icons/constrial-logo.png", alt: "Constrial" },
+];
+---
+
+<section
+    id="nuestros-clientes"
+    class="py-16 bg-panel border-y border-border overflow-hidden"
+>
+    <div class="max-w-7xl mx-auto px-6 text-center mb-10">
+        <h3 class="text-2xl font-bold opacity-80">
+            {t("stats.companies")}
+        </h3>
+    </div>
+
+    <div class="relative w-full">
+        <div
+            class="flex w-max gap-12 animate-scroll-x hover:pause items-center"
+        >
+            <ClientLogos logos={clientLogos} />
+            <ClientLogos logos={clientLogos} />
+        </div>
+
+        <div
+            class="absolute top-0 left-0 w-24 h-full bg-gradient-to-r from-panel to-transparent z-10 pointer-events-none"
+        >
+        </div>
+        <div
+            class="absolute top-0 right-0 w-24 h-full bg-gradient-to-l from-panel to-transparent z-10 pointer-events-none"
+        >
+        </div>
+    </div>
+</section>

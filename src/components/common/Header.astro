@@ -45,6 +45,10 @@ const ssomaUrl = getRoute("sol-ssoma", lang);
 const payrollUrl = getRoute("sol-payroll", lang);
 const assetsUrl = getRoute("sol-assets", lang);
 const flowsUrl = `${getRoute("solutions", lang)}#flujos`;
+
+const isHome =
+    Astro.url.pathname === homeUrl ||
+    (homeUrl !== "/" && Astro.url.pathname === homeUrl + "/");
 ---
 
 <header
@@ -73,7 +77,13 @@ const flowsUrl = `${getRoute("solutions", lang)}#flujos`;
                     Inicio
                 </a>
                 <a
-                    href="/#what-we-offer"
+                    href={isHome
+                        ? lang === "es"
+                            ? "#servicios"
+                            : "#services"
+                        : lang === "es"
+                          ? "/#servicios"
+                          : "/en/#services"}
                     class="nav-link pb-3 text-foreground hover:text-primary transition-colors"
                 >
                     {t("nav.services")}
@@ -151,7 +161,11 @@ const flowsUrl = `${getRoute("solutions", lang)}#flujos`;
                 </div>
 
                 <a
-                    href="/#nosotros"
+                    href={isHome
+                        ? "#nosotros"
+                        : lang === "es"
+                          ? "/#nosotros"
+                          : "/en/#nosotros"}
                     class="nav-link pb-3 text-foreground hover:text-primary transition-colors"
                 >
                     {t("nav.about")}
@@ -178,7 +192,11 @@ const flowsUrl = `${getRoute("solutions", lang)}#flujos`;
                 >
                     {t("nav.demo")}
                 </a>
-                <MobileMenu client:load currentLocale={lang} />
+                <MobileMenu
+                    client:load
+                    currentLocale={lang}
+                    currentPath={Astro.url.pathname}
+                />
             </div>
         </div>
     </div>
