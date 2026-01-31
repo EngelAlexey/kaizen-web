@@ -57,7 +57,7 @@ const t = useTranslations(lang);
             />
 
             <AppCard
-                href="https://kaizenapps.net/bayco"
+                href="#"
                 logo={BaycoBlack}
                 logoDark={BaycoWhite}
                 logoAlt="BayCo"
@@ -65,6 +65,8 @@ const t = useTranslations(lang);
                 description={t("apps.bayco.desc")}
                 ctaText={t("apps.cta")}
                 color="orange"
+                badgeText={t("apps.dev")}
+                disabled={true}
             />
 
             <AppCard
@@ -93,6 +95,18 @@ const t = useTranslations(lang);
                 logoAlt="Anzen"
                 title={t("apps.anzen")}
                 description={t("apps.anzen.desc")}
+                ctaText={t("apps.cta")}
+                color="red"
+                badgeText={t("apps.dev")}
+                disabled={true}
+            />
+
+            <AppCard
+                href="#"
+                logo={KaizenLogo}
+                logoAlt="Seiton"
+                title={t("apps.seiton")}
+                description={t("apps.seiton.desc")}
                 ctaText={t("apps.cta")}
                 color="red"
                 badgeText={t("apps.dev")}

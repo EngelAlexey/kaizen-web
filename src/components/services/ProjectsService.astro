@@ -1,6 +1,8 @@
 ---
 import { useTranslations } from "../../utils/i18n";
 import { CheckCircle2, CalendarRange } from "lucide-react";
+import { Image } from "astro:assets";
+import ProjectsImage from "../../assets/ilustration/project-management.svg";
 
 interface Props {
     lang: "es" | "en";
@@ -74,20 +76,11 @@ const t = useTranslations(lang);
                 class="absolute inset-0 bg-gradient-to-tr from-purple/10 to-transparent rounded-3xl transform rotate-3 scale-105 -z-10"
             >
             </div>
-            <div
-                class="bg-panel border border-border rounded-2xl p-8 shadow-xl"
-            >
-                <div
-                    class="aspect-video bg-muted/10 rounded-lg flex items-center justify-center border border-dashed border-border mb-6"
-                >
-                    <CalendarRange className="w-16 h-16 text-muted/30" />
-                </div>
-                <div class="space-y-3">
-                    <div class="h-2 bg-muted/10 rounded w-3/4"></div>
-                    <div class="h-2 bg-muted/10 rounded w-1/2"></div>
-                    <div class="h-2 bg-muted/10 rounded w-full"></div>
-                </div>
-            </div>
+            <Image
+                src={ProjectsImage}
+                alt="Project Management"
+                class="w-full h-auto object-contain relative z-10 hover:scale-105 transition-transform duration-500"
+            />
         </div>
     </div>
 </div>

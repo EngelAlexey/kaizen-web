@@ -151,6 +151,10 @@ export const ui = {
 
         'apps.anzen': 'Anzen',
         'apps.anzen.desc': 'Gestión integral de Seguridad, Salud Ocupacional y Medio Ambiente (SSOMA).',
+
+        'apps.seiton': 'Seiton',
+        'apps.seiton.desc': 'App para gestión de salud ocupacional.',
+
         'apps.dev': 'En desarrollo',
 
         // New 'About Kaizen' Section Keys
@@ -323,6 +327,10 @@ export const ui = {
 
         'apps.anzen': 'Anzen',
         'apps.anzen.desc': 'Comprehensive management of Safety, Occupational Health and Environment (SSOMA).',
+
+        'apps.seiton': 'Seiton',
+        'apps.seiton.desc': 'Occupational health management app.',
+
         'apps.dev': 'In development',
 
         // New 'About Kaizen' Section Keys

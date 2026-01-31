@@ -1,6 +1,8 @@
 ---
 import { useTranslations } from "../../utils/i18n";
 import type { ui } from "../../i18n/ui";
+import { Image } from "astro:assets";
+import HeroImage from "../../assets/ilustration/Hero-portfolio.svg";
 
 interface Props {
     lang: keyof typeof ui;
@@ -77,8 +79,8 @@ const t = useTranslations(lang);
             <div
                 class="relative z-10 w-full max-w-[550px] aspect-[4/3] rounded-2xl overflow-hidden shadow-strong border border-border bg-panel group"
             >
-                <img
-                    src="/src/assets/img/imagen1.jpeg"
+                <Image
+                    src={HeroImage}
                     alt="Dashboard Kaizen"
                     class="object-cover w-full h-full transform transition-transform duration-700 group-hover:scale-105"
                 />
