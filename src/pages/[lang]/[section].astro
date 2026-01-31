@@ -14,7 +14,7 @@ export function getStaticPaths() {
     ];
 
     // Generate paths for each language and section
-    const paths = [];
+    const paths: Array<{ params: { lang: string; section: string } }> = [];
 
     Object.keys(languages).forEach((lang) => {
         validSections.forEach((section) => {
@@ -46,7 +46,10 @@ export function getStaticPaths() {
     return paths;
 }
 
-const { lang, section } = Astro.params;
+const { lang, section } = Astro.params as {
+    lang: "es" | "en";
+    section: string;
+};
 
 // Map section to the actual ID expected by Home components
 // es IDs: servicios, nosotros, contacto
