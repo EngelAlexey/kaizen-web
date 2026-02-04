@@ -275,13 +275,8 @@ const isHome =
         .nav-link:hover::after {
             width: 100%;
         }
-        :global(html:not(.dark))
-            header[data-transparent="true"]
-            img[alt="Kaizen"] {
+        :global(html:not(.dark)) #main-header img[alt="Kaizen"] {
             filter: brightness(0);
-        }
-        :global(.dark) #main-header img[alt="Kaizen"] {
-            filter: brightness(0) invert(1);
         }
         :global(.dark) #main-header img[alt="Kaizen"] {
             filter: brightness(0) invert(1);
