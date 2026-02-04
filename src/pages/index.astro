@@ -1,3 +1,28 @@
 ---
-return Astro.redirect("/es");
+// Root redirect page with meta-refresh for production stability
 ---
+
+<!doctype html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="refresh" content="0;url=/es/" />
+        <title>Redirigiendo...</title>
+        <link rel="canonical" href="https://kaizenapps.net/es/" />
+        <script is:inline>
+            window.location.href = "/es/";
+        </script>
+    </head>
+    <body
+        style="background: #09090b; color: white; font-family: sans-serif; display: flex; align-items: center; justify-content: center; height: 100vh; margin: 0;"
+    >
+        <div style="text-align: center;">
+            <p>Redirigiendo a la versión en español...</p>
+            <a
+                href="/es/"
+                style="color: #dc2626; text-decoration: none; font-weight: bold;"
+                >Haga clic aquí si no es redirigido automáticamente</a
+            >
+        </div>
+    </body>
+</html>
