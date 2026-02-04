@@ -59,14 +59,14 @@ const t = useTranslations(lang);
                     if (!id) return;
 
                     let newPath = "";
-                    const prefix = lang === "es" ? "" : "/en";
+                    const prefix = lang === "es" ? "/es" : "/en";
 
                     if (id === "inicio") {
                         // Home root
-                        newPath = lang === "es" ? "/" : "/en/";
+                        newPath = lang === "es" ? "/es/" : "/en/";
                     } else {
-                        // Clean URL: /servicios or /en/servicios
-                        newPath = lang === "es" ? `/${id}` : `${prefix}/${id}`;
+                        // Clean URL: /es/servicios or /en/services
+                        newPath = `${prefix}/${id}`;
                     }
 
                     if (currentPathname !== newPath) {
@@ -100,24 +100,16 @@ const t = useTranslations(lang);
 
                 const url = new URL(link.href);
                 const pathParts = url.pathname.split("/").filter(Boolean);
-                // pathParts with prefixDefaultLocale: false
-                // Spanish: [] -> inicio, ['servicios'] -> servicios
+                // pathParts with prefixDefaultLocale: true
+                // Spanish: ['es'] -> inicio, ['es', 'servicios'] -> servicios
                 // English: ['en'] -> inicio, ['en', 'services'] -> services
 
                 let targetId = "";
 
-                if (lang === "es") {
-                    if (pathParts.length === 0) {
-                        targetId = "inicio";
-                    } else {
-                        targetId = pathParts[pathParts.length - 1];
-                    }
+                if (pathParts.length <= 1) {
+                    targetId = "inicio";
                 } else {
-                    if (pathParts.length <= 1) {
-                        targetId = "inicio";
-                    } else {
-                        targetId = pathParts[pathParts.length - 1];
-                    }
+                    targetId = pathParts[pathParts.length - 1];
                 }
 
                 const targetSection = document.getElementById(targetId);

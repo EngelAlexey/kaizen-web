@@ -1,11 +1,13 @@
 ---
 import Brand from "./Brand.jsx";
+import { useTranslations } from "../../utils/i18n";
 
 interface Props {
     lang?: "es" | "en";
 }
 
 const { lang = "es" } = Astro.props;
+const t = useTranslations(lang);
 ---
 
 <footer class="bg-background border-t border-border pt-16 pb-8 px-6 text-sm">
@@ -15,18 +17,19 @@ const { lang = "es" } = Astro.props;
                 <Brand client:visible />
             </div>
             <p class="text-muted max-w-sm mb-6">
-                Gestión inteligente para tu empresa y proyectos de construcción.
-                Centraliza, automatiza y crece con Kaizen.
+                {t("footer.desc")}
             </p>
         </div>
 
         <div>
-            <h4 class="font-bold text-foreground mb-4">Soluciones</h4>
+            <h4 class="font-bold text-foreground mb-4">
+                {t("footer.solutions")}
+            </h4>
             <ul class="space-y-3 text-muted">
                 <li>
                     <a
                         href={lang === "es"
-                            ? "/soluciones#asistencias"
+                            ? "/es/soluciones#asistencias"
                             : "/en/solutions#asistencias"}
                         class="hover:text-primary transition-colors"
                         >{
@@ -39,7 +42,7 @@ const { lang = "es" } = Astro.props;
                 <li>
                     <a
                         href={lang === "es"
-                            ? "/soluciones#rrhh"
+                            ? "/es/soluciones#rrhh"
                             : "/en/solutions#rrhh"}
                         class="hover:text-primary transition-colors"
                         >{
@@ -52,7 +55,7 @@ const { lang = "es" } = Astro.props;
                 <li>
                     <a
                         href={lang === "es"
-                            ? "/soluciones#actividades"
+                            ? "/es/soluciones#actividades"
                             : "/en/solutions#actividades"}
                         class="hover:text-primary transition-colors"
                         >{
@@ -65,7 +68,7 @@ const { lang = "es" } = Astro.props;
                 <li>
                     <a
                         href={lang === "es"
-                            ? "/soluciones#ssoma"
+                            ? "/es/soluciones#ssoma"
                             : "/en/solutions#ssoma"}
                         class="hover:text-primary transition-colors"
                         >{
@@ -79,7 +82,9 @@ const { lang = "es" } = Astro.props;
         </div>
 
         <div id="contacto">
-            <h4 class="font-bold text-foreground mb-4">Nuestros contactos</h4>
+            <h4 class="font-bold text-foreground mb-4">
+                {t("footer.contacts")}
+            </h4>
             <ul class="space-y-3 text-muted">
                 <li>+506 8767 2300</li>
                 <li>
@@ -88,7 +93,7 @@ const { lang = "es" } = Astro.props;
                         class="hover:text-primary">contacto@kaizenapps.net</a
                     >
                 </li>
-                <li class="pt-2">Costa Rica</li>
+                <li class="pt-2">{t("footer.location")}</li>
             </ul>
         </div>
     </div>
@@ -96,6 +101,6 @@ const { lang = "es" } = Astro.props;
     <div
         class="max-w-7xl mx-auto border-t border-border pt-8 text-center text-muted text-xs"
     >
-        &copy; {new Date().getFullYear()} Kaizen Apps – All Rights Reserved.
+        &copy; {new Date().getFullYear()} Kaizen Apps – {t("footer.rights")}
     </div>
 </footer>

@@ -204,6 +204,11 @@ export const ui = {
         'testimonials.title': 'Testimonios',
         'testimonials.subtitle': 'Lo que nuestros clientes dicen sobre la experiencia Kaizen.',
         'app.custom': 'Aplicación a medida',
+        'footer.desc': 'Gestión inteligente para tu empresa y proyectos de construcción. Centraliza, automatiza y crece con Kaizen.',
+        'footer.solutions': 'Soluciones',
+        'footer.contacts': 'Nuestros contactos',
+        'footer.location': 'Costa Rica',
+        'footer.rights': 'All Rights Reserved.',
     },
     en: {
         'nav.services': 'Services',
@@ -403,5 +408,10 @@ export const ui = {
         'testimonials.title': 'Testimonials',
         'testimonials.subtitle': 'What our clients say about the Kaizen experience.',
         'app.custom': 'Custom Application',
+        'footer.desc': 'Smart management for your company and construction projects. Centralize, automate, and grow with Kaizen.',
+        'footer.solutions': 'Solutions',
+        'footer.contacts': 'Our contacts',
+        'footer.location': 'Costa Rica',
+        'footer.rights': 'All Rights Reserved.',
     },
 } as const;

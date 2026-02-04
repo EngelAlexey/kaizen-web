@@ -27,14 +27,13 @@ export default function Brand({
   const logoSrc = brand.logoLight;
 
   return (
-    <div className={"flex items-center gap-2 select-none transition-opacity duration-300 " + className}>
-      <img
-        src={logoSrc}
-        alt="Kaizen"
-        style={{ height: transparent ? wordmarkHeight : markSize, objectFit: "contain" }}
-        draggable="false"
-        loading="eager"
-      />
-    </div>
+    <a href={lang === "es" ? "/es/" : "/en/"} className={"flex items-center gap-2 group select-none transition-opacity duration-300 " + className}>
+      <span
+        className={`text-xl font-bold tracking-tight transition-colors duration-300 ${isScrolled || !transparent ? "text-foreground" : "text-white"
+          }`}
+      >
+        Kaizen <span className="text-primary">Apps</span>
+      </span>
+    </a>
   );
 }

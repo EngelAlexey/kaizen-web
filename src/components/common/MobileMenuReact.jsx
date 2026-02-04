@@ -188,10 +188,10 @@ const MobileMenuReact = ({ lang, t, routeMapJson, currentPath }) => {
 
                         <li className={`transition-all duration-300 delay-150 ${isOpen ? 'translate-x-0 opacity-100' : 'translate-x-6 opacity-0'}`}>
                             <a
-                                href={lang === "es" ? "/nosotros" : "/en/about"}
-                                className="text-lg font-bold text-foreground/90 hover:text-primary transition-all block py-3 px-4 rounded-xl hover:bg-primary/5 border border-transparent hover:border-primary/10"
-                            >
-                                {t["nav.about"]}
+                                href={lang === 'es' ? '/es/nosotros' : '/en/about'}
+                                className="flex items-center gap-4 p-4 rounded-xl hover:bg-muted/50 border border-transparent hover:border-border transition-all group"
+                                onClick={onClose}
+                            >    {t["nav.about"]}
                             </a>
                         </li>
                     </ul>
@@ -200,13 +200,13 @@ const MobileMenuReact = ({ lang, t, routeMapJson, currentPath }) => {
                     <div className={`mt-10 pt-8 border-t border-border/40 transition-all duration-300 delay-200 ${isOpen ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'}`}>
                         <div className="flex items-center justify-between mb-6 px-4">
                             <p className="text-[10px] font-black text-muted-foreground uppercase tracking-[0.2em] opacity-50">PREFERENCIAS</p>
-                            <button
-                                onClick={toggleTheme}
-                                className="flex items-center gap-2 py-1.5 px-3 rounded-full bg-muted/5 border border-border/40 text-[10px] font-bold hover:bg-primary/10 transition-colors"
-                            >
-                                {theme === 'light' ? <Moon className="w-3 h-3" /> : <Sun className="w-3 h-3" />}
+                            <a
+                                href={lang === 'es' ? '/es/contacto' : '/en/contact'}
+                                className="flex items-center gap-4 p-4 rounded-xl hover:bg-muted/50 border border-transparent hover:border-border transition-all group"
+                                onClick={onClose}
+                            >    {theme === 'light' ? <Moon className="w-3 h-3" /> : <Sun className="w-3 h-3" />}
                                 {theme === 'light' ? 'MODO OSCURO' : 'MODO CLARO'}
-                            </button>
+                            </a>
                         </div>
 
                         <div className="flex gap-3 px-4">
@@ -229,12 +229,13 @@ const MobileMenuReact = ({ lang, t, routeMapJson, currentPath }) => {
                 {/* CTA Section */}
                 <div className={`mt-auto pt-8 pb-4 transition-all duration-300 delay-250 ${isOpen ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'}`}>
                     <a
-                        href={lang === "es" ? "/agendar" : "/en/booking"}
-                        className="block w-full text-center py-4 bg-primary text-white font-black text-base rounded-2xl hover:bg-primary/95 active:scale-[0.98] transition-all shadow-xl shadow-primary/25 border border-primary/20"
+                        href={lang === 'es' ? '/es/agendar' : '/en/booking'}
+                        className="flex-1 btn-primary py-4 rounded-xl font-bold flex items-center justify-center gap-2 shadow-lg shadow-primary/20 active:scale-95 transition-transform"
+                        onClick={onClose}
                     >
-                        {t["nav.demo"]}
-                    </a>
-                </div>
+                        <Calendar size={18} />
+                        {t('hero.quote')}
+                    </a></div>
             </div>
 
             <style dangerouslySetInnerHTML={{
