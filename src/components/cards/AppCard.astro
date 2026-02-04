@@ -1,7 +1,9 @@
 ---
-import { ArrowRight, Brain } from "lucide-react";
+import { ArrowRight, Brain, Download, Smartphone } from "lucide-react";
 import { Image } from "astro:assets";
 import type { ImageMetadata } from "astro";
+import { useTranslations } from "../../utils/i18n";
+import type { ui } from "../../i18n/ui";
 
 interface Props {
     href: string;
@@ -15,6 +17,11 @@ interface Props {
     isGpt?: boolean;
     badgeText?: string;
     disabled?: boolean;
+    downloadLinks?: {
+        android?: string;
+        ios?: string;
+    };
+    lang?: keyof typeof ui;
 }
 
 const {
@@ -29,7 +36,11 @@ const {
     isGpt = false,
     badgeText,
     disabled = false,
+    downloadLinks,
+    lang = "es",
 } = Astro.props;
+
+const t = useTranslations(lang);
 
 const colorStyles = {
     red: {
@@ -49,14 +60,32 @@ const colorStyles = {
 };
 
 const styles = colorStyles[color];
+
+const androidLink = downloadLinks?.android;
+const iosLink = downloadLinks?.ios;
+const hasDownloadLinks = !!(androidLink || iosLink);
+
+// Pre-compute all class strings to avoid ternary operators in JSX
+const cardBorderClass = disabled ? "" : styles.border;
+const cardHoverClass = disabled
+    ? "opacity-75 cursor-not-allowed"
+    : "hover:shadow-2xl hover:-translate-y-2";
+const cardShadowClass = disabled ? "" : styles.shadow;
+const cardClass = `group relative p-8 bg-panel rounded-3xl border border-border ${cardBorderClass} ${cardHoverClass} ${cardShadowClass} transition-all duration-300 flex flex-col h-full`;
+
+const logoHoverClass = disabled ? "" : "group-hover:scale-110";
+const logoTextClass = isGpt ? styles.textBase : "";
+const logoContainerClass = `mb-6 w-16 h-16 rounded-2xl flex items-center justify-center ${logoHoverClass} transition-transform duration-300 p-2 ${styles.bg} ${logoTextClass}`;
+
+const logoImageClass = logoDark
+    ? "w-full h-full object-contain dark:hidden"
+    : "w-full h-full object-contain";
+
+const titleColorClass = disabled ? "" : styles.text;
+const titleClass = `text-xl font-bold mb-3 text-foreground ${titleColorClass} transition-colors duration-300`;
 ---
 
-<a
-    href={disabled ? undefined : href}
-    target={disabled ? undefined : "_blank"}
-    rel={disabled ? undefined : "noopener noreferrer"}
-    class={`group relative p-8 bg-panel rounded-3xl border border-border ${!disabled ? styles.border : ""} ${!disabled ? "hover:shadow-2xl hover:-translate-y-2" : "opacity-75 cursor-not-allowed"} ${!disabled ? styles.shadow : ""} transition-all duration-300 flex flex-col`}
->
+<div class={cardClass}>
     {
         badgeText && (
             <div class="absolute top-4 right-4 px-3 py-1 bg-primary/10 text-primary text-xs font-semibold rounded-full border border-primary/20">
@@ -64,51 +93,75 @@ const styles = colorStyles[color];
             </div>
         )
     }
-    <div
-        class={`mb-6 w-16 h-16 rounded-2xl flex items-center justify-center ${!disabled ? "group-hover:scale-110" : ""} transition-transform duration-300 p-2 ${styles.bg} ${isGpt ? styles.textBase : ""}`}
-    >
+    <div class={logoContainerClass}>
+        {isGpt && <Brain size={32} />}
         {
-            isGpt ? (
-                <Brain size={32} />
-            ) : (
-                <>
-                    {logo && (
-                        <Image
-                            src={logo}
-                            alt={logoAlt}
-                            class={`w-full h-full object-contain ${logoDark ? "dark:hidden" : ""}`}
-                        />
-                    )}
-                    {logoDark && (
-                        <Image
-                            src={logoDark}
-                            alt={logoAlt}
-                            class="w-full h-full object-contain hidden dark:block"
-                        />
-                    )}
-                </>
+            !isGpt && logo && (
+                <Image src={logo} alt={logoAlt} class={logoImageClass} />
+            )
+        }
+        {
+            !isGpt && logoDark && (
+                <Image
+                    src={logoDark}
+                    alt={logoAlt}
+                    class="w-full h-full object-contain hidden dark:block"
+                />
             )
         }
     </div>
-    <h3
-        class={`text-xl font-bold mb-3 text-foreground ${!disabled ? styles.text : ""} transition-colors duration-300`}
-    >
+    <h3 class={titleClass}>
         {title}
     </h3>
     <p class="text-sm text-muted leading-relaxed mb-6 flex-grow">
         {description}
     </p>
+
     {
         !disabled && (
-            <div
-                class={`flex items-center ${styles.textBase} font-bold text-sm opacity-0 transform translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300`}
-            >
-                {ctaText}
-                <ArrowRight
-                    size={16}
-                    className="ml-2 group-hover:translate-x-1 transition-transform"
-                />
+            <div class="flex items-center justify-between gap-4 mt-auto pt-4 border-t border-transparent group-hover:border-border/40 transition-colors duration-300 opacity-0 group-hover:opacity-100 md:opacity-0 md:group-hover:opacity-100 max-md:opacity-100">
+                <a
+                    href={href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class={`flex items-center ${styles.textBase} font-bold text-sm hover:opacity-80 transition-opacity`}
+                >
+                    {ctaText}
+                    <ArrowRight
+                        size={16}
+                        className="ml-2 group-hover:translate-x-1 transition-transform"
+                    />
+                </a>
+
+                {hasDownloadLinks && (
+                    <div class="flex items-center gap-2">
+                        {androidLink && (
+                            <a
+                                href={androidLink}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                class="flex items-center gap-1.5 text-xs font-bold px-3 py-2 rounded-lg bg-background border-2 border-border hover:bg-muted/10 transition-colors whitespace-nowrap"
+                                title={t("apps.download.android")}
+                            >
+                                <Download size={16} />
+                                <span>Android</span>
+                            </a>
+                        )}
+                        {iosLink && (
+                            <a
+                                href={iosLink}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                class="flex items-center gap-1.5 text-xs font-bold px-3 py-2 rounded-lg bg-background border-2 border-border hover:bg-muted/10 transition-colors whitespace-nowrap"
+                                title={t("apps.download.ios")}
+                            >
+                                <Download size={16} />
+                                <span>iOS</span>
+                            </a>
+                        )}
+                    </div>
+                )}
             </div>
         )
     }
-</a>
+</div>

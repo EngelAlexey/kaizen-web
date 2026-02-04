@@ -5,6 +5,7 @@ interface Props {
         alt: string;
         isSvg?: boolean;
         dark?: boolean;
+        href?: string;
     }[];
 }
 
@@ -12,14 +13,35 @@ const { logos } = Astro.props;
 ---
 
 {
-    logos.map((logo) => (
-        <div class="flex-shrink-0 w-40 h-24 bg-background/50 border border-border rounded-xl flex items-center justify-center transition-all duration-300 group p-4 hover:bg-panel hover:shadow-lg hover:-translate-y-1">
-            <img
-                src={logo.src}
-                alt={logo.alt}
-                class="w-full h-full object-contain opacity-80 group-hover:opacity-100 transition-opacity"
-                style={{ filter: "var(--logo-filter)" }}
-            />
-        </div>
-    ))
+    logos.map((logo) => {
+        return (
+            <>
+                {logo.href && (
+                    <a
+                        href={logo.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="flex-shrink-0 w-40 h-24 bg-background/50 border border-border rounded-xl flex items-center justify-center transition-all duration-300 group p-4 hover:bg-panel hover:shadow-lg hover:-translate-y-1 cursor-pointer"
+                    >
+                        <img
+                            src={logo.src}
+                            alt={logo.alt}
+                            class="w-full h-full object-contain opacity-80 group-hover:opacity-100 transition-opacity"
+                            style={{ filter: "var(--logo-filter)" }}
+                        />
+                    </a>
+                )}
+                {!logo.href && (
+                    <div class="flex-shrink-0 w-40 h-24 bg-background/50 border border-border rounded-xl flex items-center justify-center transition-all duration-300 group p-4 hover:bg-panel hover:shadow-lg hover:-translate-y-1 cursor-pointer">
+                        <img
+                            src={logo.src}
+                            alt={logo.alt}
+                            class="w-full h-full object-contain opacity-80 group-hover:opacity-100 transition-opacity"
+                            style={{ filter: "var(--logo-filter)" }}
+                        />
+                    </div>
+                )}
+            </>
+        );
+    })
 }

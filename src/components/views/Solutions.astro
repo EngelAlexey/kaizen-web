@@ -61,18 +61,13 @@ const services = [
     {
         services.map(({ id, routeId, Component }, index) => {
             const urlSlug = getSlugById(routeId, lang);
+            const isOdd = index % 2 !== 0;
+            const sectionClasses = isOdd
+                ? "py-20 px-6 service-section scroll-mt-24 bg-muted/5 border-t border-border"
+                : "py-20 px-6 service-section scroll-mt-24";
 
             return (
-                <section
-                    id={id}
-                    class:list={[
-                        "py-20 px-6 service-section scroll-mt-24",
-                        index % 2 !== 0
-                            ? "bg-muted/5 border-t border-border"
-                            : "",
-                    ]}
-                    data-slug={urlSlug}
-                >
+                <section id={id} class={sectionClasses} data-slug={urlSlug}>
                     <Component lang={lang} />
                 </section>
             );

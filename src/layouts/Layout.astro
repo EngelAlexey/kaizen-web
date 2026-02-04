@@ -2,8 +2,10 @@
 import "../styles/global.css";
 import Header from "../components/common/Header.astro";
 import Footer from "../components/common/Footer.astro";
+import MobileMenuReact from "../components/common/MobileMenuReact.jsx";
 import { ViewTransitions } from "astro:transitions";
 import { TASKS } from "../lib/routes";
+import { useTranslations } from "../utils/i18n";
 
 interface Props {
 	title: string;
@@ -20,6 +22,50 @@ const {
 } = Astro.props;
 
 const currentLang = lang as "es" | "en";
+const t = useTranslations(currentLang);
+
+// Reuse routeMap logic for React
+const routeMap: Record<string, string> = {};
+const addRoute = (pathEs: string, pathEn: string) => {
+	routeMap[pathEs] = pathEn;
+	routeMap[pathEn] = pathEs;
+	if (!pathEs.endsWith("/")) routeMap[pathEs + "/"] = pathEn;
+	if (!pathEn.endsWith("/")) routeMap[pathEn + "/"] = pathEs;
+};
+
+addRoute("/", "/en");
+addRoute("/es", "/en");
+
+const sectionMappings = [
+	{ es: "/es/servicios", en: "/en/services" },
+	{ es: "/es/nosotros", en: "/en/about" },
+	{ es: "/es/testimonios", en: "/en/testimonials" },
+	{ es: "/es/contacto", en: "/en/contact" },
+];
+
+sectionMappings.forEach(({ es, en }) => addRoute(es, en));
+
+TASKS.forEach((task) => {
+	if (task.slug.es && task.slug.en) {
+		addRoute(`/es/${task.slug.es}`, `/en/${task.slug.en}`);
+	}
+});
+
+const routeMapJson = JSON.stringify(routeMap);
+
+// Simplify t for React (just the keys we need)
+const tReact = {
+	"nav.services": t("nav.services"),
+	"nav.solutions": t("nav.solutions"),
+	"nav.about": t("nav.about"),
+	"nav.demo": t("nav.demo"),
+	"module.assistance.title": t("module.assistance.title"),
+	"module.rrhh.title": t("module.rrhh.title"),
+	"module.projects.title": t("module.projects.title"),
+	"module.ssoma.title": t("module.ssoma.title"),
+	"module.payroll.title": t("module.payroll.title"),
+	"module.assets.title": t("module.assets.title"),
+};
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 
@@ -120,5 +166,13 @@ if (
 			<slot />
 		</main>
 		<Footer transition:persist />
+		<MobileMenuReact
+			client:load
+			transition:persist
+			lang={currentLang}
+			t={tReact}
+			routeMapJson={routeMapJson}
+			currentPath={Astro.url.pathname}
+		/>
 	</body>
 </html>

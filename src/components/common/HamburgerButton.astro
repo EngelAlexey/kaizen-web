@@ -1,0 +1,69 @@
+---
+// Simple Astro Hamburger Button
+---
+
+<button
+    id="hamburger-menu"
+    class="hamburger lg:hidden p-2 text-foreground hover:text-primary transition-colors z-50 rounded-lg border border-border/50 bg-background/50 active:scale-95"
+    aria-label="Toggle menu"
+    aria-expanded="false"
+>
+    <!-- Hamburger icon -->
+    <svg
+        class="hamburger-icon w-6 h-6"
+        fill="none"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+    >
+        <path d="M4 6h16M4 12h16M4 18h16"></path>
+    </svg>
+    <!-- Close icon -->
+    <svg
+        class="close-icon w-6 h-6 hidden"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+        stroke-width="2"
+    >
+        <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M6 18L18 6M6 6l12 12"></path>
+    </svg>
+</button>
+
+<script>
+    const initHamburger = () => {
+        const hamburger = document.getElementById("hamburger-menu");
+        const hamburgerIcon = hamburger?.querySelector(".hamburger-icon");
+        const closeIcon = hamburger?.querySelector(".close-icon");
+
+        if (!hamburger || (hamburger as any)._initialized) return;
+        (hamburger as any)._initialized = true;
+
+        hamburger.addEventListener("click", () => {
+            const isExpanded =
+                hamburger.getAttribute("aria-expanded") === "true";
+            const newState = !isExpanded;
+
+            window.dispatchEvent(
+                new CustomEvent("kaizen:toggle-menu", {
+                    detail: { force: newState },
+                }),
+            );
+        });
+
+        window.addEventListener("kaizen:menu-state", (e: any) => {
+            const isOpen = e.detail.isOpen;
+            hamburger.setAttribute("aria-expanded", String(isOpen));
+            hamburgerIcon?.classList.toggle("hidden", isOpen);
+            closeIcon?.classList.toggle("hidden", !isOpen);
+        });
+    };
+
+    // Initialize on load and after ViewTransitions navigation
+    document.addEventListener("astro:page-load", initHamburger);
+</script>

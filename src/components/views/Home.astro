@@ -5,6 +5,7 @@ import HeroHome from "../home/HeroHome.astro";
 import KaizenHome from "../home/KaizenHome.astro";
 import ServicesHome from "../home/ServicesHome.astro";
 import ClientsHome from "../home/ClientsHome.astro";
+import TestimonialsHome from "../home/TestimonialsHome.astro";
 
 interface Props {
     lang: keyof typeof ui;
@@ -19,6 +20,7 @@ const t = useTranslations(lang);
 <KaizenHome lang={lang} />
 <ServicesHome lang={lang} />
 <ClientsHome lang={lang} />
+<TestimonialsHome lang={lang} />
 
 <script define:vars={{ initialSection, lang }}>
     document.addEventListener("astro:page-load", () => {

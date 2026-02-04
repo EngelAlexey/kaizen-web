@@ -11,6 +11,8 @@ export function getStaticPaths() {
         "about",
         "contacto",
         "contact",
+        "testimonios",
+        "testimonials",
     ];
 
     // Generate paths for each language and section
@@ -27,14 +29,16 @@ export function getStaticPaths() {
                 isEs &&
                 (section === "services" ||
                     section === "about" ||
-                    section === "contact")
+                    section === "contact" ||
+                    section === "testimonials")
             )
                 return;
             if (
                 !isEs &&
                 (section === "servicios" ||
                     section === "nosotros" ||
-                    section === "contacto")
+                    section === "contacto" ||
+                    section === "testimonios")
             )
                 return;
 
