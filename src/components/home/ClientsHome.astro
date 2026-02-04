@@ -3,6 +3,16 @@ import { useTranslations } from "../../utils/i18n";
 import type { ui } from "../../i18n/ui";
 import ClientLogos from "../sections/ClientLogos.astro";
 
+// Import logos properly so Astro processes them
+import createLogo from "../../assets/icons/create-logo.png";
+import grupoLogo from "../../assets/icons/grupo-logo.png";
+import saumaLogo from "../../assets/icons/sauma-logo-black.png";
+import mazLogo from "../../assets/icons/maz-logo-white.svg";
+import voltaLogo from "../../assets/icons/volta-logo-white.png";
+import constrialLogo from "../../assets/icons/Constrial-logo.webp";
+import starCargoLogo from "../../assets/icons/logo_vertical_c.png";
+import girsLogo from "../../assets/icons/girs-logo.png";
+
 interface Props {
     lang: keyof typeof ui;
 }
@@ -12,42 +22,42 @@ const t = useTranslations(lang);
 
 const clientLogos = [
     {
-        src: "/src/assets/icons/create-logo.png",
+        src: createLogo.src,
         alt: "Creative Engineering",
         href: "https://www.create-cr.com/",
     },
     {
-        src: "/src/assets/icons/grupo-logo.png",
+        src: grupoLogo.src,
         alt: "Grupo Creativo",
         href: "https://www.grupocreativo-cr.com/",
     },
     {
-        src: "/src/assets/icons/sauma-logo-black.png",
+        src: saumaLogo.src,
         alt: "Sauma Arquitectos",
         href: "https://saumaarquitectos.com/",
     },
     {
-        src: "/src/assets/icons/maz-logo-white.svg",
+        src: mazLogo.src,
         alt: "MAZ",
         href: "https://www.maz-cr.com/",
     },
     {
-        src: "/src/assets/icons/volta-logo-white.png",
+        src: voltaLogo.src,
         alt: "Volta",
         href: "https://voltacr.com/",
     },
     {
-        src: "/src/assets/icons/Constrial-logo.webp",
+        src: constrialLogo.src,
         alt: "Constrial",
         href: "https://constrial.net/",
     },
     {
-        src: "/src/assets/icons/logo_vertical_c.png",
+        src: starCargoLogo.src,
         alt: "Star Cargo",
         href: "https://www.starcargoservice.com/",
     },
     {
-        src: "/src/assets/icons/girs-logo.png",
+        src: girsLogo.src,
         alt: "GIRS",
         href: "https://www.girscr.com/",
     },
