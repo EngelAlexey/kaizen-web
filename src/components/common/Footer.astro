@@ -14,7 +14,7 @@ const t = useTranslations(lang);
     <div class="max-w-7xl mx-auto grid md:grid-cols-4 gap-12 mb-12">
         <div class="col-span-1 md:col-span-2">
             <div class="mb-6">
-                <Brand client:visible />
+                <Brand client:visible lang={lang} />
             </div>
             <p class="text-muted max-w-sm mb-6">
                 {t("footer.desc")}

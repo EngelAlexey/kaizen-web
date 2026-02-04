@@ -190,7 +190,7 @@ const MobileMenuReact = ({ lang, t, routeMapJson, currentPath }) => {
                             <a
                                 href={lang === 'es' ? '/es/nosotros' : '/en/about'}
                                 className="flex items-center gap-4 p-4 rounded-xl hover:bg-muted/50 border border-transparent hover:border-border transition-all group"
-                                onClick={onClose}
+                                onClick={closeMenu}
                             >    {t["nav.about"]}
                             </a>
                         </li>
@@ -200,13 +200,13 @@ const MobileMenuReact = ({ lang, t, routeMapJson, currentPath }) => {
                     <div className={`mt-10 pt-8 border-t border-border/40 transition-all duration-300 delay-200 ${isOpen ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'}`}>
                         <div className="flex items-center justify-between mb-6 px-4">
                             <p className="text-[10px] font-black text-muted-foreground uppercase tracking-[0.2em] opacity-50">PREFERENCIAS</p>
-                            <a
-                                href={lang === 'es' ? '/es/contacto' : '/en/contact'}
-                                className="flex items-center gap-4 p-4 rounded-xl hover:bg-muted/50 border border-transparent hover:border-border transition-all group"
-                                onClick={onClose}
-                            >    {theme === 'light' ? <Moon className="w-3 h-3" /> : <Sun className="w-3 h-3" />}
+                            <button
+                                onClick={toggleTheme}
+                                className="flex items-center gap-2 py-1.5 px-3 rounded-full bg-muted/5 border border-border/40 text-[10px] font-bold hover:bg-primary/10 transition-colors"
+                            >
+                                {theme === 'light' ? <Moon className="w-3 h-3" /> : <Sun className="w-3 h-3" />}
                                 {theme === 'light' ? 'MODO OSCURO' : 'MODO CLARO'}
-                            </a>
+                            </button>
                         </div>
 
                         <div className="flex gap-3 px-4">
@@ -231,7 +231,7 @@ const MobileMenuReact = ({ lang, t, routeMapJson, currentPath }) => {
                     <a
                         href={lang === 'es' ? '/es/agendar' : '/en/booking'}
                         className="flex-1 btn-primary py-4 rounded-xl font-bold flex items-center justify-center gap-2 shadow-lg shadow-primary/20 active:scale-95 transition-transform"
-                        onClick={onClose}
+                        onClick={closeMenu}
                     >
                         <Calendar size={18} />
                         {t('hero.quote')}
