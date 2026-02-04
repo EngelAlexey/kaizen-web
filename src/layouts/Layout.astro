@@ -35,12 +35,14 @@ const addRoute = (pathEs: string, pathEn: string) => {
 
 addRoute("/", "/en");
 addRoute("/es", "/en");
+addRoute("/es/", "/en/");
 
 const sectionMappings = [
 	{ es: "/es/servicios", en: "/en/services" },
 	{ es: "/es/nosotros", en: "/en/about" },
 	{ es: "/es/testimonios", en: "/en/testimonials" },
 	{ es: "/es/contacto", en: "/en/contact" },
+	{ es: "/es/nuestros-clientes", en: "/en/clients" },
 ];
 
 sectionMappings.forEach(({ es, en }) => addRoute(es, en));

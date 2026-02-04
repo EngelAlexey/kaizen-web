@@ -13,7 +13,7 @@ const t = useTranslations(lang);
 ---
 
 <section
-    id="inicio"
+    id={lang === "es" ? "inicio" : "home"}
     class="relative pt-24 pb-20 lg:pt-36 lg:pb-32 px-6 overflow-hidden"
 >
     <div class="absolute inset-0 z-0 pointer-events-none">

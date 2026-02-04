@@ -81,7 +81,7 @@ const t = useTranslations(lang);
             </ul>
         </div>
 
-        <div id="contacto">
+        <div id={lang === "es" ? "contacto" : "contact"}>
             <h4 class="font-bold text-foreground mb-4">
                 {t("footer.contacts")}
             </h4>

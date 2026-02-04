@@ -35,6 +35,7 @@ const addRoute = (pathEs: string, pathEn: string) => {
 // Home routes
 addRoute("/", "/en");
 addRoute("/es", "/en");
+addRoute("/es/", "/en/");
 
 // Section paths for language switching on home page
 const sectionMappings = [
@@ -42,6 +43,7 @@ const sectionMappings = [
     { es: "/es/nosotros", en: "/en/about" },
     { es: "/es/testimonios", en: "/en/testimonials" },
     { es: "/es/contacto", en: "/en/contact" },
+    { es: "/es/nuestros-clientes", en: "/en/clients" },
 ];
 
 sectionMappings.forEach(({ es, en }) => {
@@ -92,7 +94,7 @@ const isHome =
                     Inicio
                 </a>
                 <a
-                    href={lang === "es" ? "/servicios" : "/en/services"}
+                    href={lang === "es" ? "/es/servicios" : "/en/services"}
                     class="nav-link pb-3 text-foreground hover:text-primary transition-colors"
                 >
                     {t("nav.services")}

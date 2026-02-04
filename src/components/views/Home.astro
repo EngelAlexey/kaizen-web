@@ -61,7 +61,7 @@ const t = useTranslations(lang);
                     let newPath = "";
                     const prefix = lang === "es" ? "/es" : "/en";
 
-                    if (id === "inicio") {
+                    if (id === "inicio" || id === "home") {
                         // Home root
                         newPath = lang === "es" ? "/es/" : "/en/";
                     } else {
