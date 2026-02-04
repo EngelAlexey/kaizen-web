@@ -117,6 +117,28 @@ export const TASKS = [
             en: { title: 'Assets Control', description: 'Intelligent inventory and asset management.' }
         }
     },
+    {
+        id: 'privacy',
+        slug: {
+            es: 'politica-de-privacidad',
+            en: 'privacy-policy'
+        },
+        seo: {
+            es: { title: 'Política de Privacidad | Kaizen', description: 'Nuestra política de privacidad y protección de datos.' },
+            en: { title: 'Privacy Policy | Kaizen', description: 'Our privacy policy and data protection.' }
+        }
+    },
+    {
+        id: 'terms',
+        slug: {
+            es: 'terminos-de-uso',
+            en: 'terms-of-use'
+        },
+        seo: {
+            es: { title: 'Términos de Uso | Kaizen', description: 'Términos y condiciones de uso de nuestra plataforma.' },
+            en: { title: 'Terms of Use | Kaizen', description: 'Terms and conditions of use for our platform.' }
+        }
+    },
 ] as const;
 
 export type RouteId = typeof TASKS[number]['id'];

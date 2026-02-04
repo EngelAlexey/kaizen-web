@@ -3,6 +3,9 @@ import Layout from "../../layouts/Layout.astro";
 import Home from "../../components/views/Home.astro";
 import Solutions from "../../components/views/Solutions.astro";
 import Booking from "../../components/views/Booking.astro";
+import LegalLayout from "../../layouts/LegalLayout.astro";
+import PrivacyView from "../../components/views/PrivacyView.astro";
+import TermsView from "../../components/views/TermsView.astro";
 import {
     TASKS,
     getSeo,
@@ -43,16 +46,29 @@ const initialSection = isSolutionsChild(id)
     : undefined;
 ---
 
-<Layout
-    title={seo.title}
-    description={seo.description}
-    lang={currentLang}
-    transparent={false}
->
-    {
-        isSolutionView && (
-            <Solutions lang={currentLang} initialSection={initialSection} />
-        )
-    }
-    {id === "booking" && <Booking lang={currentLang} />}
-</Layout>
+{
+    id === "privacy" || id === "terms" ? (
+        <LegalLayout
+            title={seo.title}
+            description={seo.description}
+            lang={currentLang}
+            lastUpdated="1 feb 2025"
+        >
+            {id === "privacy" && <PrivacyView lang={currentLang} />}
+            {id === "terms" && <TermsView lang={currentLang} />}
+        </LegalLayout>
+    ) : (
+        <Layout
+            title={seo.title}
+            description={seo.description}
+            lang={currentLang}
+            transparent={false}
+        >
+            {isSolutionView && (
+                <Solutions lang={currentLang} initialSection={initialSection} />
+            )}
+            {id === "booking" && <Booking lang={currentLang} />}
+        </Layout>
+    )
+}
+---

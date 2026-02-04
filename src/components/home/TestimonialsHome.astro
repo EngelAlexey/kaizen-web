@@ -3,10 +3,6 @@ import { useTranslations } from "../../utils/i18n";
 import type { ui } from "../../i18n/ui";
 import { Image } from "astro:assets";
 import { Quote } from "lucide-react";
-
-// Import logos
-// Using the black versions for better contrast on light theme cards if available, or standard ones
-// Import logos matching ClientsHome
 import VoltaLogo from "../../assets/icons/volta-logo-white.png";
 import SaumaLogo from "../../assets/icons/sauma-logo-black.png";
 import GrupoLogo from "../../assets/icons/grupo-logo.png";
@@ -63,7 +59,6 @@ const testimonials = [
     id={lang === "es" ? "testimonios" : "testimonials"}
     class="py-24 bg-background relative overflow-hidden"
 >
-    <!-- Background Elements -->
     <div
         class="absolute top-0 left-1/2 -translate-x-1/2 w-full h-[500px] bg-gradient-to-b from-purple/5 to-transparent -z-10"
     >

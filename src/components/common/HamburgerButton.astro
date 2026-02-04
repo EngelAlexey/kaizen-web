@@ -1,14 +1,9 @@
----
-// Simple Astro Hamburger Button
----
-
 <button
     id="hamburger-menu"
     class="hamburger lg:hidden p-2 text-foreground hover:text-primary transition-colors z-50 rounded-lg border border-border/50 bg-background/50 active:scale-95"
     aria-label="Toggle menu"
     aria-expanded="false"
 >
-    <!-- Hamburger icon -->
     <svg
         class="hamburger-icon w-6 h-6"
         fill="none"
@@ -20,7 +15,6 @@
     >
         <path d="M4 6h16M4 12h16M4 18h16"></path>
     </svg>
-    <!-- Close icon -->
     <svg
         class="close-icon w-6 h-6 hidden"
         fill="none"
@@ -64,6 +58,5 @@
         });
     };
 
-    // Initialize on load and after ViewTransitions navigation
     document.addEventListener("astro:page-load", initHamburger);
 </script>

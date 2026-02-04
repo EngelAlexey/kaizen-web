@@ -3,7 +3,6 @@ import Brand from "./Brand.jsx";
 import ThemeButton from "../ui/ThemeButton.jsx";
 import LanguageDropdown from "../ui/LanguageDropdown.jsx";
 import HamburgerButton from "./HamburgerButton.astro";
-import MobileMenuNew from "./MobileMenuNew.astro";
 import { useTranslations } from "../../utils/i18n";
 import { getRoute, TASKS } from "../../lib/routes";
 import type { ui } from "../../i18n/ui";
@@ -18,12 +17,9 @@ const t = useTranslations(lang);
 
 const routeMap: Record<string, string> = {};
 
-// Helper to add route with and without trailing slash
 const addRoute = (pathEs: string, pathEn: string) => {
-    // Exact paths
     routeMap[pathEs] = pathEn;
     routeMap[pathEn] = pathEs;
-    // With trailing slash
     if (!pathEs.endsWith("/")) {
         routeMap[pathEs + "/"] = pathEn;
     }
@@ -32,12 +28,9 @@ const addRoute = (pathEs: string, pathEn: string) => {
     }
 };
 
-// Home routes
 addRoute("/", "/en");
 addRoute("/es", "/en");
 addRoute("/es/", "/en/");
-
-// Section paths for language switching on home page
 const sectionMappings = [
     { es: "/es/servicios", en: "/en/services" },
     { es: "/es/nosotros", en: "/en/about" },
@@ -50,7 +43,6 @@ sectionMappings.forEach(({ es, en }) => {
     addRoute(es, en);
 });
 
-// All TASKS routes (soluciones, agendar, etc.)
 TASKS.forEach((task) => {
     const slugEs = task.slug.es;
     const slugEn = task.slug.en;

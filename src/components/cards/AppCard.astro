@@ -65,7 +65,6 @@ const androidLink = downloadLinks?.android;
 const iosLink = downloadLinks?.ios;
 const hasDownloadLinks = !!(androidLink || iosLink);
 
-// Pre-compute all class strings to avoid ternary operators in JSX
 const cardBorderClass = disabled ? "" : styles.border;
 const cardHoverClass = disabled
     ? "opacity-75 cursor-not-allowed"

@@ -1,0 +1,336 @@
+---
+interface Props {
+    lang: "es" | "en";
+}
+
+const { lang } = Astro.props;
+---
+
+{
+    lang === "es" ? (
+        <>
+            <section>
+                <p>
+                    Al acceder y utilizar la aplicación Kaizen, aceptas cumplir
+                    con estos Términos de Uso. Si no estás de acuerdo con ellos,
+                    por favor no utilices la aplicación.
+                </p>
+            </section>
+
+            <section>
+                <h2>1. Descripción del servicio</h2>
+                <p>
+                    Kaizen es una aplicación empresarial diseñada para facilitar
+                    la gestión de recursos humanos, administración de proyectos,
+                    control de asistencia, productividad y otros procesos
+                    internos. La plataforma está desarrollada con Google
+                    AppSheet, y se apoya en tecnologías como Google Apps Script,
+                    bases de datos en la nube y APIs de terceros.
+                </p>
+            </section>
+
+            <section>
+                <h2>2. Uso autorizado</h2>
+                <p>El uso de Kaizen está limitado a:</p>
+                <ul>
+                    <li>
+                        Usuarios autorizados por las empresas que contratan el
+                        servicio.
+                    </li>
+                    <li>
+                        Dispositivos registrados previamente por la plataforma.
+                    </li>
+                    <li>
+                        Fines legítimos y relacionados con la administración
+                        empresarial.
+                    </li>
+                </ul>
+                <p>No está permitido:</p>
+                <ul>
+                    <li>Compartir credenciales de acceso sin autorización.</li>
+                    <li>
+                        Intentar acceder a datos o funciones no habilitadas para
+                        tu cuenta.
+                    </li>
+                    <li>
+                        Usar la app con fines fraudulentos o contrarios a la
+                        ley.
+                    </li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>3. Registro de actividad</h2>
+                <p>
+                    Para garantizar la seguridad, trazabilidad y cumplimiento
+                    empresarial, Kaizen registra información relacionada con:
+                </p>
+                <ul>
+                    <li>Inicios de sesión</li>
+                    <li>Dispositivos utilizados</li>
+                    <li>Ubicación geográfica (si el usuario lo permite)</li>
+                    <li>Actividades realizadas dentro de la aplicación</li>
+                </ul>
+                <p>
+                    Estos registros pueden ser auditados por los administradores
+                    de la empresa usuaria.
+                </p>
+            </section>
+
+            <section>
+                <h2>4. Propiedad intelectual</h2>
+                <p>
+                    Todo el contenido, diseño, código y funcionalidades de
+                    Kaizen son propiedad de KAIZXEN APPS PMA LFH SRL. o han sido
+                    licenciados para su uso. Está prohibida su reproducción,
+                    modificación o distribución sin autorización escrita.
+                </p>
+            </section>
+
+            <section>
+                <h2>5. Actualizaciones y disponibilidad</h2>
+                <p>
+                    Kaizen puede realizar actualizaciones para mejorar la
+                    experiencia del usuario, corregir errores o introducir
+                    nuevas funciones. Aunque buscamos máxima disponibilidad, no
+                    garantizamos que la app esté libre de interrupciones.
+                </p>
+            </section>
+
+            <section>
+                <h2>6. Responsabilidad</h2>
+                <p>Kaizen no se hace responsable por:</p>
+                <ul>
+                    <li>
+                        Pérdidas de datos ocasionadas por mal uso de la
+                        aplicación.
+                    </li>
+                    <li>
+                        Errores derivados de configuraciones realizadas por
+                        usuarios administrativos.
+                    </li>
+                    <li>
+                        Incompatibilidades con dispositivos o sistemas
+                        operativos no recomendados.
+                    </li>
+                </ul>
+                <p>
+                    El uso de Kaizen se realiza bajo responsabilidad del usuario
+                    y la empresa contratante.
+                </p>
+            </section>
+
+            <section>
+                <h2>7. Suspensión o cancelación</h2>
+                <p>
+                    Kaizen se reserva el derecho de suspender el acceso a la
+                    aplicación en caso de:
+                </p>
+                <ul>
+                    <li>Violación de estos términos</li>
+                    <li>Actividades sospechosas</li>
+                    <li>Solicitud expresa de la empresa usuaria</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>8. Enlaces a servicios externos</h2>
+                <p>
+                    La app puede integrar herramientas externas (como APIs de
+                    geolocalización, autenticación o análisis de rendimiento).
+                    Kaizen no se responsabiliza por el uso que estos terceros
+                    hagan de la información, aunque seleccionamos proveedores
+                    confiables y compatibles con nuestras políticas de
+                    privacidad.
+                </p>
+            </section>
+
+            <section>
+                <h2>9. Modificaciones a los Términos</h2>
+                <p>
+                    Nos reservamos el derecho de modificar estos términos en
+                    cualquier momento. Se notificará a los usuarios cuando
+                    existan cambios relevantes que afecten el uso del sistema.
+                </p>
+            </section>
+
+            <section>
+                <h2>10. Contacto</h2>
+                <p>
+                    Si tienes dudas sobre estos Términos de Uso, puedes
+                    contactarnos a través de:
+                </p>
+                <ul>
+                    <li>
+                        <strong>Correo electrónico:</strong> info@kaizenapps.net
+                    </li>
+                    <li>
+                        <strong>Teléfono:</strong> +506 8767 2300
+                    </li>
+                    <li>
+                        <strong>Dirección:</strong> Pavas, San José, Costa Rica.
+                    </li>
+                </ul>
+            </section>
+        </>
+    ) : (
+        <>
+            <section>
+                <p>
+                    By accessing and using the Kaizen application, you agree to
+                    comply with these Terms of Use. If you do not agree with
+                    them, please do not use the application.
+                </p>
+            </section>
+
+            <section>
+                <h2>1. Service Description</h2>
+                <p>
+                    Kaizen is a business application designed to facilitate
+                    human resource management, project administration,
+                    attendance control, productivity, and other internal
+                    processes. The platform is developed with Google AppSheet,
+                    and is supported by technologies such as Google Apps Script,
+                    cloud databases, and third-party APIs.
+                </p>
+            </section>
+
+            <section>
+                <h2>2. Authorized Use</h2>
+                <p>The use of Kaizen is limited to:</p>
+                <ul>
+                    <li>
+                        Users authorized by the companies that contract the
+                        service.
+                    </li>
+                    <li>Devices previously registered by the platform.</li>
+                    <li>
+                        Legitimate purposes related to business administration.
+                    </li>
+                </ul>
+                <p>The following is not allowed:</p>
+                <ul>
+                    <li>Sharing access credentials without authorization.</li>
+                    <li>
+                        Attempting to access data or functions not enabled for
+                        your account.
+                    </li>
+                    <li>
+                        Using the app for fraudulent purposes or contrary to the
+                        law.
+                    </li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>3. Activity Log</h2>
+                <p>
+                    To ensure security, traceability, and business compliance,
+                    Kaizen records information related to:
+                </p>
+                <ul>
+                    <li>Logins</li>
+                    <li>Devices used</li>
+                    <li>Geographic location (if the user allows it)</li>
+                    <li>Activities performed within the application</li>
+                </ul>
+                <p>
+                    These records may be audited by the administrators of the
+                    user company.
+                </p>
+            </section>
+
+            <section>
+                <h2>4. Intellectual Property</h2>
+                <p>
+                    All content, design, code, and features of Kaizen are the
+                    property of KAIZXEN APPS PMA LFH SRL. or have been licensed
+                    for use. Reproduction, modification, or distribution without
+                    written authorization is prohibited.
+                </p>
+            </section>
+
+            <section>
+                <h2>5. Updates and Availability</h2>
+                <p>
+                    Kaizen may perform updates to improve the user experience,
+                    correct errors, or introduce new features. Although we seek
+                    maximum availability, we do not guarantee that the app will
+                    be free of interruptions.
+                </p>
+            </section>
+
+            <section>
+                <h2>6. Liability</h2>
+                <p>Kaizen is not responsible for:</p>
+                <ul>
+                    <li>Data losses caused by misuse of the application.</li>
+                    <li>
+                        Errors derived from configurations made by
+                        administrative users.
+                    </li>
+                    <li>
+                        Incompatibilities with devices or operating systems not
+                        recommended.
+                    </li>
+                </ul>
+                <p>
+                    The use of Kaizen is at the user's and the contracting
+                    company's own risk.
+                </p>
+            </section>
+
+            <section>
+                <h2>7. Suspension or Cancellation</h2>
+                <p>
+                    Kaizen reserves the right to suspend access to the
+                    application in the event of:
+                </p>
+                <ul>
+                    <li>Violation of these terms</li>
+                    <li>Suspicious activities</li>
+                    <li>Express request from the user company</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>8. Links to External Services</h2>
+                <p>
+                    The app may integrate external tools (such as geolocation,
+                    authentication, or performance analysis APIs). Kaizen is not
+                    responsible for the use these third parties make of the
+                    information, although we select reliable providers
+                    compatible with our privacy policies.
+                </p>
+            </section>
+
+            <section>
+                <h2>9. Modifications to the Terms</h2>
+                <p>
+                    We reserve the right to modify these terms at any time.
+                    Users will be notified when there are relevant changes
+                    affecting the use of the system.
+                </p>
+            </section>
+
+            <section>
+                <h2>10. Contact</h2>
+                <p>
+                    If you have questions about these Terms of Use, you can
+                    contact us via:
+                </p>
+                <ul>
+                    <li>
+                        <strong>Email:</strong> info@kaizenapps.net
+                    </li>
+                    <li>
+                        <strong>Phone:</strong> +506 8767 2300
+                    </li>
+                    <li>
+                        <strong>Address:</strong> Pavas, San Jose, Costa Rica.
+                    </li>
+                </ul>
+            </section>
+        </>
+    )
+}

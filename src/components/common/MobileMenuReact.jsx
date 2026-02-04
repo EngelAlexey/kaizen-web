@@ -8,12 +8,9 @@ const MobileMenuReact = ({ lang, t, routeMapJson, currentPath }) => {
     const [theme, setTheme] = useState('light');
     const routeMap = JSON.parse(routeMapJson);
 
-    // Initialize theme from document or localStorage
     useEffect(() => {
         const isDark = document.documentElement.classList.contains('dark');
         setTheme(isDark ? 'dark' : 'light');
-
-        // Sync with global theme changes
         const observer = new MutationObserver((mutations) => {
             mutations.forEach((mutation) => {
                 if (mutation.attributeName === 'class') {
@@ -114,19 +111,16 @@ const MobileMenuReact = ({ lang, t, routeMapJson, currentPath }) => {
             className={`fixed inset-0 lg:hidden z-[10000] transition-all duration-300 ease-out ${isOpen ? 'opacity-100 visible' : 'opacity-0 invisible pointer-events-none'
                 }`}
         >
-            {/* Heavy-duty opaque background */}
             <div
                 className={`fixed inset-0 bg-glass z-[-1] transition-opacity duration-300 ${isOpen ? 'opacity-100' : 'opacity-0'
                     }`}
             />
 
-            {/* Ambient Glow */}
             <div className={`fixed inset-0 pointer-events-none z-0 bg-ambient-glow transition-opacity duration-500 ${isOpen ? 'opacity-100' : 'opacity-0'}`} />
 
             <div className={`min-h-full flex flex-col transition-all duration-300 ease-out p-6 pt-6 z-10 ${isOpen ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
                 }`}>
 
-                {/* Header inside menu */}
                 <div className="flex items-center justify-between mb-8">
                     <div className="flex items-center gap-3">
                         <img src={kLogo.src} alt="Kaizen" className="w-8 h-8 object-contain" />
@@ -143,7 +137,6 @@ const MobileMenuReact = ({ lang, t, routeMapJson, currentPath }) => {
                     </button>
                 </div>
 
-                {/* Navigation Links */}
                 <nav className="flex-1">
                     <ul className="space-y-1">
                         <li className={`transition-all duration-300 delay-75 ${isOpen ? 'translate-x-0 opacity-100' : 'translate-x-6 opacity-0'}`}>
@@ -197,7 +190,6 @@ const MobileMenuReact = ({ lang, t, routeMapJson, currentPath }) => {
                         </li>
                     </ul>
 
-                    {/* Theme & Language Section */}
                     <div className={`mt-10 pt-8 border-t border-border/40 transition-all duration-300 delay-200 ${isOpen ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'}`}>
                         <div className="flex items-center justify-between mb-6 px-4">
                             <p className="text-[10px] font-black text-muted-foreground uppercase tracking-[0.2em] opacity-50">PREFERENCIAS</p>
