@@ -25,18 +25,24 @@ export default function Brand({
     return () => window.removeEventListener('header-scrolled', handleScroll);
   }, []);
 
-  const logoSrc = brand.logoDark; // Use the horizontal logo
+  const logoSrc = brand.logoLight; // Use K.png logo
 
   return (
-    <a href={lang === "es" ? "/es/" : "/en/"} className={"flex items-center gap-2 group select-none transition-opacity duration-300 " + className}>
+    <a href={lang === "es" ? "/" : "/en/"} className={"flex items-center gap-2 group select-none transition-opacity duration-300 " + className}>
       <img
         src={logoSrc}
         alt="Kaizen"
-        style={{ height: wordmarkHeight, objectFit: "contain" }}
+        style={{ height: markSize, width: markSize, objectFit: "contain" }}
         className={transparent ? "brightness-0 invert" : ""}
         draggable="false"
         loading="eager"
       />
+      <span
+        className={`text-xl font-bold tracking-tight transition-colors duration-300 ${!transparent ? "text-foreground" : "text-white"
+          }`}
+      >
+        Kaizen <span className="text-primary">Apps</span>
+      </span>
     </a>
   );
 }
