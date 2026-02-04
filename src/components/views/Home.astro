@@ -59,26 +59,17 @@ const t = useTranslations(lang);
                     if (!id) return;
 
                     let newPath = "";
-                    const prefix = lang === "es" ? "/es" : "/en";
+                    const prefix = lang === "es" ? "" : "/en";
 
                     if (id === "inicio") {
                         // Home root
-                        newPath = lang === "es" ? "/" : "/en";
-                        // Ideally we keep /es/ for consistency if that's the scheme, but typically root ES is /
-                        // Let's check existing behavior. Usually / is ES.
-                        // If current path starts with /es, let's keep it explicit?
-                        // User requested "http://localhost:4321/es/" for HeroHome.
-                        newPath = prefix + "/";
+                        newPath = lang === "es" ? "/" : "/en/";
                     } else {
-                        // Clean URL: /es/servicios
-                        newPath = `${prefix}/${id}`;
+                        // Clean URL: /servicios or /en/servicios
+                        newPath = lang === "es" ? `/${id}` : `${prefix}/${id}`;
                     }
 
                     if (currentPathname !== newPath) {
-                        // Prevent replacing if we are already there (or close enough equivalents like / vs /es/)
-                        // But strictly user wants /es/
-
-                        // We use replaceState to avoid cluttering history stack with scroll events
                         history.replaceState(null, "", newPath);
                     }
                 }
@@ -107,22 +98,26 @@ const t = useTranslations(lang);
                 // Check if it's an internal link
                 if (link.hostname !== window.location.hostname) return;
 
-                // Extract possible ID from the URL path
-                // Expected format: /es/servicios -> id="servicios"
-                // Or root: /es/ -> id="inicio"
-
                 const url = new URL(link.href);
                 const pathParts = url.pathname.split("/").filter(Boolean);
-                // pathParts: ['es', 'servicios'] OR ['es']
+                // pathParts with prefixDefaultLocale: false
+                // Spanish: [] -> inicio, ['servicios'] -> servicios
+                // English: ['en'] -> inicio, ['en', 'services'] -> services
 
                 let targetId = "";
 
-                if (pathParts.length <= 1) {
-                    // Root /es/ or /en/ -> inicio
-                    targetId = "inicio";
+                if (lang === "es") {
+                    if (pathParts.length === 0) {
+                        targetId = "inicio";
+                    } else {
+                        targetId = pathParts[pathParts.length - 1];
+                    }
                 } else {
-                    // /es/servicios -> servicios
-                    targetId = pathParts[pathParts.length - 1];
+                    if (pathParts.length <= 1) {
+                        targetId = "inicio";
+                    } else {
+                        targetId = pathParts[pathParts.length - 1];
+                    }
                 }
 
                 const targetSection = document.getElementById(targetId);

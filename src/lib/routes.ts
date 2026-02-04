@@ -126,7 +126,7 @@ export function getRoute(id: RouteId, lang: 'es' | 'en') {
     if (!task) return '/';
     const slug = task.slug[lang];
     const prefix = lang === 'es' ? '' : '/en';
-    const urlPrefix = lang === 'es' ? '/es' : '/en';
+    const urlPrefix = lang === 'es' ? '' : '/en';
     return slug ? `${urlPrefix}/${slug}` : `${urlPrefix}/`;
 }
 

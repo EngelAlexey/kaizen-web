@@ -99,12 +99,12 @@ const MobileMenuReact = ({ lang, t, routeMapJson, currentPath }) => {
     };
 
     const solutionsItems = [
-        { text: t["module.assistance.title"], path: lang === "es" ? "/es/soluciones/control-asistencias" : "/en/solutions/attendance-management" },
-        { text: t["module.rrhh.title"], path: lang === "es" ? "/es/soluciones/recursos-humanos" : "/en/solutions/human-resources" },
-        { text: t["module.projects.title"], path: lang === "es" ? "/es/soluciones/gestion-proyectos" : "/en/solutions/project-management" },
-        { text: t["module.ssoma.title"], path: lang === "es" ? "/es/soluciones/salud-ocupacional" : "/en/solutions/occupational-health" },
-        { text: t["module.payroll.title"], path: lang === "es" ? "/es/soluciones/gestion-nominas" : "/en/solutions/payroll-management" },
-        { text: t["module.assets.title"], path: lang === "es" ? "/es/soluciones/control-activos" : "/en/solutions/assets-control" },
+        { text: t["module.assistance.title"], path: lang === "es" ? "/soluciones/control-asistencias" : "/en/solutions/attendance-management" },
+        { text: t["module.rrhh.title"], path: lang === "es" ? "/soluciones/recursos-humanos" : "/en/solutions/human-resources" },
+        { text: t["module.projects.title"], path: lang === "es" ? "/soluciones/gestion-proyectos" : "/en/solutions/project-management" },
+        { text: t["module.ssoma.title"], path: lang === "es" ? "/soluciones/salud-ocupacional" : "/en/solutions/occupational-health" },
+        { text: t["module.payroll.title"], path: lang === "es" ? "/soluciones/gestion-nominas" : "/en/solutions/payroll-management" },
+        { text: t["module.assets.title"], path: lang === "es" ? "/soluciones/control-activos" : "/en/solutions/assets-control" },
     ];
 
     return (
@@ -147,7 +147,7 @@ const MobileMenuReact = ({ lang, t, routeMapJson, currentPath }) => {
                     <ul className="space-y-1">
                         <li className={`transition-all duration-300 delay-75 ${isOpen ? 'translate-x-0 opacity-100' : 'translate-x-6 opacity-0'}`}>
                             <a
-                                href={lang === "es" ? "/es/servicios" : "/en/services"}
+                                href={lang === "es" ? "/servicios" : "/en/services"}
                                 className="text-lg font-bold text-foreground/90 hover:text-primary transition-all block py-3 px-4 rounded-xl hover:bg-primary/5 border border-transparent hover:border-primary/10"
                             >
                                 {t["nav.services"]}
@@ -188,7 +188,7 @@ const MobileMenuReact = ({ lang, t, routeMapJson, currentPath }) => {
 
                         <li className={`transition-all duration-300 delay-150 ${isOpen ? 'translate-x-0 opacity-100' : 'translate-x-6 opacity-0'}`}>
                             <a
-                                href={lang === "es" ? "/es/nosotros" : "/en/about"}
+                                href={lang === "es" ? "/nosotros" : "/en/about"}
                                 className="text-lg font-bold text-foreground/90 hover:text-primary transition-all block py-3 px-4 rounded-xl hover:bg-primary/5 border border-transparent hover:border-primary/10"
                             >
                                 {t["nav.about"]}
@@ -229,7 +229,7 @@ const MobileMenuReact = ({ lang, t, routeMapJson, currentPath }) => {
                 {/* CTA Section */}
                 <div className={`mt-auto pt-8 pb-4 transition-all duration-300 delay-250 ${isOpen ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'}`}>
                     <a
-                        href={lang === "es" ? "/es/agendar" : "/en/booking"}
+                        href={lang === "es" ? "/agendar" : "/en/booking"}
                         className="block w-full text-center py-4 bg-primary text-white font-black text-base rounded-2xl hover:bg-primary/95 active:scale-[0.98] transition-all shadow-xl shadow-primary/25 border border-primary/20"
                     >
                         {t["nav.demo"]}

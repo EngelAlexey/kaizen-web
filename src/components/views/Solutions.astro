@@ -196,7 +196,7 @@ const services = [
                         const slug = entry.target.dataset.slug;
                         if (slug) {
                             const newPath =
-                                (lang === "es" ? "/es/" : "/en/") + slug;
+                                (lang === "es" ? "/" : "/en/") + slug;
                             if (location.pathname !== newPath) {
                                 history.replaceState(null, "", newPath);
                             }
@@ -223,7 +223,7 @@ const services = [
                         // 1. Confirm URL (stability)
                         const cleanSlug = entry.target.dataset.slug;
                         const newPath =
-                            (lang === "es" ? "/es/" : "/en/") + cleanSlug;
+                            (lang === "es" ? "/" : "/en/") + cleanSlug;
 
                         if (location.pathname !== newPath) {
                             history.replaceState(null, "", newPath);
@@ -289,7 +289,7 @@ const services = [
             // Expected format: /es/soluciones/SLUG or /en/solutions/SLUG
             // We can just check if the path ends with one of our section slugs.
             const url = new URL(link.href);
-            const pathParts = url.pathname.split("/").filter(Boolean); // ['es', 'soluciones', 'control-asistencias']
+            const pathParts = url.pathname.split("/").filter(Boolean); // ['soluciones', 'control-asistencias']
             const candidateSlug = pathParts[pathParts.length - 1];
 
             if (!candidateSlug) return;
