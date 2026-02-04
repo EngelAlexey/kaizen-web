@@ -7,6 +7,7 @@ export const defaultLang = 'es';
 
 export const ui = {
     es: {
+        'nav.home': 'Inicio',
         'nav.services': 'Servicios',
         'nav.solutions': 'Soluciones',
         'nav.about': 'Nosotros',
@@ -211,6 +212,7 @@ export const ui = {
         'footer.rights': 'All Rights Reserved.',
     },
     en: {
+        'nav.home': 'Home',
         'nav.services': 'Services',
         'nav.solutions': 'Solutions',
         'nav.about': 'About Us',
