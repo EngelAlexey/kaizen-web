@@ -67,7 +67,7 @@ const tReact = {
 	"module.assets.title": t("module.assets.title"),
 };
 
-const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const siteCanonicalURL = new URL(Astro.url.pathname, Astro.site);
 
 let alternateLangUrl = "";
 const alternateLang: "es" | "en" = currentLang === "es" ? "en" : "es";
@@ -108,7 +108,7 @@ if (
 		<meta name="generator" content={Astro.generator} />
 		<title>{title} | Kaizen Apps</title>
 
-		<link rel="canonical" href={canonicalURL} />
+		<link rel="canonical" href={siteCanonicalURL} />
 		{
 			alternateLangUrl && (
 				<link
