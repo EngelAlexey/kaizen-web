@@ -234,7 +234,7 @@ const MobileMenuReact = ({ lang, t, routeMapJson, currentPath }) => {
                         onClick={closeMenu}
                     >
                         <Calendar size={18} />
-                        {t('hero.quote')}
+                        {t['hero.quote']}
                     </a></div>
             </div>
 
