@@ -29,6 +29,13 @@ export default function Brand({
 
   return (
     <a href={lang === "es" ? "/es/" : "/en/"} className={"flex items-center gap-2 group select-none transition-opacity duration-300 " + className}>
+      <img
+        src={logoSrc}
+        alt="Kaizen"
+        style={{ height: transparent ? wordmarkHeight : markSize, objectFit: "contain" }}
+        draggable="false"
+        loading="eager"
+      />
       <span
         className={`text-xl font-bold tracking-tight transition-colors duration-300 ${!transparent ? "text-foreground" : "text-white"
           }`}
