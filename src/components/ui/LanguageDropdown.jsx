@@ -42,7 +42,7 @@ export default function LanguageDropdown({
             console.warn(`No translation found for ${currentPath}, falling back to replacement.`);
             const pathWithoutLang = currentPath.replace(/^\/(es|en)/, '');
             newPath = targetLang === 'es'
-                ? pathWithoutLang ? `/es${pathWithoutLang}` : '/es'
+                ? pathWithoutLang || '/'
                 : `/en${pathWithoutLang}`;
         }
 
