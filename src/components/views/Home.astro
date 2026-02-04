@@ -25,7 +25,11 @@ const t = useTranslations(lang);
 <script define:vars={{ initialSection, lang }}>
     document.addEventListener("astro:page-load", () => {
         // Only run this logic if we are actually on the Home page
-        if (!document.getElementById("inicio")) return;
+        if (
+            !document.getElementById("inicio") &&
+            !document.getElementById("home")
+        )
+            return;
 
         // 1. Initial Scroll to Section (Deep Linking)
         if (initialSection) {
@@ -107,7 +111,7 @@ const t = useTranslations(lang);
                 let targetId = "";
 
                 if (pathParts.length <= 1) {
-                    targetId = "inicio";
+                    targetId = lang === "es" ? "inicio" : "home";
                 } else {
                     targetId = pathParts[pathParts.length - 1];
                 }
