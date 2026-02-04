@@ -88,11 +88,12 @@ const MobileMenuReact = ({ lang, t, routeMapJson, currentPath }) => {
 
         if (!newPath) {
             const pathParts = window.location.pathname.split("/").filter(Boolean);
-            if (pathParts.length === 0 || (pathParts.length === 1 && (pathParts[0] === "es" || pathParts[0] === "en"))) {
-                newPath = targetLang === "es" ? "/" : "/en";
+            const pathWithoutLang = pathParts.filter(p => p !== "es" && p !== "en").join("/");
+
+            if (!pathWithoutLang) {
+                newPath = targetLang === "es" ? "/es/" : "/en/";
             } else {
-                const withoutLang = pathParts.filter(p => p !== "es" && p !== "en");
-                newPath = targetLang === "es" ? `/es/${withoutLang.join("/")}` : `/en/${withoutLang.join("/")}`;
+                newPath = targetLang === "es" ? `/es/${pathWithoutLang}` : `/en/${pathWithoutLang}`;
             }
         }
         window.location.href = newPath;

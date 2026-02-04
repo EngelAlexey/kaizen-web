@@ -80,7 +80,7 @@ for (const task of TASKS) {
 		const altSlug = task.slug[alternateLang];
 		if (altSlug) {
 			alternateLangUrl = new URL(
-				alternateLang === "es" ? `/${altSlug}` : `/en/${altSlug}`,
+				alternateLang === "es" ? `/es/${altSlug}` : `/en/${altSlug}`,
 				Astro.site,
 			).toString();
 		}
@@ -93,7 +93,7 @@ if (
 	(Astro.url.pathname === "/" || Astro.url.pathname === "/en")
 ) {
 	alternateLangUrl = new URL(
-		alternateLang === "es" ? "/" : "/en",
+		alternateLang === "es" ? "/es/" : "/en/",
 		Astro.site,
 	).toString();
 }
