@@ -2,7 +2,7 @@
 import Brand from "./Brand.jsx";
 import ThemeButton from "../ui/ThemeButton.jsx";
 import LanguageDropdown from "../ui/LanguageDropdown.jsx";
-import MobileMenu from "./MobileMenu.jsx";
+import HamburgerButton from "./HamburgerButton.astro";
 import { useTranslations } from "../../utils/i18n";
 import { getRoute, TASKS } from "../../lib/routes";
 import type { ui } from "../../i18n/ui";
@@ -17,22 +17,40 @@ const t = useTranslations(lang);
 
 const routeMap: Record<string, string> = {};
 
+const addRoute = (pathEs: string, pathEn: string) => {
+    routeMap[pathEs] = pathEn;
+    routeMap[pathEn] = pathEs;
+    if (!pathEs.endsWith("/")) {
+        routeMap[pathEs + "/"] = pathEn;
+    }
+    if (!pathEn.endsWith("/")) {
+        routeMap[pathEn + "/"] = pathEs;
+    }
+};
+
+addRoute("/", "/en");
+addRoute("/es", "/en");
+addRoute("/es/", "/en/");
+const sectionMappings = [
+    { es: "/es/servicios", en: "/en/services" },
+    { es: "/es/nosotros", en: "/en/about" },
+    { es: "/es/testimonios", en: "/en/testimonials" },
+    { es: "/es/contacto", en: "/en/contact" },
+    { es: "/es/nuestros-clientes", en: "/en/clients" },
+];
+
+sectionMappings.forEach(({ es, en }) => {
+    addRoute(es, en);
+});
+
 TASKS.forEach((task) => {
     const slugEs = task.slug.es;
     const slugEn = task.slug.en;
 
-    if (!slugEs && !slugEn) {
-        routeMap["/"] = "/en";
-        routeMap["/en"] = "/";
-        return;
-    }
-
     if (slugEs && slugEn) {
         const pathEs = `/es/${slugEs}`;
         const pathEn = `/en/${slugEn}`;
-
-        routeMap[pathEs] = pathEn;
-        routeMap[pathEn] = pathEs;
+        addRoute(pathEs, pathEn);
     }
 });
 
@@ -53,28 +71,19 @@ const isHome =
 
 <header
     id="main-header"
-    class:list={[
-        "fixed w-full top-0 z-50 transition-all duration-300",
-        transparent ? "glass-nav-transparent" : "glass-nav-solid",
-    ]}
+    class={`fixed w-full top-0 z-50 transition-all duration-300 ${transparent ? "glass-nav-transparent" : "glass-nav-solid"}`}
     data-transparent={transparent}
 >
     <div class="max-w-7xl mx-auto px-6">
         <div class="flex items-center justify-between h-20">
-            <a
-                href={homeUrl}
-                class="hover:opacity-80 transition-opacity"
-                aria-label="Kaizen Apps Inicio"
-            >
-                <Brand client:load transparent={transparent} />
-            </a>
+            <Brand client:load transparent={transparent} lang={lang} />
 
             <nav class="hidden lg:flex items-center gap-8 text-sm font-medium">
                 <a
                     href={homeUrl}
                     class="nav-link pb-3 text-foreground hover:text-primary transition-colors"
                 >
-                    Inicio
+                    {t("nav.home")}
                 </a>
                 <a
                     href={lang === "es" ? "/es/servicios" : "/en/services"}
@@ -175,11 +184,7 @@ const isHome =
                 >
                     {t("nav.demo")}
                 </a>
-                <MobileMenu
-                    client:load
-                    currentLocale={lang}
-                    currentPath={Astro.url.pathname}
-                />
+                <HamburgerButton />
             </div>
         </div>
     </div>
@@ -264,13 +269,8 @@ const isHome =
         .nav-link:hover::after {
             width: 100%;
         }
-        :global(html:not(.dark))
-            header[data-transparent="true"]
-            img[alt="Kaizen"] {
+        :global(html:not(.dark)) #main-header img[alt="Kaizen"] {
             filter: brightness(0);
-        }
-        :global(.dark) #main-header img[alt="Kaizen"] {
-            filter: brightness(0) invert(1);
         }
         :global(.dark) #main-header img[alt="Kaizen"] {
             filter: brightness(0) invert(1);

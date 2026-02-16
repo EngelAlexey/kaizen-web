@@ -10,9 +10,9 @@
 /* =====================  Tokens ===================== */
 :root {
     --color-primary: #b22222;
-    --color-primary-rgb: 229 57 53;
-    --color-primary-hover: #650000;
-    --color-primary-hover-rgb: 198 40 40;
+    --color-primary-rgb: 178 34 34;
+    --color-primary-hover: #8d0000;
+    --color-primary-hover-rgb: 141 0 0;
 
     --color-blue: #3b82f6;
     --color-blue-rgb: 59 130 246;
@@ -190,13 +190,13 @@
         background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-hover) 100%);
         color: white;
         text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
-        box-shadow: 0 4px 15px -3px rgba(229, 57, 53, 0.4),
+        box-shadow: 0 4px 15px -3px rgba(178, 34, 34, 0.4),
             inset 0 1px 0 rgba(255, 255, 255, 0.2);
     }
 
     .btn-primary:hover {
         transform: translateY(-2px);
-        box-shadow: 0 12px 25px -5px rgba(229, 57, 53, 0.5),
+        box-shadow: 0 12px 25px -5px rgba(178, 34, 34, 0.5),
             inset 0 1px 0 rgba(255, 255, 255, 0.2);
         filter: brightness(1.1);
     }

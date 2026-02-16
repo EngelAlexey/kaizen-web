@@ -1,8 +1,9 @@
 ---
 import { useTranslations } from "../../utils/i18n";
-import { CheckCircle2, HardHat } from "lucide-react";
+import { CheckCircle2 } from "lucide-react";
 import { Image } from "astro:assets";
 import SSOMAImage from "../../assets/ilustration/ssoma.svg";
+import KaizenLogo from "../../assets/img/K.png";
 
 interface Props {
     lang: "es" | "en";
@@ -29,9 +30,13 @@ const t = useTranslations(lang);
         <div class="order-1 lg:order-2">
             <div class="flex items-center gap-3 mb-6">
                 <div
-                    class="w-12 h-12 rounded-xl bg-red-500/10 text-red-500 flex items-center justify-center"
+                    class="w-12 h-12 rounded-xl bg-red-500/10 text-red-500 flex items-center justify-center p-2"
                 >
-                    <HardHat className="w-6 h-6" />
+                    <Image
+                        src={KaizenLogo}
+                        alt="Kaizen"
+                        class="w-full h-full object-contain"
+                    />
                 </div>
                 <h2 class="text-3xl font-bold text-foreground">
                     {t("module.ssoma.title")}

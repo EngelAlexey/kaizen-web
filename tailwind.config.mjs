@@ -25,7 +25,7 @@ export default {
             boxShadow: {
                 soft: 'var(--shadow-soft)',
                 strong: 'var(--shadow-strong)',
-                glow: '0 0 20px rgba(229, 57, 53, 0.35)', // Keeping glow as a manual fallback or custom
+                glow: '0 0 20px rgba(178, 34, 34, 0.35)', // Keeping glow as a manual fallback or custom
             },
         },
     },

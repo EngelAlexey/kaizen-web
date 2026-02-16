@@ -5,6 +5,7 @@ import HeroHome from "../home/HeroHome.astro";
 import KaizenHome from "../home/KaizenHome.astro";
 import ServicesHome from "../home/ServicesHome.astro";
 import ClientsHome from "../home/ClientsHome.astro";
+import TestimonialsHome from "../home/TestimonialsHome.astro";
 
 interface Props {
     lang: keyof typeof ui;
@@ -19,17 +20,19 @@ const t = useTranslations(lang);
 <KaizenHome lang={lang} />
 <ServicesHome lang={lang} />
 <ClientsHome lang={lang} />
+<TestimonialsHome lang={lang} />
 
 <script define:vars={{ initialSection, lang }}>
     document.addEventListener("astro:page-load", () => {
-        // Only run this logic if we are actually on the Home page
-        if (!document.getElementById("inicio")) return;
+        if (
+            !document.getElementById("inicio") &&
+            !document.getElementById("home")
+        )
+            return;
 
-        // 1. Initial Scroll to Section (Deep Linking)
         if (initialSection) {
             const target = document.getElementById(initialSection);
             if (target) {
-                // Small delay to ensure layout is stable
                 setTimeout(() => {
                     target.scrollIntoView({
                         behavior: "smooth",
@@ -39,12 +42,11 @@ const t = useTranslations(lang);
             }
         }
 
-        // 2. Scroll Spy for URL Updates (Clean URLs)
         const sections = document.querySelectorAll("section[id]");
 
         const observerOptions = {
             root: null,
-            rootMargin: "-20% 0px -80% 0px", // Trigger when section is near top
+            rootMargin: "-20% 0px -80% 0px",
             threshold: 0,
         };
 
@@ -59,24 +61,13 @@ const t = useTranslations(lang);
                     let newPath = "";
                     const prefix = lang === "es" ? "/es" : "/en";
 
-                    if (id === "inicio") {
-                        // Home root
-                        newPath = lang === "es" ? "/" : "/en";
-                        // Ideally we keep /es/ for consistency if that's the scheme, but typically root ES is /
-                        // Let's check existing behavior. Usually / is ES.
-                        // If current path starts with /es, let's keep it explicit?
-                        // User requested "http://localhost:4321/es/" for HeroHome.
-                        newPath = prefix + "/";
+                    if (id === "inicio" || id === "home") {
+                        newPath = lang === "es" ? "/es/" : "/en/";
                     } else {
-                        // Clean URL: /es/servicios
                         newPath = `${prefix}/${id}`;
                     }
 
                     if (currentPathname !== newPath) {
-                        // Prevent replacing if we are already there (or close enough equivalents like / vs /es/)
-                        // But strictly user wants /es/
-
-                        // We use replaceState to avoid cluttering history stack with scroll events
                         history.replaceState(null, "", newPath);
                     }
                 }
@@ -87,7 +78,6 @@ const t = useTranslations(lang);
             observer.observe(section);
         });
 
-        // 3. SPA Navigation Interceptor
         const handleInternalLinks = () => {
             document.body.addEventListener("click", (e) => {
                 const link = e.target.closest("a");
@@ -102,37 +92,24 @@ const t = useTranslations(lang);
                 )
                     return;
 
-                // Check if it's an internal link
                 if (link.hostname !== window.location.hostname) return;
-
-                // Extract possible ID from the URL path
-                // Expected format: /es/servicios -> id="servicios"
-                // Or root: /es/ -> id="inicio"
 
                 const url = new URL(link.href);
                 const pathParts = url.pathname.split("/").filter(Boolean);
-                // pathParts: ['es', 'servicios'] OR ['es']
-
                 let targetId = "";
 
                 if (pathParts.length <= 1) {
-                    // Root /es/ or /en/ -> inicio
-                    targetId = "inicio";
+                    targetId = lang === "es" ? "inicio" : "home";
                 } else {
-                    // /es/servicios -> servicios
                     targetId = pathParts[pathParts.length - 1];
                 }
 
                 const targetSection = document.getElementById(targetId);
 
                 if (targetSection) {
-                    // FOUND! It's on this page. Hijack the navigation.
                     e.preventDefault();
-
-                    // 1. Update URL immediately (SPA feel)
                     history.pushState(null, "", link.href);
 
-                    // 2. Scroll to target
                     targetSection.scrollIntoView({
                         behavior: "smooth",
                         block: "start",

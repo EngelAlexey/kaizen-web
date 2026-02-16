@@ -1,3 +1,22 @@
 ---
-return Astro.redirect("/es");
+import Home from "../components/views/Home.astro";
+import Layout from "../layouts/Layout.astro";
+
+// This page is a "Bridge" that serves Spanish content INSTANTLY at the root domain
+// but then "silently" updates the URL to /es/ for consistency with the rest of the site.
+// This effectively kills the "Redirecting" window.
 ---
+
+<Layout title="Kaizen" description="Resource Management" lang="es">
+    <Home lang="es" />
+
+    <script is:inline>
+        // Silently rewrite the URL to /es/ without a page reload or visible redirect window
+        if (
+            window.location.pathname === "/" ||
+            window.location.pathname === ""
+        ) {
+            window.history.replaceState(null, "", "/es/");
+        }
+    </script>
+</Layout>

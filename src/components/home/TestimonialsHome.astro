@@ -1,0 +1,144 @@
+---
+import { useTranslations } from "../../utils/i18n";
+import type { ui } from "../../i18n/ui";
+import { Image } from "astro:assets";
+import { Quote } from "lucide-react";
+import VoltaLogo from "../../assets/icons/volta-logo-white.png";
+import SaumaLogo from "../../assets/icons/sauma-logo-black.png";
+import GrupoLogo from "../../assets/icons/grupo-logo.png";
+import CreateLogo from "../../assets/icons/create-logo.png";
+
+interface Props {
+    lang: keyof typeof ui;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+
+const testimonials = [
+    {
+        logo: VoltaLogo,
+        alt: "Volta Constructora Electromecánica",
+        text: "testimonials.volta.text",
+        author: "testimonials.volta.author",
+        role: "testimonials.volta.role",
+        apps: ["Kaizen Crissom", "Seiri"],
+        href: "https://voltacr.com/",
+    },
+    {
+        logo: SaumaLogo,
+        alt: "Sauma Arquitectos",
+        text: "testimonials.sauma.text",
+        author: "testimonials.sauma.author",
+        role: "testimonials.sauma.role",
+        apps: ["Kaizen Crissom", "app.custom"],
+        href: "https://saumaarquitectos.com/",
+    },
+    {
+        logo: GrupoLogo,
+        alt: "Grupo Creativo",
+        text: "testimonials.grupo.text",
+        author: "testimonials.grupo.author",
+        role: "testimonials.grupo.role",
+        apps: ["Kaizen Crissom", "Seiri"],
+        href: "https://www.grupocreativo-cr.com/",
+    },
+    {
+        logo: CreateLogo,
+        alt: "Creative Engineering",
+        text: "testimonials.creative.text",
+        author: "testimonials.creative.author",
+        role: "testimonials.creative.role",
+        apps: ["Kaizen Crissom", "Seiri"],
+        href: "https://www.create-cr.com/",
+    },
+];
+---
+
+<section
+    id={lang === "es" ? "testimonios" : "testimonials"}
+    class="py-24 bg-background relative overflow-hidden"
+>
+    <div
+        class="absolute top-0 left-1/2 -translate-x-1/2 w-full h-[500px] bg-gradient-to-b from-purple/5 to-transparent -z-10"
+    >
+    </div>
+
+    <div class="max-w-7xl mx-auto px-6">
+        <div class="text-center mb-20">
+            <h2 class="text-4xl lg:text-5xl font-bold text-foreground mb-6">
+                {t("testimonials.title")}
+            </h2>
+            <p class="text-xl text-muted max-w-2xl mx-auto">
+                {t("testimonials.subtitle")}
+            </p>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-8 lg:gap-12">
+            {
+                testimonials.map((item) => (
+                    <div class="p-8 lg:p-10 rounded-3xl bg-panel border border-border/50 hover:border-purple/30 transition-all duration-300 shadow-sm hover:shadow-lg group">
+                        <div class="flex items-start justify-between mb-8">
+                            <div class="h-12 w-auto min-w-[100px] max-w-[180px]">
+                                {item.href && (
+                                    <a
+                                        href={item.href}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        class="block h-full w-full"
+                                    >
+                                        <Image
+                                            src={item.logo}
+                                            alt={item.alt}
+                                            class="h-full w-full object-contain object-left opacity-80 group-hover:opacity-100 transition-opacity"
+                                            style={{
+                                                filter: "var(--logo-filter)",
+                                            }}
+                                        />
+                                    </a>
+                                )}
+                                {!item.href && (
+                                    <Image
+                                        src={item.logo}
+                                        alt={item.alt}
+                                        class="h-full w-full object-contain object-left opacity-80 group-hover:opacity-100 transition-opacity"
+                                        style={{ filter: "var(--logo-filter)" }}
+                                    />
+                                )}
+                            </div>
+                            <Quote className="w-10 h-10 text-purple/20 group-hover:text-purple/40 transition-colors" />
+                        </div>
+
+                        <blockquote class="mb-8">
+                            <p class="text-lg text-muted leading-relaxed font-light italic">
+                                "{t(item.text as any)}"
+                            </p>
+                        </blockquote>
+
+                        <div class="border-t border-border pt-6 mt-auto">
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                {item.apps.map((app) => (
+                                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-purple/10 text-purple border border-purple/20">
+                                        {app === "app.custom"
+                                            ? t(app as any)
+                                            : app}
+                                    </span>
+                                ))}
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-foreground text-lg">
+                                    {t(item.author as any)}
+                                </h4>
+                                {t(item.role as any) && (
+                                    <p class="text-sm text-purple font-medium">
+                                        {t(item.role as any)}
+                                    </p>
+                                )}
+                            </div>
+                        </div>
+                    </div>
+                ))
+            }
+        </div>
+    </div>
+</section>

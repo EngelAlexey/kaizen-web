@@ -1,27 +1,83 @@
 ---
 import Brand from "./Brand.jsx";
+import { useTranslations } from "../../utils/i18n";
+import { getRoute } from "../../lib/routes";
+import { Facebook, Instagram, Linkedin, Youtube } from "lucide-react";
 
 interface Props {
     lang?: "es" | "en";
 }
 
 const { lang = "es" } = Astro.props;
+const t = useTranslations(lang);
 ---
 
 <footer class="bg-background border-t border-border pt-16 pb-8 px-6 text-sm">
     <div class="max-w-7xl mx-auto grid md:grid-cols-4 gap-12 mb-12">
         <div class="col-span-1 md:col-span-2">
             <div class="mb-6">
-                <Brand client:visible />
+                <Brand client:visible lang={lang} />
             </div>
             <p class="text-muted max-w-sm mb-6">
-                Gestión inteligente para tu empresa y proyectos de construcción.
-                Centraliza, automatiza y crece con Kaizen.
+                {t("footer.desc")}
             </p>
+            <div class="flex items-center gap-4">
+                <a
+                    href="https://www.facebook.com/kaizenappscr/?rdid=8g0aRU4FATaqiDGQ"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="w-10 h-10 rounded-full bg-muted/5 border border-border flex items-center justify-center text-muted-foreground hover:text-primary hover:border-primary/30 transition-all active:scale-95"
+                    aria-label="Facebook"
+                >
+                    <Facebook className="w-5 h-5" />
+                </a>
+                <a
+                    href="https://www.instagram.com/kaizen_apps.cr"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="w-10 h-10 rounded-full bg-muted/5 border border-border flex items-center justify-center text-muted-foreground hover:text-primary hover:border-primary/30 transition-all active:scale-95"
+                    aria-label="Instagram"
+                >
+                    <Instagram className="w-5 h-5" />
+                </a>
+                <a
+                    href="https://www.linkedin.com/company/kaizen-apps-cr/posts/?feedView=all"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="w-10 h-10 rounded-full bg-muted/5 border border-border flex items-center justify-center text-muted-foreground hover:text-primary hover:border-primary/30 transition-all active:scale-95"
+                    aria-label="LinkedIn"
+                >
+                    <Linkedin className="w-5 h-5" />
+                </a>
+                <a
+                    href="https://www.threads.com/@kaizenapps_net.cr"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="w-10 h-10 rounded-full bg-muted/5 border border-border flex items-center justify-center text-muted-foreground hover:text-primary hover:border-primary/30 transition-all active:scale-95"
+                    aria-label="Threads"
+                >
+                    <svg viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5"
+                        ><path
+                            d="M14.64 12.04c-.3.08-.62.12-.9.12-1.35 0-2.47-1.1-2.47-2.47 0-1.35 1.13-2.48 2.48-2.48.55 0 1.05.18 1.45.42v1.94c0 .64.55 1.18 1.25 1.18.66 0 1.2-.55 1.2-1.2V5.13c0-.6.48-1.08 1.08-1.08s1.1.48 1.1 1.08v1c0 3.74-3.05 6.78-6.78 6.78a6.83 6.83 0 0 1-6.78-6.78 6.78 6.78 0 0 1 6.78-6.78c1.32 0 2.58.38 3.65 1.08.45.33.56.98.24 1.45s-.96.56-1.45.28a4.57 4.57 0 0 0-2.44-.73c-2.48 0-4.5 2.03-4.5 4.5 0 2.48 2.03 4.5 4.5 4.5 1.32 0 2.48-.56 3.28-1.45.2-.24.3-.48.33-.6.04-.15.08-.2.12-.25z"
+                        ></path></svg
+                    >
+                </a>
+                <a
+                    href="https://www.youtube.com/@KaizenApps"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="w-10 h-10 rounded-full bg-muted/5 border border-border flex items-center justify-center text-muted-foreground hover:text-primary hover:border-primary/30 transition-all active:scale-95"
+                    aria-label="YouTube"
+                >
+                    <Youtube className="w-5 h-5" />
+                </a>
+            </div>
         </div>
 
         <div>
-            <h4 class="font-bold text-foreground mb-4">Soluciones</h4>
+            <h4 class="font-bold text-foreground mb-4">
+                {t("footer.solutions")}
+            </h4>
             <ul class="space-y-3 text-muted">
                 <li>
                     <a
@@ -78,24 +134,40 @@ const { lang = "es" } = Astro.props;
             </ul>
         </div>
 
-        <div id="contacto">
-            <h4 class="font-bold text-foreground mb-4">Nuestros contactos</h4>
+        <div id={lang === "es" ? "contacto" : "contact"}>
+            <h4 class="font-bold text-foreground mb-4">
+                {t("footer.contacts")}
+            </h4>
             <ul class="space-y-3 text-muted">
-                <li>+506 8767 2300</li>
+                <li>+506 8767-2300</li>
                 <li>
                     <a
                         href="mailto:contacto@kaizenapps.net"
                         class="hover:text-primary">contacto@kaizenapps.net</a
                     >
                 </li>
-                <li class="pt-2">Costa Rica</li>
+                <li class="pt-2">{t("footer.location")}</li>
             </ul>
         </div>
     </div>
 
     <div
-        class="max-w-7xl mx-auto border-t border-border pt-8 text-center text-muted text-xs"
+        class="max-w-7xl mx-auto border-t border-border pt-8 flex flex-col md:flex-row justify-between items-center gap-6 text-muted text-xs"
     >
-        &copy; {new Date().getFullYear()} Kaizen Apps – All Rights Reserved.
+        <div class="order-2 md:order-1">
+            &copy; {new Date().getFullYear()} Kaizen Apps – {t("footer.rights")}
+        </div>
+        <div class="flex items-center gap-6 order-1 md:order-2">
+            <a
+                href={getRoute("privacy", lang)}
+                class="hover:text-primary transition-colors"
+                >{t("footer.privacy")}</a
+            >
+            <a
+                href={getRoute("terms", lang)}
+                class="hover:text-primary transition-colors"
+                >{t("footer.terms")}</a
+            >
+        </div>
     </div>
 </footer>

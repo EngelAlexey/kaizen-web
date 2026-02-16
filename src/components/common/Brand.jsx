@@ -8,6 +8,7 @@ const brand = {
 };
 
 export default function Brand({
+  lang = "es",
   transparent: initialTransparent = false,
   wordmarkHeight = 32,
   markSize = 32,
@@ -27,14 +28,17 @@ export default function Brand({
   const logoSrc = brand.logoLight;
 
   return (
-    <div className={"flex items-center gap-2 select-none transition-opacity duration-300 " + className}>
+    <a
+      href={lang === "es" ? "/" : "/en/"}
+      className={"flex items-center select-none transition-opacity duration-300 " + className}
+    >
       <img
         src={logoSrc}
         alt="Kaizen"
-        style={{ height: transparent ? wordmarkHeight : markSize, objectFit: "contain" }}
+        style={{ height: markSize, width: markSize, objectFit: "contain" }}
         draggable="false"
         loading="eager"
       />
-    </div>
+    </a>
   );
 }

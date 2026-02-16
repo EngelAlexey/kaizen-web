@@ -24,11 +24,11 @@ export const TASKS = [
         },
         seo: {
             es: {
-                title: 'Nuestras Soluciones | Kaizen Apps',
+                title: 'Nuestras Soluciones',
                 description: 'Descubre nuestras soluciones integrales: Kaizen (RRHH), Seiri (Asistencia) y BayCo (Inventarios).'
             },
             en: {
-                title: 'Our Solutions | Kaizen Apps',
+                title: 'Our Solutions',
                 description: 'Discover our comprehensive solutions: Kaizen (HR), Seiri (Attendance), and BayCo (Inventory).'
             }
         }
@@ -41,11 +41,11 @@ export const TASKS = [
         },
         seo: {
             es: {
-                title: 'Agendar Demostración | Kaizen',
+                title: 'Agendar Demostración',
                 description: 'Agenda una cita con nosotros para conocer cómo Kaizen puede ayudar a tu empresa.'
             },
             en: {
-                title: 'Book a Demo | Kaizen',
+                title: 'Book a Demo',
                 description: 'Schedule a meeting with us to learn how Kaizen can help your business.'
             }
         }
@@ -115,6 +115,28 @@ export const TASKS = [
         seo: {
             es: { title: 'Control de Activos', description: 'Gestión inteligente de inventarios y activos.' },
             en: { title: 'Assets Control', description: 'Intelligent inventory and asset management.' }
+        }
+    },
+    {
+        id: 'privacy',
+        slug: {
+            es: 'politica-de-privacidad',
+            en: 'privacy-policy'
+        },
+        seo: {
+            es: { title: 'Política de privacidad', description: 'Nuestra política de privacidad y protección de datos.' },
+            en: { title: 'Privacy policy', description: 'Our privacy policy and data protection.' }
+        }
+    },
+    {
+        id: 'terms',
+        slug: {
+            es: 'terminos-de-uso',
+            en: 'terms-of-use'
+        },
+        seo: {
+            es: { title: 'Términos de uso', description: 'Términos y condiciones de uso de nuestra plataforma.' },
+            en: { title: 'Terms of use', description: 'Terms and conditions of use for our platform.' }
         }
     },
 ] as const;

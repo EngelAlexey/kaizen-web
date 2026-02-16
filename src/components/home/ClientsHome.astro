@@ -2,6 +2,14 @@
 import { useTranslations } from "../../utils/i18n";
 import type { ui } from "../../i18n/ui";
 import ClientLogos from "../sections/ClientLogos.astro";
+import createLogo from "../../assets/icons/create-logo.png";
+import grupoLogo from "../../assets/icons/grupo-logo.png";
+import saumaLogo from "../../assets/icons/sauma-logo-black.png";
+import mazLogo from "../../assets/icons/maz-logo-white.svg";
+import voltaLogo from "../../assets/icons/volta-logo-white.png";
+import constrialLogo from "../../assets/icons/Constrial-logo.webp";
+import starCargoLogo from "../../assets/icons/logo_vertical_c.png";
+import girsLogo from "../../assets/icons/girs-logo.png";
 
 interface Props {
     lang: keyof typeof ui;
@@ -11,17 +19,51 @@ const { lang } = Astro.props;
 const t = useTranslations(lang);
 
 const clientLogos = [
-    { src: "/src/assets/icons/create-logo.png", alt: "Creative Engineering" },
-    { src: "/src/assets/icons/grupo-logo.png", alt: "Grupo Creativo" },
-    { src: "/src/assets/icons/sauma-logo-black.png", alt: "Sauma Arquitectos" },
-    { src: "/src/assets/icons/maz-logo-white.svg", alt: "MAZ" },
-    { src: "/src/assets/icons/volta-logo-white.png", alt: "Volta" },
-    { src: "/src/assets/icons/constrial-logo.png", alt: "Constrial" },
+    {
+        src: createLogo.src,
+        alt: "Creative Engineering",
+        href: "https://www.create-cr.com/",
+    },
+    {
+        src: grupoLogo.src,
+        alt: "Grupo Creativo",
+        href: "https://www.grupocreativo-cr.com/",
+    },
+    {
+        src: saumaLogo.src,
+        alt: "Sauma Arquitectos",
+        href: "https://saumaarquitectos.com/",
+    },
+    {
+        src: mazLogo.src,
+        alt: "MAZ",
+        href: "https://www.maz-cr.com/",
+    },
+    {
+        src: voltaLogo.src,
+        alt: "Volta",
+        href: "https://voltacr.com/",
+    },
+    {
+        src: constrialLogo.src,
+        alt: "Constrial",
+        href: "https://constrial.net/",
+    },
+    {
+        src: starCargoLogo.src,
+        alt: "Star Cargo Service",
+        href: "https://www.starcargoservice.com/",
+    },
+    {
+        src: girsLogo.src,
+        alt: "GIRS",
+        href: "https://www.girscr.com/",
+    },
 ];
 ---
 
 <section
-    id="nuestros-clientes"
+    id={lang === "es" ? "nuestros-clientes" : "clients"}
     class="py-16 bg-panel border-y border-border overflow-hidden"
 >
     <div class="max-w-7xl mx-auto px-6 text-center mb-10">

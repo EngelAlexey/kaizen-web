@@ -7,6 +7,7 @@ export const defaultLang = 'es';
 
 export const ui = {
     es: {
+        'nav.home': 'Inicio',
         'nav.services': 'Servicios',
         'nav.solutions': 'Soluciones',
         'nav.about': 'Nosotros',
@@ -84,7 +85,7 @@ export const ui = {
         'module.projects.use.3.desc': 'Permite asociar colaboradores específicos a cada proyecto, optimizando la distribución de la fuerza laboral.',
 
 
-        'module.ssoma.title': 'Seguridad, Salud Ocupacional y Medio Ambiente',
+        'module.ssoma.title': 'Salud Ocupacional',
         'module.ssoma.desc': 'Módulo especializado en la prevención de riesgos. Registra incidentes, gestiona EPP y programa capacitaciones.',
         'module.ssoma.subtitle': 'Herramienta para prevenir riesgos, garantizar la salud y asegurar el cumplimiento de normativas.',
         'module.ssoma.what.title': '¿Qué es SSOMA?',
@@ -136,6 +137,9 @@ export const ui = {
         'apps.title': 'Nuestros Servicios',
         'apps.subtitle': 'Accede a nuestras plataformas especializadas.',
         'apps.cta': 'Acceder',
+        'apps.download': 'Descargar',
+        'apps.download.android': 'Android',
+        'apps.download.ios': 'iOS',
 
         'apps.hr': 'Kaizen Crissom',
         'apps.hr.desc': 'Plataforma integral de gestión de recursos humanos y operaciones.',
@@ -181,8 +185,41 @@ export const ui = {
         'booking.product.bayco': 'Bay-Co',
         'booking.product.bayco.desc': 'Gestión Inteligente de Inventarios y Compras.',
         'booking.ai.note': 'Todos los productos incluyen Chatbox con IA entrenada.',
+
+        // Testimonials
+        'testimonials.volta.text': 'La implementación de Kaizen nos ha permitido optimizar la gestión de nuestros proyectos de una manera mucho más ordenada y eficiente. La aplicación nos brinda un control claro sobre los avances, facilita la comunicación entre equipos y nos ayuda a tomar decisiones rápidas con base en información confiable. Gracias a esta herramienta, hemos podido reducir tiempos, anticipar riesgos y entregar con mayor calidad. Sin duda, se ha convertido en un aliado estratégico para el éxito de nuestros proyectos.',
+        'testimonials.volta.author': 'Ing. Osvaldo Salas Peraza',
+        'testimonials.volta.role': '',
+
+        'testimonials.sauma.text': 'Contratar los servicios de Kaizen ha sido una experiencia positiva. Desde el inicio se identificaron con nuestra necesidad, nos ayudaron en el desarrollo de la aplicación para optimizar los procesos internos y estamos satisfechos con el resultado.',
+        'testimonials.sauma.author': 'Arq. Rashid Sauma Ruiz',
+        'testimonials.sauma.role': '',
+
+        'testimonials.grupo.text': 'Desde que implementamos Kaizen en Grupo Creativo, hemos logrado una transformación significativa en la gestión de nuestros recursos humanos. La plataforma nos ha permitido centralizar y controlar de manera eficiente la administración de personal. Nos ha brindado un control riguroso y confiable de la operación diaria. Sin duda, Kaizen se ha convertido en una herramienta indispensable para la gestión moderna de nuestra empresa.',
+        'testimonials.grupo.author': 'Ing. Rodrigo Trejos',
+        'testimonials.grupo.role': '',
+
+        'testimonials.creative.text': 'En Creative Engineering, necesitábamos una plataforma que creciera con nosotros. Con Kaizen hoy gestionamos nóminas de más de 100 colaboradores en una sola plataforma. Nos proporciona mas certeza y más eficiencia en la gestión. Es una solución que se adapta a nuestras necesidades.',
+        'testimonials.creative.author': 'Carlos Muñoz',
+        'testimonials.creative.role': 'Gerente Financiero',
+        'testimonials.title': 'Testimonios',
+        'testimonials.subtitle': 'Lo que nuestros clientes dicen sobre la experiencia Kaizen.',
+        'app.custom': 'Desarrollo a medida',
+        'footer.desc': 'Gestión inteligente para tu empresa y proyectos de construcción. Centraliza, automatiza y crece con Kaizen.',
+        'footer.solutions': 'Soluciones',
+        'footer.contacts': 'Nuestros contactos',
+        'footer.location': 'Costa Rica',
+        'footer.rights': 'All Rights Reserved.',
+        'footer.follow': 'Síguenos',
+        'footer.legal': 'Legal',
+        'footer.privacy': 'Política de privacidad',
+        'footer.terms': 'Términos de uso',
+        'legal.update': 'Última actualización',
+        'legal.privacy.title': 'Política de privacidad',
+        'legal.terms.title': 'Términos de uso',
     },
     en: {
+        'nav.home': 'Home',
         'nav.services': 'Services',
         'nav.solutions': 'Solutions',
         'nav.about': 'About Us',
@@ -260,7 +297,7 @@ export const ui = {
         'module.projects.use.3.desc': 'Allows associating specific collaborators to each project, optimizing workforce distribution.',
 
 
-        'module.ssoma.title': 'Safety, Occupational Health and Environment',
+        'module.ssoma.title': 'Occupational Health',
         'module.ssoma.desc': 'Specialized module for risk prevention. Registers incidents, manages PPE, and schedules training.',
         'module.ssoma.subtitle': 'Tool to prevent risks, guarantee health, and ensure compliance with regulations.',
         'module.ssoma.what.title': 'What is SSOMA?',
@@ -312,6 +349,9 @@ export const ui = {
         'apps.title': 'Our Services',
         'apps.subtitle': 'Access our specialized platforms.',
         'apps.cta': 'Access',
+        'apps.download': 'Download',
+        'apps.download.android': 'Android',
+        'apps.download.ios': 'iOS',
 
         'apps.hr': 'Kaizen Crissom',
         'apps.hr.desc': 'Comprehensive platform for human resources and operations management.',
@@ -357,5 +397,37 @@ export const ui = {
         'booking.product.bayco': 'Bay-Co',
         'booking.product.bayco.desc': 'Smart Inventory and Purchasing Management.',
         'booking.ai.note': 'All products include AI-powered Chatbox.',
+
+        // Testimonials (en)
+        'testimonials.volta.text': 'Implementing Kaizen has allowed us to optimize our project management in a much more orderly and efficient way. The application gives us clear control over progress, facilitates communication between teams, and helps us make quick decisions based on reliable information. Thanks to this tool, we have been able to reduce times, anticipate risks, and deliver with higher quality. Undoubtedly, it has become a strategic ally for the success of our projects.',
+        'testimonials.volta.author': 'Ing. Osvaldo Salas Peraza',
+        'testimonials.volta.role': '',
+
+        'testimonials.sauma.text': 'Hiring Kaizen services has been a positive experience. From the beginning, they identified with our needs, helped us develop the application to optimize internal processes, and we are satisfied with the result.',
+        'testimonials.sauma.author': 'Arq. Rashid Sauma Ruiz',
+        'testimonials.sauma.role': '',
+
+        'testimonials.grupo.text': 'Since implementing Kaizen at Grupo Creativo, we have achieved a significant transformation in our human resources management. The platform has allowed us to maximize and efficiently control personnel administration. It has given us rigorous and reliable control of daily operations. undoubtedly, Kaizen has become an indispensable tool for the modern management of our company.',
+        'testimonials.grupo.author': 'Ing. Rodrigo Trejos',
+        'testimonials.grupo.role': '',
+
+        'testimonials.creative.text': 'At Creative Engineering, we needed a platform that grew with us. With Kaizen, today we manage payrolls for over 100 collaborators on a single platform. It provides us with more certainty and more efficiency in management. It is a solution that adapts to our needs.',
+        'testimonials.creative.author': 'Carlos Muñoz',
+        'testimonials.creative.role': 'Financial Manager',
+        'testimonials.title': 'Testimonials',
+        'testimonials.subtitle': 'What our clients say about the Kaizen experience.',
+        'app.custom': 'Custom Application',
+        'footer.desc': 'Smart management for your company and construction projects. Centralize, automate, and grow with Kaizen.',
+        'footer.solutions': 'Solutions',
+        'footer.contacts': 'Our contacts',
+        'footer.location': 'Costa Rica',
+        'footer.rights': 'All Rights Reserved.',
+        'footer.follow': 'Follow Us',
+        'footer.legal': 'Legal',
+        'footer.privacy': 'Privacy policy',
+        'footer.terms': 'Terms of use',
+        'legal.update': 'Last updated',
+        'legal.privacy.title': 'Privacy policy',
+        'legal.terms.title': 'Terms of use',
     },
 } as const;

@@ -61,18 +61,13 @@ const services = [
     {
         services.map(({ id, routeId, Component }, index) => {
             const urlSlug = getSlugById(routeId, lang);
+            const isOdd = index % 2 !== 0;
+            const sectionClasses = isOdd
+                ? "py-20 px-6 service-section scroll-mt-24 bg-muted/5 border-t border-border"
+                : "py-20 px-6 service-section scroll-mt-24";
 
             return (
-                <section
-                    id={id}
-                    class:list={[
-                        "py-20 px-6 service-section scroll-mt-24",
-                        index % 2 !== 0
-                            ? "bg-muted/5 border-t border-border"
-                            : "",
-                    ]}
-                    data-slug={urlSlug}
-                >
+                <section id={id} class={sectionClasses} data-slug={urlSlug}>
                     <Component lang={lang} />
                 </section>
             );
@@ -170,7 +165,6 @@ const services = [
 
 <script define:vars={{ initialSection, lang }}>
     const handleNavigation = () => {
-        // 1. Cleanup previous observer
         if (window.solutionsObserver) {
             window.solutionsObserver.disconnect();
             window.solutionsObserver = undefined;
@@ -180,12 +174,9 @@ const services = [
         const parts = path.split("/").filter(Boolean);
         const currentSlug = parts[parts.length - 1];
 
-        // Use ends-with selector ($=) because data-slug might contain prefixes like 'soluciones/'
         const section = document.querySelector(
             `.service-section[data-slug$="${currentSlug}"]`,
         );
-
-        // Function to start the permanent Scroll Spy
         const startSpyingAll = () => {
             if (window.solutionsObserver) window.solutionsObserver.disconnect();
 
@@ -217,15 +208,10 @@ const services = [
         };
 
         if (section) {
-            // TUNNEL VISION MODE:
-            // Only observe the DESTINATION. Be blind to everything else.
-
             const destinationObserver = new IntersectionObserver(
                 (entries) => {
                     const entry = entries[0];
                     if (entry.isIntersecting) {
-                        // We arrived!
-                        // 1. Confirm URL (stability)
                         const cleanSlug = entry.target.dataset.slug;
                         const newPath =
                             (lang === "es" ? "/es/" : "/en/") + cleanSlug;
@@ -234,10 +220,7 @@ const services = [
                             history.replaceState(null, "", newPath);
                         }
 
-                        // 2. Mission Complete. Stop Tunnel Vision.
                         destinationObserver.disconnect();
-
-                        // 3. Resume normal spying behavior
                         startSpyingAll();
                     }
                 },
@@ -248,16 +231,13 @@ const services = [
             );
 
             destinationObserver.observe(section);
-            window.solutionsObserver = destinationObserver; // Track it so we can kill it if needed
+            window.solutionsObserver = destinationObserver;
 
-            // Perform the scroll
-            // 'auto' allows CSS to control smoothness (defined in global.css)
             section.scrollIntoView({
                 behavior: "auto",
                 block: "start",
             });
         } else {
-            // No specific internal target, just default behavior
             if (initialSection) {
                 const target = document.getElementById(initialSection);
                 if (target) {
@@ -268,17 +248,10 @@ const services = [
         }
     };
 
-    // User Interrupt Logic: If user touches scroll, clear intent
-    const FORCE_SPY_ALL = () => {
-        // Placeholder for future interrupt handling if needed
-    };
-
     if (!window.hasIntentListeners) {
         window.hasIntentListeners = true;
     }
 
-    // Intercept clicks on Solution links to behave like a Single Page App (SPA)
-    // This prevents the "Flash to Top" behavior by avoiding a full page swap.
     const handleInternalLinks = () => {
         document.body.addEventListener("click", (e) => {
             const link = e.target.closest("a");
@@ -287,39 +260,25 @@ const services = [
             const href = link.getAttribute("href");
             if (!href) return;
 
-            // Check if it's an internal link
             if (link.hostname !== window.location.hostname) return;
 
-            // Extract the potential slug from the URL
-            // Expected format: /es/soluciones/SLUG or /en/solutions/SLUG
-            // We can just check if the path ends with one of our section slugs.
             const url = new URL(link.href);
-            const pathParts = url.pathname.split("/").filter(Boolean); // ['es', 'soluciones', 'control-asistencias']
+            const pathParts = url.pathname.split("/").filter(Boolean);
             const candidateSlug = pathParts[pathParts.length - 1];
 
             if (!candidateSlug) return;
 
-            // Try to find a section that matches this slug
             const targetSection = document.querySelector(
                 `.service-section[data-slug$="${candidateSlug}"]`,
             );
 
             if (targetSection) {
-                // FOUND! It's on this page. Hijack the navigation.
                 e.preventDefault();
-
-                // 1. Update URL immediately (SPA feel)
                 history.pushState(null, "", link.href);
-
-                // 2. Scroll to target
                 targetSection.scrollIntoView({
-                    behavior: "auto", // CSS 'smooth' handles the physics
+                    behavior: "auto",
                     block: "start",
                 });
-
-                // 3. Briefly detach observer to prevent it from overwriting our correct URL during scroll?
-                // Actually, our robust observer logic just confirms the URL.
-                // Since we just set it to the correct values, the observer will simple agree.
             }
         });
     };
@@ -329,7 +288,6 @@ const services = [
             history.scrollRestoration = "manual";
         }
 
-        // Execute immediately (Native-like feel)
         handleNavigation();
         handleInternalLinks();
     });
