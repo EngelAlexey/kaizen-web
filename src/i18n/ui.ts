@@ -24,8 +24,8 @@ export const ui = {
         'about.title2': 'empresarial',
         'about.desc1': 'Somos una empresa dedicada a brindar soluciones tecnológicas que transforman la manera en que gestionas tus recursos.',
         'about.desc2': 'Con Kaizen, no solo obtienes un software, sino un aliado estratégico comprometido con la eficiencia, la seguridad y la escalabilidad de tu negocio.',
-        'stats.companies': 'Nuestros clientes',
-        'stats.uptime': 'Uptime garantizado',
+        'stats.companies': 'Colaboradores gestionados',
+        'stats.uptime': 'Disponibilidad garantizada',
         'features.g.title': 'Gestión inteligente',
         'features.g.desc': 'Optimizá la gestión de recursos, mejorá tus procesos y controles. Llevá tu negocio al siguiente nivel.',
         'features.s.title': 'Simplifica',
@@ -157,7 +157,7 @@ export const ui = {
         'apps.anzen.desc': 'Gestión integral de Seguridad, Salud Ocupacional y Medio Ambiente (SSOMA).',
 
         'apps.seiton': 'Seiton',
-        'apps.seiton.desc': 'App para gestión de salud ocupacional.',
+        'apps.seiton.desc': 'App para gestión de actividad, para control de productividad y costos.',
 
         'apps.dev': 'En desarrollo',
 
