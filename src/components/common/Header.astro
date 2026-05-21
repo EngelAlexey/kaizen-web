@@ -4,7 +4,7 @@ import ThemeButton from "../ui/ThemeButton.jsx";
 import LanguageDropdown from "../ui/LanguageDropdown.jsx";
 import HamburgerButton from "./HamburgerButton.astro";
 import { useTranslations } from "../../utils/i18n";
-import { getRoute, TASKS } from "../../lib/routes";
+import { getRoute, buildRouteMap } from "../../lib/routes";
 import type { ui } from "../../i18n/ui";
 
 interface Props {
@@ -15,44 +15,7 @@ interface Props {
 const { lang = "es", transparent = false } = Astro.props;
 const t = useTranslations(lang);
 
-const routeMap: Record<string, string> = {};
-
-const addRoute = (pathEs: string, pathEn: string) => {
-    routeMap[pathEs] = pathEn;
-    routeMap[pathEn] = pathEs;
-    if (!pathEs.endsWith("/")) {
-        routeMap[pathEs + "/"] = pathEn;
-    }
-    if (!pathEn.endsWith("/")) {
-        routeMap[pathEn + "/"] = pathEs;
-    }
-};
-
-addRoute("/", "/en");
-addRoute("/es", "/en");
-addRoute("/es/", "/en/");
-const sectionMappings = [
-    { es: "/es/servicios", en: "/en/services" },
-    { es: "/es/nosotros", en: "/en/about" },
-    { es: "/es/testimonios", en: "/en/testimonials" },
-    { es: "/es/contacto", en: "/en/contact" },
-    { es: "/es/nuestros-clientes", en: "/en/clients" },
-];
-
-sectionMappings.forEach(({ es, en }) => {
-    addRoute(es, en);
-});
-
-TASKS.forEach((task) => {
-    const slugEs = task.slug.es;
-    const slugEn = task.slug.en;
-
-    if (slugEs && slugEn) {
-        const pathEs = `/es/${slugEs}`;
-        const pathEn = `/en/${slugEn}`;
-        addRoute(pathEs, pathEn);
-    }
-});
+const routeMap = buildRouteMap();
 
 const homeUrl = lang === "es" ? "/" : "/en";
 const bookingUrl = getRoute("booking", lang);
@@ -62,7 +25,6 @@ const projectsUrl = getRoute("sol-projects", lang);
 const ssomaUrl = getRoute("sol-ssoma", lang);
 const payrollUrl = getRoute("sol-payroll", lang);
 const assetsUrl = getRoute("sol-assets", lang);
-const flowsUrl = `${getRoute("solutions", lang)}#flujos`;
 
 const isHome =
     Astro.url.pathname === homeUrl ||

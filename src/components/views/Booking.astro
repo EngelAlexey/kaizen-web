@@ -1,6 +1,6 @@
 ---
 import { useTranslations } from "../../utils/i18n";
-import { Users, Info, Sparkles, CheckCircle2 } from "lucide-react";
+import { Sparkles, CheckCircle2 } from "lucide-react";
 import { Image } from "astro:assets";
 import KaizenLogo from "../../assets/img/K.png";
 import SeiriLogo from "../../assets/img/seiri-logo.png";
@@ -8,7 +8,16 @@ import BaycoBlack from "../../assets/img/bayco-logo-black.png";
 import BaycoWhite from "../../assets/img/bayco-logo-white.png";
 
 const { lang } = Astro.props;
-const t = useTranslations((lang as "es" | "en") || "es");
+const currentLang = (lang as "es" | "en") || "es";
+const t = useTranslations(currentLang);
+
+const turnstileSiteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY || "1x00000000000000000000AA";
+
+const tSending = t("booking.sending");
+const tSuccess = t("booking.success");
+const tError = t("booking.error");
+const tCaptchaRequired = t("booking.captcha.required");
+const tSubmit = t("booking.form.submit");
 ---
 
 <section
@@ -72,9 +81,19 @@ const t = useTranslations((lang as "es" | "en") || "es");
         <div
             class="bg-panel p-8 md:p-10 rounded-3xl shadow-strong border border-border animate-fade-left"
         >
-            <form id="booking-form" class="space-y-6" onsubmit="return window.submitKaizenBooking(event);">
+            <form id="booking-form" class="space-y-6">
                 <!-- Status Message Area -->
-                <div id="form-status" class="hidden p-4 rounded-xl text-sm font-bold animate-fade-in text-center"></div>
+                <div id="form-status" class="hidden p-4 rounded-xl text-sm font-bold animate-fade-in text-center" role="alert"></div>
+
+                <!-- Honeypot (invisible for humans, traps bots) -->
+                <input
+                    type="text"
+                    name="website"
+                    tabindex="-1"
+                    autocomplete="off"
+                    aria-hidden="true"
+                    style="position:absolute;left:-9999px;opacity:0;pointer-events:none;width:0;height:0;"
+                />
 
                 <div class="grid md:grid-cols-2 gap-6">
                     <div class="space-y-2">
@@ -243,6 +262,14 @@ const t = useTranslations((lang as "es" | "en") || "es");
                     </div>
                 </div>
 
+                <!-- Cloudflare Turnstile -->
+                <div
+                    class="cf-turnstile"
+                    data-sitekey={turnstileSiteKey}
+                    data-theme="auto"
+                    data-language={currentLang}
+                ></div>
+
                 <button
                     id="booking-submit-btn"
                     type="submit"
@@ -259,69 +286,80 @@ const t = useTranslations((lang as "es" | "en") || "es");
     </div>
 </section>
 
-<script is:inline>
-    // URL Generada en Google Apps Script
-    const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycby8hqLi7trWxHzhvPL8YURWifh0Ip7QJoUXFDTD1_YRkpU4O9W58LrnCCYZBxspfvOS-w/exec";
+<script is:inline src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 
-    // Exponer la función globalmente para que `onsubmit` pueda encontrarla
-    window.submitKaizenBooking = async function(event) {
-        event.preventDefault(); // Doble seguridad contra el GET
-
+<script define:vars={{ tSending, tSuccess, tError, tCaptchaRequired, tSubmit }}>
+    document.addEventListener("astro:page-load", () => {
         const form = document.getElementById("booking-form");
-        const btn = document.getElementById("booking-submit-btn");
-        const btnText = document.getElementById("btn-text");
-        const btnSpinner = document.getElementById("btn-spinner");
-        const statusEl = document.getElementById("form-status");
+        if (!form || form._bookingReady) return;
+        form._bookingReady = true;
 
-        if (!form || !btn) return false;
+        form.addEventListener("submit", async (event) => {
+            event.preventDefault();
 
-        // Set loading state
-        btn.disabled = true;
-        if(btnText) btnText.textContent = "Enviando...";
-        if(btnSpinner) btnSpinner.classList.remove("hidden");
-        if(statusEl) statusEl.classList.add("hidden");
+            const btn = document.getElementById("booking-submit-btn");
+            const btnText = document.getElementById("btn-text");
+            const btnSpinner = document.getElementById("btn-spinner");
+            const statusEl = document.getElementById("form-status");
 
-        try {
-            const formData = new FormData(form);
-            const data = {
-                name: formData.get("name"),
-                email: formData.get("email"),
-                phone: formData.get("phone"),
-                role: formData.get("role"),
-                company: formData.get("company"),
-                products: formData.getAll("product")
-            };
+            if (!btn || !statusEl) return;
 
-            const response = await fetch(APPS_SCRIPT_URL, {
-                method: "POST",
-                body: JSON.stringify(data),
-                headers: {
-                    "Content-Type": "text/plain;charset=utf-8",
-                },
-            });
+            // Honeypot check — bots fill hidden fields, humans don't
+            const honeypot = form.elements["website"]?.value;
+            if (honeypot) return;
 
-            const result = await response.json();
-
-            if (result.status === "success") {
-                // Success state
-                statusEl.textContent = "¡Mensaje enviado correctamente! Nos pondremos en contacto pronto.";
-                statusEl.className = "p-4 rounded-xl text-sm font-bold animate-fade-in text-center bg-emerald/10 text-emerald border border-emerald/20";
-                form.reset();
-            } else {
-                throw new Error("Error interno en el servidor.");
+            // Turnstile token check
+            const turnstileToken = form.elements["cf-turnstile-response"]?.value;
+            if (!turnstileToken) {
+                statusEl.textContent = tCaptchaRequired;
+                statusEl.className = "p-4 rounded-xl text-sm font-bold animate-fade-in text-center bg-red-500/10 text-red-500 border border-red-500/20";
+                statusEl.classList.remove("hidden");
+                return;
             }
-        } catch (error) {
-            // Error state
-            console.error("Form submission error:", error);
-            statusEl.textContent = "Ocurrió un error enviando el mensaje. Por favor intenta de nuevo.";
-            statusEl.className = "p-4 rounded-xl text-sm font-bold animate-fade-in text-center bg-red-500/10 text-red-500 border border-red-500/20";
-        } finally {
-            // Reset button state
-            btn.disabled = false;
-            if(btnText) btnText.textContent = "Agendar Demo";
-            if(btnSpinner) btnSpinner.classList.add("hidden");
-        }
 
-        return false;
-    };
+            btn.disabled = true;
+            if (btnText) btnText.textContent = tSending;
+            if (btnSpinner) btnSpinner.classList.remove("hidden");
+            statusEl.classList.add("hidden");
+
+            try {
+                const formData = new FormData(form);
+                const data = {
+                    name: formData.get("name"),
+                    email: formData.get("email"),
+                    phone: formData.get("phone"),
+                    role: formData.get("role"),
+                    company: formData.get("company"),
+                    products: formData.getAll("product"),
+                    turnstileToken,
+                };
+
+                const response = await fetch("/api/booking", {
+                    method: "POST",
+                    body: JSON.stringify(data),
+                    headers: { "Content-Type": "application/json" },
+                });
+
+                const result = await response.json();
+
+                if (result.status === "success") {
+                    statusEl.textContent = tSuccess;
+                    statusEl.className = "p-4 rounded-xl text-sm font-bold animate-fade-in text-center bg-emerald/10 text-emerald border border-emerald/20";
+                    statusEl.classList.remove("hidden");
+                    form.reset();
+                    if (window.turnstile) window.turnstile.reset();
+                } else {
+                    throw new Error(result.message || "server_error");
+                }
+            } catch {
+                statusEl.textContent = tError;
+                statusEl.className = "p-4 rounded-xl text-sm font-bold animate-fade-in text-center bg-red-500/10 text-red-500 border border-red-500/20";
+                statusEl.classList.remove("hidden");
+            } finally {
+                btn.disabled = false;
+                if (btnText) btnText.textContent = tSubmit;
+                if (btnSpinner) btnSpinner.classList.add("hidden");
+            }
+        });
+    });
 </script>

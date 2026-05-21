@@ -19,11 +19,6 @@ export const ui = {
         'hero.solutions': 'Ver soluciones',
         'hero.badge.sys': 'Gestiona tu negocio',
         'hero.badge.opt': '100% En línea',
-        'about.overline': 'Sobre Nosotros',
-        'about.title1': 'Impulsando el crecimiento',
-        'about.title2': 'empresarial',
-        'about.desc1': 'Somos una empresa dedicada a brindar soluciones tecnológicas que transforman la manera en que gestionas tus recursos.',
-        'about.desc2': 'Con Kaizen, no solo obtienes un software, sino un aliado estratégico comprometido con la eficiencia, la seguridad y la escalabilidad de tu negocio.',
         'stats.companies': 'Colaboradores gestionados',
         'stats.uptime': 'Disponibilidad garantizada',
         'features.g.title': 'Gestión inteligente',
@@ -129,15 +124,9 @@ export const ui = {
         'module.assets.use.2.desc': 'Controla quién tiene asignado cada activo y desde qué fecha, generando responsabilidad.',
 
 
-        'module.catalog.title': 'Catálogos Maestros',
-        'module.catalog.desc': 'Repositorio centralizado de clientes, proveedores y contactos clave con toda su información comercial.',
-        'module.flows.title': 'Flujos de Aprobación',
-        'module.flows.desc': 'Define y automatiza procesos de aprobación para asegurar que cada solicitud (permisos, vacaciones) pase por la supervisión correcta.',
-
         'apps.title': 'Nuestros Servicios',
         'apps.subtitle': 'Accede a nuestras plataformas especializadas.',
         'apps.cta': 'Acceder',
-        'apps.download': 'Descargar',
         'apps.download.android': 'Android',
         'apps.download.ios': 'iOS',
 
@@ -161,23 +150,28 @@ export const ui = {
 
         'apps.dev': 'En desarrollo',
 
-        // New 'About Kaizen' Section Keys
+        'prefs': 'Preferencias',
+        'theme.dark': 'Oscuro',
+        'theme.light': 'Claro',
+
         'about.kaizen.title': '¿Qué es Kaizen?',
         'about.kaizen.desc1': 'Kaizen es un ecosistema digital que ayuda a las empresas a gestionar y controlar recursos como <strong class="text-foreground">personal, materiales y equipos</strong> de forma eficiente y segura.',
         'about.kaizen.desc2': 'Con funciones impulsadas por tecnología de última generación. Diseñada para responder a las necesidades del sector construcción, sin embargo, puede implementarse en cualquier otro nicho donde se deban gestionar recursos de forma eficiente.',
-        'about.kaizen.projects': 'Proyectos Activos',
-        'about.kaizen.cloud': 'Nube Segura',
 
         // Booking / Contact
         'booking.title': 'Solicita una demostración',
         'booking.subtitle': 'Déjanos tus datos y te contactaremos para una demostración gratuita.',
         'booking.form.name': 'Nombre completo',
-        'booking.form.email': 'Correo eléctronico',
+        'booking.form.email': 'Correo electrónico',
         'booking.form.phone': 'N°Teléfono',
         'booking.form.company': 'Nombre de la empresa',
         'booking.form.role': 'Tu cargo',
         'booking.form.product': 'Producto de Interés',
         'booking.form.submit': 'Enviar',
+        'booking.sending': 'Enviando...',
+        'booking.success': '¡Mensaje enviado correctamente! Nos pondremos en contacto pronto.',
+        'booking.error': 'Ocurrió un error al enviar el mensaje. Por favor intenta de nuevo.',
+        'booking.captcha.required': 'Por favor completa el desafío de seguridad.',
         'booking.product.kaizen': 'Kaizen Crissom',
         'booking.product.kaizen.desc': 'Gestión Integral de Recursos Humanos y Operaciones.',
         'booking.product.seiri': 'Seiri',
@@ -210,13 +204,9 @@ export const ui = {
         'footer.contacts': 'Nuestros contactos',
         'footer.location': 'Costa Rica',
         'footer.rights': 'All Rights Reserved.',
-        'footer.follow': 'Síguenos',
-        'footer.legal': 'Legal',
         'footer.privacy': 'Política de privacidad',
         'footer.terms': 'Términos de uso',
         'legal.update': 'Última actualización',
-        'legal.privacy.title': 'Política de privacidad',
-        'legal.terms.title': 'Términos de uso',
     },
     en: {
         'nav.home': 'Home',
@@ -231,11 +221,6 @@ export const ui = {
         'hero.solutions': 'View Solutions',
         'hero.badge.sys': 'Manage your business',
         'hero.badge.opt': '100% Online',
-        'about.overline': 'About Us',
-        'about.title1': 'Driving Business',
-        'about.title2': 'Growth',
-        'about.desc1': 'We are dedicated to providing technological solutions that transform the way you manage your resources.',
-        'about.desc2': 'With Kaizen, you get not just software, but a strategic partner committed to the efficiency, security, and scalability of your business.',
         'stats.companies': 'Active Companies',
         'stats.uptime': 'Guaranteed Uptime',
         'features.g.title': 'Smart Management',
@@ -341,15 +326,9 @@ export const ui = {
         'module.assets.use.2.desc': 'Controls who has each asset assigned and since what date, generating accountability.',
 
 
-        'module.catalog.title': 'Master Catalogs',
-        'module.catalog.desc': 'Centralized repository of clients, suppliers, and key contacts with all their commercial information.',
-        'module.flows.title': 'Approval Flows',
-        'module.flows.desc': 'Define and automate approval processes to ensure that each request (permits, vacations) passes through the correct supervision.',
-
         'apps.title': 'Our Services',
         'apps.subtitle': 'Access our specialized platforms.',
         'apps.cta': 'Access',
-        'apps.download': 'Download',
         'apps.download.android': 'Android',
         'apps.download.ios': 'iOS',
 
@@ -377,8 +356,10 @@ export const ui = {
         'about.kaizen.title': 'What is Kaizen?',
         'about.kaizen.desc1': 'Kaizen is a digital ecosystem that helps companies manage and control resources such as <strong class="text-foreground">personnel, materials, and equipment</strong> efficiently and securely.',
         'about.kaizen.desc2': 'With features powered by the latest technology. Designed to meet the needs of the construction sector, however, it can be implemented in any other niche where resources must be managed efficiently.',
-        'about.kaizen.projects': 'Active Projects',
-        'about.kaizen.cloud': 'Secure Cloud',
+
+        'prefs': 'Preferences',
+        'theme.dark': 'Dark',
+        'theme.light': 'Light',
 
         // Booking / Contact
         'booking.title': 'Book a Demo',
@@ -390,6 +371,10 @@ export const ui = {
         'booking.form.role': 'Job Title',
         'booking.form.product': 'Product of Interest',
         'booking.form.submit': 'Request Schedule',
+        'booking.sending': 'Sending...',
+        'booking.success': 'Message sent successfully! We\'ll get in touch soon.',
+        'booking.error': 'An error occurred while sending the message. Please try again.',
+        'booking.captcha.required': 'Please complete the security challenge.',
         'booking.product.kaizen': 'Kaizen Crissom',
         'booking.product.kaizen.desc': 'Comprehensive Human Resources and Operations Management.',
         'booking.product.seiri': 'Seiri',
@@ -422,12 +407,8 @@ export const ui = {
         'footer.contacts': 'Our contacts',
         'footer.location': 'Costa Rica',
         'footer.rights': 'All Rights Reserved.',
-        'footer.follow': 'Follow Us',
-        'footer.legal': 'Legal',
         'footer.privacy': 'Privacy policy',
         'footer.terms': 'Terms of use',
         'legal.update': 'Last updated',
-        'legal.privacy.title': 'Privacy policy',
-        'legal.terms.title': 'Terms of use',
     },
 } as const;

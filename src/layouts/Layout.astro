@@ -5,7 +5,7 @@ import Footer from "../components/common/Footer.astro";
 import MobileMenuReact from "../components/common/MobileMenuReact.jsx";
 import BubbleMenu from "../components/common/BubbleMenu.astro";
 import { ViewTransitions } from "astro:transitions";
-import { TASKS } from "../lib/routes";
+import { TASKS, buildRouteMap } from "../lib/routes";
 import { useTranslations } from "../utils/i18n";
 
 interface Props {
@@ -25,36 +25,7 @@ const {
 const currentLang = lang as "es" | "en";
 const t = useTranslations(currentLang);
 
-// Reuse routeMap logic for React
-const routeMap: Record<string, string> = {};
-const addRoute = (pathEs: string, pathEn: string) => {
-	routeMap[pathEs] = pathEn;
-	routeMap[pathEn] = pathEs;
-	if (!pathEs.endsWith("/")) routeMap[pathEs + "/"] = pathEn;
-	if (!pathEn.endsWith("/")) routeMap[pathEn + "/"] = pathEs;
-};
-
-addRoute("/", "/en");
-addRoute("/es", "/en");
-addRoute("/es/", "/en/");
-
-const sectionMappings = [
-	{ es: "/es/servicios", en: "/en/services" },
-	{ es: "/es/nosotros", en: "/en/about" },
-	{ es: "/es/testimonios", en: "/en/testimonials" },
-	{ es: "/es/contacto", en: "/en/contact" },
-	{ es: "/es/nuestros-clientes", en: "/en/clients" },
-];
-
-sectionMappings.forEach(({ es, en }) => addRoute(es, en));
-
-TASKS.forEach((task) => {
-	if (task.slug.es && task.slug.en) {
-		addRoute(`/es/${task.slug.es}`, `/en/${task.slug.en}`);
-	}
-});
-
-const routeMapJson = JSON.stringify(routeMap);
+const routeMapJson = JSON.stringify(buildRouteMap());
 
 // Simplify t for React (just the keys we need)
 const tReact = {
@@ -69,6 +40,9 @@ const tReact = {
 	"module.payroll.title": t("module.payroll.title"),
 	"module.assets.title": t("module.assets.title"),
 	"hero.quote": t("hero.quote"),
+	"prefs": t("prefs"),
+	"theme.dark": t("theme.dark"),
+	"theme.light": t("theme.light"),
 };
 
 const siteCanonicalURL = new URL(Astro.url.pathname, Astro.site);

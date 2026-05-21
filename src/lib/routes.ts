@@ -177,3 +177,36 @@ export function getHtmlIdFromRouteId(routeId: RouteId): string | undefined {
 export function isSolutionsChild(id: string) {
     return id.startsWith('sol-');
 }
+
+const SECTION_MAPPINGS = [
+    { es: '/es/servicios', en: '/en/services' },
+    { es: '/es/nosotros', en: '/en/about' },
+    { es: '/es/testimonios', en: '/en/testimonials' },
+    { es: '/es/contacto', en: '/en/contact' },
+    { es: '/es/nuestros-clientes', en: '/en/clients' },
+] as const;
+
+export function buildRouteMap(): Record<string, string> {
+    const map: Record<string, string> = {};
+
+    const add = (es: string, en: string) => {
+        map[es] = en;
+        map[en] = es;
+        if (!es.endsWith('/')) map[es + '/'] = en;
+        if (!en.endsWith('/')) map[en + '/'] = es;
+    };
+
+    add('/', '/en');
+    add('/es', '/en');
+    add('/es/', '/en/');
+
+    for (const { es, en } of SECTION_MAPPINGS) add(es, en);
+
+    for (const task of TASKS) {
+        if (task.slug.es && task.slug.en) {
+            add(`/es/${task.slug.es}`, `/en/${task.slug.en}`);
+        }
+    }
+
+    return map;
+}

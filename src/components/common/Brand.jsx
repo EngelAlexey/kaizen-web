@@ -1,41 +1,15 @@
-import { useState, useEffect } from 'react';
-import kaizenLogoDark from "../../assets/img/kaizen_logo.png";
 import kMark from "../../assets/img/K.png";
 
-const brand = {
-  logoDark: kaizenLogoDark.src,
-  logoLight: kMark.src,
-};
-
-export default function Brand({
-  lang = "es",
-  transparent: initialTransparent = false,
-  wordmarkHeight = 32,
-  markSize = 32,
-  className = "",
-}) {
-  const [transparent, setTransparent] = useState(initialTransparent);
-
-  useEffect(() => {
-    const handleScroll = (e) => {
-      setTransparent(e.detail.transparent);
-    };
-
-    window.addEventListener('header-scrolled', handleScroll);
-    return () => window.removeEventListener('header-scrolled', handleScroll);
-  }, []);
-
-  const logoSrc = brand.logoLight;
-
+export default function Brand({ lang = "es", className = "" }) {
   return (
     <a
       href={lang === "es" ? "/" : "/en/"}
       className={"flex items-center select-none transition-opacity duration-300 " + className}
     >
       <img
-        src={logoSrc}
+        src={kMark.src}
         alt="Kaizen"
-        style={{ height: markSize, width: markSize, objectFit: "contain" }}
+        style={{ height: 32, width: 32, objectFit: "contain" }}
         draggable="false"
         loading="eager"
       />

@@ -78,7 +78,8 @@ const t = useTranslations(lang);
             observer.observe(section);
         });
 
-        const handleInternalLinks = () => {
+        if (!document.body._homeLinkHandler) {
+            document.body._homeLinkHandler = true;
             document.body.addEventListener("click", (e) => {
                 const link = e.target.closest("a");
                 if (!link) return;
@@ -116,8 +117,12 @@ const t = useTranslations(lang);
                     });
                 }
             });
-        };
+        }
+    });
 
-        handleInternalLinks();
+    document.addEventListener("astro:before-swap", () => {
+        if (document.body._homeLinkHandler) {
+            delete document.body._homeLinkHandler;
+        }
     });
 </script>

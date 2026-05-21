@@ -14,7 +14,7 @@ const t = useTranslations(lang);
 ---
 
 <Layout title={title} description={description} lang={lang}>
-    <main class="pt-32 pb-24 px-6">
+    <div class="pt-32 pb-24 px-6">
         <div class="max-w-3xl mx-auto">
             <header class="mb-12 text-center">
                 <h1
@@ -35,7 +35,7 @@ const t = useTranslations(lang);
                 <slot />
             </div>
         </div>
-    </main>
+    </div>
 </Layout>
 
 <style is:global>

@@ -192,13 +192,13 @@ const MobileMenuReact = ({ lang, t, routeMapJson, currentPath }) => {
 
                     <div className={`mt-10 pt-8 border-t border-border/40 transition-all duration-300 delay-200 ${isOpen ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'}`}>
                         <div className="flex items-center justify-between mb-6 px-4">
-                            <p className="text-[10px] font-black text-muted-foreground uppercase tracking-[0.2em] opacity-50">PREFERENCIAS</p>
+                            <p className="text-[10px] font-black text-muted-foreground uppercase tracking-[0.2em] opacity-50">{t['prefs'] || 'Preferencias'}</p>
                             <button
                                 onClick={toggleTheme}
                                 className="flex items-center gap-2 py-1.5 px-3 rounded-full bg-muted/5 border border-border/40 text-[10px] font-bold hover:bg-primary/10 transition-colors"
                             >
                                 {theme === 'light' ? <Moon className="w-3 h-3" /> : <Sun className="w-3 h-3" />}
-                                {theme === 'light' ? 'MODO OSCURO' : 'MODO CLARO'}
+                                {theme === 'light' ? (t['theme.dark'] || 'Oscuro') : (t['theme.light'] || 'Claro')}
                             </button>
                         </div>
 
@@ -231,31 +231,6 @@ const MobileMenuReact = ({ lang, t, routeMapJson, currentPath }) => {
                     </a></div>
             </div>
 
-            <style dangerouslySetInnerHTML={{
-                __html: `
-        .bg-glass {
-          background-color: rgba(255, 255, 255, 0.98) !important;
-          backdrop-filter: blur(28px) saturate(180%) !important;
-          -webkit-backdrop-filter: blur(28px) saturate(180%) !important;
-          border: 1px solid rgba(0, 0, 0, 0.05);
-        }
-        .dark .bg-glass {
-          background-color: rgba(9, 9, 11, 0.98) !important;
-          backdrop-filter: blur(28px) saturate(150%) !important;
-          -webkit-backdrop-filter: blur(28px) saturate(150%) !important;
-          border: 1px solid rgba(255, 255, 255, 0.05);
-        }
-        .bg-ambient-glow {
-            background: radial-gradient(circle at 50% 50%, rgba(var(--primary-rgb), 0.05), transparent 70%);
-        }
-        body.menu-open {
-          overflow: hidden !important;
-          touch-action: none;
-        }
-        :root {
-            --primary-rgb: 220, 38, 38; /* Approximate value, assuming red theme */
-        }
-      `}} />
         </div>
     );
 };

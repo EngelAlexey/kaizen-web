@@ -14,7 +14,6 @@ import {
     HardHat,
     FileText,
     Briefcase,
-    ShieldCheck,
 } from "lucide-react";
 
 interface Props {
@@ -248,11 +247,10 @@ const services = [
         }
     };
 
-    if (!window.hasIntentListeners) {
-        window.hasIntentListeners = true;
-    }
-
     const handleInternalLinks = () => {
+        if (document.body._solutionsLinkHandler) return;
+        document.body._solutionsLinkHandler = true;
+
         document.body.addEventListener("click", (e) => {
             const link = e.target.closest("a");
             if (!link) return;
@@ -296,6 +294,9 @@ const services = [
         if (window.solutionsObserver) {
             window.solutionsObserver.disconnect();
             window.solutionsObserver = undefined;
+        }
+        if (document.body._solutionsLinkHandler) {
+            delete document.body._solutionsLinkHandler;
         }
     });
 </script>

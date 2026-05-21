@@ -1,5 +1,6 @@
 # build output
 dist/
+.netlify/
 
 # generated types
 .astro/
@@ -22,3 +23,12 @@ pnpm-debug.log*
 
 # jetbrains setting folder
 .idea/
+
+# Machine-specific VSCode overrides (host-suffixed backups)
+.vscode/*-BOSGAME-*
+.vscode/*-Engel*
+public/favicon-*BOSGAME*
+public/favicon-*Engel*
+
+# Claude Code local settings (machine-specific permissions)
+.claude/settings.local.json
