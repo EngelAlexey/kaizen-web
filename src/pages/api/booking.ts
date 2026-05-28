@@ -13,24 +13,24 @@ interface BookingPayload {
     turnstileToken: string;
 }
 
-function validate(body: unknown): { ok: true; data: BookingPayload } | { ok: false; message: string } {
+function validate(body: unknown): { ok: true; data: BookingPayload } | { ok: false; reason: string } {
     if (!body || typeof body !== "object" || Array.isArray(body)) {
-        return { ok: false, message: "invalid_body" };
+        return { ok: false, reason: "invalid_body" };
     }
     const b = body as Record<string, unknown>;
 
     const str = (v: unknown, max: number) =>
         typeof v === "string" && v.trim().length > 0 && v.length <= max;
 
-    if (!str(b.name, 100)) return { ok: false, message: "invalid_name" };
+    if (!str(b.name, 100)) return { ok: false, reason: "invalid_name" };
     if (!str(b.email, 254) || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(b.email as string))
-        return { ok: false, message: "invalid_email" };
+        return { ok: false, reason: "invalid_email" };
     if (typeof b.phone !== "string" || b.phone.length > 30)
-        return { ok: false, message: "invalid_phone" };
-    if (!str(b.company, 100)) return { ok: false, message: "invalid_company" };
+        return { ok: false, reason: "invalid_phone" };
+    if (!str(b.company, 100)) return { ok: false, reason: "invalid_company" };
     if (!Array.isArray(b.products) || b.products.length === 0)
-        return { ok: false, message: "invalid_products" };
-    if (!str(b.turnstileToken, 2048)) return { ok: false, message: "invalid_token" };
+        return { ok: false, reason: "invalid_products" };
+    if (!str(b.turnstileToken, 2048)) return { ok: false, reason: "invalid_token" };
 
     return {
         ok: true,
@@ -81,8 +81,15 @@ td:first-child{color:#6b7280;width:130px;font-weight:600}
 </html>`;
 }
 
-function json(data: Record<string, string>, status = 200): Response {
-    return new Response(JSON.stringify(data), {
+function ok(): Response {
+    return new Response(JSON.stringify({ status: "success" }), {
+        status: 200,
+        headers: { "Content-Type": "application/json" },
+    });
+}
+
+function fail(status = 400): Response {
+    return new Response(JSON.stringify({ status: "error" }), {
         status,
         headers: { "Content-Type": "application/json" },
     });
@@ -93,11 +100,15 @@ export const POST: APIRoute = async ({ request }) => {
     try {
         body = await request.json();
     } catch {
-        return json({ status: "error", message: "invalid_json" }, 400);
+        console.error("[booking] invalid_json");
+        return fail(400);
     }
 
     const result = validate(body);
-    if (!result.ok) return json({ status: "error", message: result.message }, 400);
+    if (!result.ok) {
+        console.error("[booking] validation:", result.reason);
+        return fail(400);
+    }
     const data = result.data;
 
     // Server-side Turnstile verification
@@ -112,8 +123,11 @@ export const POST: APIRoute = async ({ request }) => {
             }),
         }
     );
-    const tsData = (await tsRes.json()) as { success: boolean };
-    if (!tsData.success) return json({ status: "error", message: "captcha_failed" }, 400);
+    const tsData = (await tsRes.json()) as { success: boolean; "error-codes"?: string[] };
+    if (!tsData.success) {
+        console.error("[booking] turnstile_failed:", tsData["error-codes"]);
+        return fail(400);
+    }
 
     // Send email via Resend
     const resend = new Resend(import.meta.env.RESEND_API_KEY);
@@ -125,7 +139,10 @@ export const POST: APIRoute = async ({ request }) => {
         html: buildEmailHtml(data),
     });
 
-    if (error) return json({ status: "error", message: "email_failed" }, 500);
+    if (error) {
+        console.error("[booking] resend_failed:", error);
+        return fail(500);
+    }
 
-    return json({ status: "success" });
+    return ok();
 };
