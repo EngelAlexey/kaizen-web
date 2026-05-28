@@ -50,7 +50,6 @@ const tSubmit = t("booking.form.submit");
                 </p>
             </div>
 
-            <!-- AI Note -->
             <div
                 class="p-6 rounded-2xl bg-gradient-to-br from-purple/10 to-blue/10 border border-purple/20 flex gap-4"
             >
@@ -77,15 +76,21 @@ const tSubmit = t("booking.form.submit");
             </div>
         </div>
 
-        <!-- Booking Form -->
         <div
             class="bg-panel p-8 md:p-10 rounded-3xl shadow-strong border border-border animate-fade-left"
         >
-            <form id="booking-form" class="space-y-6">
-                <!-- Status Message Area -->
+            <form
+                id="booking-form"
+                class="space-y-6"
+                data-lang={currentLang}
+                data-t-sending={tSending}
+                data-t-success={tSuccess}
+                data-t-error={tError}
+                data-t-captcha-required={tCaptchaRequired}
+                data-t-submit={tSubmit}
+            >
                 <div id="form-status" class="hidden p-4 rounded-xl text-sm font-bold animate-fade-in text-center" role="alert"></div>
 
-                <!-- Honeypot (invisible for humans, traps bots) -->
                 <input
                     type="text"
                     name="website"
@@ -166,7 +171,6 @@ const tSubmit = t("booking.form.submit");
                         >{t("booking.form.product")}</label
                     >
                     <div class="space-y-3">
-                        <!-- Kaizen Option -->
                         <label
                             class="relative flex items-start gap-4 p-4 rounded-xl border border-border cursor-pointer hover:border-primary/50 hover:bg-primary/5 transition-all group"
                         >
@@ -194,7 +198,6 @@ const tSubmit = t("booking.form.submit");
                             </div>
                         </label>
 
-                        <!-- Seiri Option -->
                         <label
                             class="relative flex items-start gap-4 p-4 rounded-xl border border-border cursor-pointer hover:border-emerald/50 hover:bg-emerald/5 transition-all group"
                         >
@@ -222,7 +225,6 @@ const tSubmit = t("booking.form.submit");
                             </div>
                         </label>
 
-                        <!-- BayCo Option -->
                         <label
                             class="relative flex items-start gap-4 p-4 rounded-xl border border-border cursor-pointer hover:border-orange-500/50 hover:bg-orange-500/5 transition-all group"
                         >
@@ -262,7 +264,6 @@ const tSubmit = t("booking.form.submit");
                     </div>
                 </div>
 
-                <!-- Cloudflare Turnstile -->
                 <div
                     class="cf-turnstile"
                     data-sitekey={turnstileSiteKey}
@@ -288,11 +289,15 @@ const tSubmit = t("booking.form.submit");
 
 <script is:inline src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 
-<script define:vars={{ tSending, tSuccess, tError, tCaptchaRequired, tSubmit }}>
+<script>
     document.addEventListener("astro:page-load", () => {
         const form = document.getElementById("booking-form");
         if (!form || form._bookingReady) return;
         form._bookingReady = true;
+
+        const { tSending, tSuccess, tError, tCaptchaRequired, tSubmit, lang } = form.dataset;
+        const errorClass = "p-4 rounded-xl text-sm font-bold animate-fade-in text-center bg-red-500/10 text-red-500 border border-red-500/20";
+        const successClass = "p-4 rounded-xl text-sm font-bold animate-fade-in text-center bg-emerald/10 text-emerald border border-emerald/20";
 
         form.addEventListener("submit", async (event) => {
             event.preventDefault();
@@ -304,15 +309,12 @@ const tSubmit = t("booking.form.submit");
 
             if (!btn || !statusEl) return;
 
-            // Honeypot check — bots fill hidden fields, humans don't
-            const honeypot = form.elements["website"]?.value;
-            if (honeypot) return;
+            if (form.elements["website"]?.value) return;
 
-            // Turnstile token check
             const turnstileToken = form.elements["cf-turnstile-response"]?.value;
             if (!turnstileToken) {
                 statusEl.textContent = tCaptchaRequired;
-                statusEl.className = "p-4 rounded-xl text-sm font-bold animate-fade-in text-center bg-red-500/10 text-red-500 border border-red-500/20";
+                statusEl.className = errorClass;
                 statusEl.classList.remove("hidden");
                 return;
             }
@@ -324,19 +326,18 @@ const tSubmit = t("booking.form.submit");
 
             try {
                 const formData = new FormData(form);
-                const data = {
-                    name: formData.get("name"),
-                    email: formData.get("email"),
-                    phone: formData.get("phone"),
-                    role: formData.get("role"),
-                    company: formData.get("company"),
-                    products: formData.getAll("product"),
-                    turnstileToken,
-                };
-
                 const response = await fetch("/api/booking", {
                     method: "POST",
-                    body: JSON.stringify(data),
+                    body: JSON.stringify({
+                        name: formData.get("name"),
+                        email: formData.get("email"),
+                        phone: formData.get("phone"),
+                        role: formData.get("role"),
+                        company: formData.get("company"),
+                        products: formData.getAll("product"),
+                        turnstileToken,
+                        lang,
+                    }),
                     headers: { "Content-Type": "application/json" },
                 });
 
@@ -344,17 +345,18 @@ const tSubmit = t("booking.form.submit");
 
                 if (result.status === "success") {
                     statusEl.textContent = tSuccess;
-                    statusEl.className = "p-4 rounded-xl text-sm font-bold animate-fade-in text-center bg-emerald/10 text-emerald border border-emerald/20";
+                    statusEl.className = successClass;
                     statusEl.classList.remove("hidden");
                     form.reset();
                     if (window.turnstile) window.turnstile.reset();
                 } else {
-                    throw new Error(result.message || "server_error");
+                    throw new Error("server_error");
                 }
             } catch {
                 statusEl.textContent = tError;
-                statusEl.className = "p-4 rounded-xl text-sm font-bold animate-fade-in text-center bg-red-500/10 text-red-500 border border-red-500/20";
+                statusEl.className = errorClass;
                 statusEl.classList.remove("hidden");
+                if (window.turnstile) window.turnstile.reset();
             } finally {
                 btn.disabled = false;
                 if (btnText) btnText.textContent = tSubmit;

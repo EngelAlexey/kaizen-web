@@ -1,10 +1,8 @@
 ---
-// BubbleMenu.astro – Floating action button shown on every page
 ---
 
 <script src="https://cdn.lordicon.com/lordicon.js" is:inline></script>
 
-<!-- Botón flotante -->
 <button class="kz-bubble-btn" aria-label="Menú Kaizen" onclick="kzToggleMenu()">
     <img src="/favicon.png" alt="Kaizen" width="34" height="34" />
 </button>
@@ -239,7 +237,6 @@
         menu.classList.toggle("kz-menu-oculto");
     }
 
-    // Close when clicking outside
     document.addEventListener("click", function (e) {
         const menu = document.getElementById("kz-menu-flotante");
         const btn = document.querySelector(".kz-bubble-btn");
