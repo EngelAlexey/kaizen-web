@@ -87,7 +87,6 @@ export function renderIframePage(title: string, src: string): Response {
     <iframe
         src="${src}"
         title="${title}"
-        sandbox="allow-scripts allow-same-origin allow-forms allow-popups allow-popups-to-escape-sandbox allow-downloads"
         referrerpolicy="strict-origin-when-cross-origin"
         loading="lazy"
     ></iframe>
