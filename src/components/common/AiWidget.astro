@@ -1,0 +1,12 @@
+---
+import { aiWidgetHtml } from "../../lib/aiWidget";
+
+interface Props {
+    productSlug?: string;
+}
+
+const { productSlug } = Astro.props;
+const html = aiWidgetHtml(productSlug);
+---
+
+<Fragment set:html={html} />

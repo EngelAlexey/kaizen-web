@@ -4,6 +4,7 @@ import Header from "../components/common/Header.astro";
 import Footer from "../components/common/Footer.astro";
 import MobileMenuReact from "../components/common/MobileMenuReact.jsx";
 import BubbleMenu from "../components/common/BubbleMenu.astro";
+import AiWidget from "../components/common/AiWidget.astro";
 import { ViewTransitions } from "astro:transitions";
 import { TASKS, buildRouteMap } from "../lib/routes";
 import { useTranslations } from "../utils/i18n";
@@ -153,5 +154,6 @@ if (
 			currentPath={Astro.url.pathname}
 		/>
 		<BubbleMenu />
+		<AiWidget />
 	</body>
 </html>

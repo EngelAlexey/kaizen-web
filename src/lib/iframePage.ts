@@ -1,4 +1,5 @@
 import type { APIRoute } from "astro";
+import { aiWidgetHtml } from "./aiWidget";
 
 const BUBBLE_MENU_HTML = `
 <script src="https://cdn.lordicon.com/lordicon.js"><\/script>
@@ -26,12 +27,12 @@ const BUBBLE_MENU_HTML = `
         </span>
         <span>Sitio web</span>
     </a>
-    <a class="kz-menu-item" href="https://kaizenapps.net/gpt" target="_blank" rel="noopener noreferrer">
+    <button type="button" class="kz-menu-item" onclick="kzAiOpen()">
         <span class="kz-menu-icon" aria-hidden="true">
             <lord-icon src="https://cdn.lordicon.com/ayhtotha.json" trigger="hover" stroke="bold" state="loop" colors="primary:#ffffff,secondary:#4bb3fd"></lord-icon>
         </span>
         <span>Chat</span>
-    </a>
+    </button>
 </div>
 
 <style>
@@ -70,7 +71,7 @@ const BUBBLE_MENU_HTML = `
 <\/script>
 `;
 
-export function renderIframePage(title: string, src: string): Response {
+export function renderIframePage(title: string, src: string, aiProductSlug?: string): Response {
     const html = `<!DOCTYPE html>
 <html lang="es">
 <head>
@@ -91,6 +92,7 @@ export function renderIframePage(title: string, src: string): Response {
         loading="lazy"
     ></iframe>
     ${BUBBLE_MENU_HTML}
+    ${aiWidgetHtml(aiProductSlug)}
 </body>
 </html>`;
 
@@ -99,5 +101,5 @@ export function renderIframePage(title: string, src: string): Response {
     });
 }
 
-export const GET_iframe = (title: string, src: string): APIRoute =>
-    () => renderIframePage(title, src);
+export const GET_iframe = (title: string, src: string, aiProductSlug?: string): APIRoute =>
+    () => renderIframePage(title, src, aiProductSlug);
