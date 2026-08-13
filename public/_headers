@@ -26,3 +26,6 @@
 
 /seiton
   X-Frame-Options: ALLOWALL
+
+/icp
+  X-Frame-Options: ALLOWALL
